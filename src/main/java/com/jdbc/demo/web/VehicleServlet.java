@@ -38,7 +38,7 @@ public class VehicleServlet extends HttpServlet {
 
             if (delete) {
                 int id = Integer.parseInt(request.getParameter("id").trim());
-                vehicleEntityManager.delete(id);
+                vehicleEntityManager.delete((long)id);
                 LOGGER.info(String.format("Successfully deleted vehicle with ID: %d", id));
             } else {
                 vehicle.setBrand(request.getParameter("brand"));
@@ -47,7 +47,7 @@ public class VehicleServlet extends HttpServlet {
                     vehicle.setHorsepower(Integer.parseInt(request.getParameter("horsepower").trim()));
                 if (request.getParameter("mileage") != null && request.getParameter("mileage").length()>0)
                     vehicle.setMileage(Integer.parseInt(request.getParameter("mileage").trim()));
-                vehicle.setType(request.getParameter("type"));
+                vehicle.setModel(request.getParameter("type"));
                 vehicle.setVIN(request.getParameter("VIN"));
                 vehicle.setProductionDate(new Date(System.currentTimeMillis()));
                 vehicle.setAvailable(Boolean.parseBoolean(request.getParameter("available")));

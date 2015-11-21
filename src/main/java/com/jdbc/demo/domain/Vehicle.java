@@ -1,22 +1,39 @@
 package com.jdbc.demo.domain;
 
 
-import java.sql.Date;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@Entity
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "vehicle.all", query = "Select * from Vehicle", resultClass = Vehicle.class),
+})
 public class Vehicle {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_Vehicle")
+    private long id;
+
     private int horsepower;
     private int engine;
     private int mileage;
-    private String type;
+    private String model;
     private String brand;
     private String VIN;
+
+    @Column(nullable = false, name="production_date")
+    @Temporal(TemporalType.DATE)
     private Date productionDate;
+
     private Boolean available;
-    private ArrayList<FreightTransport> transports;
+
+    @ManyToMany
+    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_Vehicle") },
+            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
+    private List<FreightTransport> transports = new ArrayList<>();
 
     public Vehicle() {
 
@@ -33,21 +50,21 @@ public class Vehicle {
         if (horsepower != vehicle.horsepower) return false;
         if (engine != vehicle.engine) return false;
         if (mileage != vehicle.mileage) return false;
-        if (!type.equals(vehicle.type)) return false;
+        if (!model.equals(vehicle.model)) return false;
         if (!brand.equals(vehicle.brand)) return false;
         if (!VIN.equals(vehicle.VIN)) return false;
         if (available != null ? !available.equals(vehicle.available) : vehicle.available != null) return false;
-        return ((transports == null || vehicle.transports == null) || (transports.size() == vehicle.transports.size() && vehicle.transports.containsAll(transports)));
+        return ((transports == null || vehicle.transports == null) || (transports == vehicle.transports));
 
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int)id;
         result = 31 * result + horsepower;
         result = 31 * result + engine;
         result = 31 * result + mileage;
-        result = 31 * result + type.hashCode();
+        result = 31 * result + model.hashCode();
         result = 31 * result + brand.hashCode();
         result = 31 * result + VIN.hashCode();
         result = 31 * result + productionDate.hashCode();
@@ -62,7 +79,7 @@ public class Vehicle {
                 ", horsepower=" + horsepower +
                 ", engine=" + engine +
                 ", mileage=" + mileage +
-                ", type='" + type + '\'' +
+                ", model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", VIN='" + VIN + '\'' +
                 ", productionDate=" + productionDate +
@@ -70,14 +87,15 @@ public class Vehicle {
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
+    @Column(nullable = false)
     public int getHorsepower() {
         return horsepower;
     }
@@ -86,6 +104,7 @@ public class Vehicle {
         this.horsepower = horsepower;
     }
 
+    @Column(nullable = false)
     public int getEngine() {
         return engine;
     }
@@ -94,14 +113,16 @@ public class Vehicle {
         this.engine = engine;
     }
 
-    public String getType() {
-        return type;
+    @Column(nullable = false)
+    public String getModel() {
+        return model;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setModel(String model) {
+        this.model = model;
     }
 
+    @Column(nullable = false)
     public String getBrand() {
         return brand;
     }
@@ -110,6 +131,7 @@ public class Vehicle {
         this.brand = brand;
     }
 
+    @Column(unique = true, nullable = false)
     public String getVIN() {
         return VIN;
     }
@@ -134,6 +156,7 @@ public class Vehicle {
         this.available = available;
     }
 
+    @Column(nullable = false)
     public int getMileage() {
         return mileage;
     }
@@ -147,6 +170,6 @@ public class Vehicle {
     }
 
     public void setTransports(List<FreightTransport> transports) {
-        this.transports = (ArrayList<FreightTransport>)transports;
+        this.transports = transports;
     }
 }

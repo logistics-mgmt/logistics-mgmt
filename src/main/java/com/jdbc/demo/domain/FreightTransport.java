@@ -1,27 +1,65 @@
 package com.jdbc.demo.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Mateusz on 22-Oct-15.
  */
+
+@Entity
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "freightTransport.all", query = "Select * from FreightTransport", resultClass = FreightTransport.class),
+})
 public class FreightTransport {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_FreightTransport")
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name="id_load_Address")
     private Address loadAddress;
+
+    @ManyToOne
+    @JoinColumn(name="id_unload_Address")
     private Address unloadAddress;
+
     private int distance;
     private BigDecimal value;
+
+    @Column(nullable = false, name="load_date")
+    @Temporal(TemporalType.DATE)
     private Date loadDate;
+
+    @Column(nullable = false, name="unload_date")
+    @Temporal(TemporalType.DATE)
     private Date unloadDate;
+
+    @Column(nullable = false, name="payment_date")
+    @Temporal(TemporalType.DATE)
     private Date paymentDate;
+
     private Boolean finished;
     private String notes;
+
+    @ManyToOne
+    @JoinColumn(name="id_Client")
     private Client client;
-    private List<Vehicle> vehicles;
-    private List<Driver> drivers;
+
+    @ManyToMany
+    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_FreightTransport") },
+            inverseJoinColumns = { @JoinColumn(name="id_Vehicle") })
+    private List<Vehicle> vehicles = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name="FreightTransportDrivers", joinColumns = { @JoinColumn(name="id_FreightTransport") },
+            inverseJoinColumns = { @JoinColumn(name="id_Driver") })
+    private List<Driver> drivers = new ArrayList<>();
 
     public FreightTransport(){
 
@@ -53,7 +91,7 @@ public class FreightTransport {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int)id;
         result = 31 * result + loadAddress.hashCode();
         result = 31 * result + unloadAddress.hashCode();
         result = 31 * result + distance;
@@ -86,11 +124,11 @@ public class FreightTransport {
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

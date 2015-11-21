@@ -1,10 +1,17 @@
 package com.jdbc.demo.services;
 
+import com.jdbc.demo.VehicleDAO;
 import com.jdbc.demo.domain.Vehicle;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,9 +20,16 @@ import java.util.List;
 /**
  * Created by mciesielski on 2015-10-23.
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:/beans.xml" })
+@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
+@Transactional
 public class VehicleEntityManagerTest {
 
-    private VehicleEntityManager vehicleEntityManager= new VehicleEntityManager();
+    @Autowired
+    private VehicleDAO vehicleManager;
+
     private ArrayList<Vehicle> testVehicles = new ArrayList<Vehicle>();
 
     @Before
@@ -24,7 +38,7 @@ public class VehicleEntityManagerTest {
         vehicle1.setBrand("Scania");
         vehicle1.setEngine(16);
         vehicle1.setHorsepower(300);
-        vehicle1.setType("ZX-83");
+        vehicle1.setModel("ZX-83");
         vehicle1.setVIN("1M8GDM9A_KP042777");
         vehicle1.setProductionDate(new Date(System.currentTimeMillis()));
         testVehicles.add(vehicle1);
@@ -33,7 +47,7 @@ public class VehicleEntityManagerTest {
         vehicle2.setBrand("Scania");
         vehicle2.setEngine(16);
         vehicle2.setHorsepower(300);
-        vehicle2.setType("ZX-83");
+        vehicle2.setModel("ZX-83");
         vehicle2.setVIN("1M8GDM9A_KE042777");
         vehicle2.setProductionDate(new Date(System.currentTimeMillis()));
         testVehicles.add(vehicle2);
@@ -42,62 +56,62 @@ public class VehicleEntityManagerTest {
     @After
     public void tearDown() throws Exception {
         for (Vehicle testVehicle: testVehicles){
-            vehicleEntityManager.delete(testVehicle);
+            vehicleManager.delete(testVehicle);
         }
 
     }
 
     @Test
     public void getAllTest() throws Exception {
-        Vehicle vehicle1 = vehicleEntityManager.add(testVehicles.get(0));
-        Vehicle vehicle2 = vehicleEntityManager.add(testVehicles.get(1));
+        Vehicle vehicle1 = vehicleManager.add(testVehicles.get(0));
+        Vehicle vehicle2 = vehicleManager.add(testVehicles.get(1));
 
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle1));
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle2));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle1));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle2));
     }
 
     @Test
     public void deleteTest() throws Exception {
-        Vehicle vehicle1 = vehicleEntityManager.add(testVehicles.get(0));
-        Vehicle vehicle2 = vehicleEntityManager.add(testVehicles.get(1));
+        Vehicle vehicle1 = vehicleManager.add(testVehicles.get(0));
+        Vehicle vehicle2 = vehicleManager.add(testVehicles.get(1));
 
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle1));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle1));
 
-        vehicleEntityManager.delete(testVehicles.get(0));
+        vehicleManager.delete(testVehicles.get(0));
 
-        Assert.assertFalse(vehicleEntityManager.getAll().contains(vehicle1));
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle2));
+        Assert.assertFalse(vehicleManager.getAll().contains(vehicle1));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle2));
     }
 
     @Test
     public void addTest() throws Exception {
-        int sizeBeforeAddition = vehicleEntityManager.getAll().size();
-        Vehicle vehicle = vehicleEntityManager.add(testVehicles.get(0));
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle));
-        Assert.assertEquals(sizeBeforeAddition+1, vehicleEntityManager.getAll().size());
+        int sizeBeforeAddition = vehicleManager.getAll().size();
+        Vehicle vehicle = vehicleManager.add(testVehicles.get(0));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle));
+        Assert.assertEquals(sizeBeforeAddition+1, vehicleManager.getAll().size());
     }
 
     @Test
     public void getByIdTest() throws Exception {
 
-        Vehicle vehicle = vehicleEntityManager.add(testVehicles.get(0));
-        List<Vehicle> all = vehicleEntityManager.getAll();
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle));
+        Vehicle vehicle = vehicleManager.add(testVehicles.get(0));
+        List<Vehicle> all = vehicleManager.getAll();
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle));
 
-        Vehicle foundVehicle = vehicleEntityManager.get(vehicle.getId());
+        Vehicle foundVehicle = vehicleManager.get((int)vehicle.getId());
 
         Assert.assertEquals(vehicle, foundVehicle);
     }
 
     @Test
     public void testUpdate() throws Exception {
-        Vehicle vehicle1 = vehicleEntityManager.add(testVehicles.get(0));
+        Vehicle vehicle1 = vehicleManager.add(testVehicles.get(0));
 
-        Assert.assertTrue(vehicleEntityManager.getAll().contains(vehicle1));
+        Assert.assertTrue(vehicleManager.getAll().contains(vehicle1));
 
         vehicle1.setBrand("QWERTY");
-        vehicleEntityManager.update(vehicle1);
-        Vehicle updatedVehicle1 = vehicleEntityManager.get(vehicle1.getId());
+        vehicleManager.update(vehicle1);
+        Vehicle updatedVehicle1 = vehicleManager.get(vehicle1.getId());
 
         Assert.assertEquals(vehicle1, updatedVehicle1);
 
