@@ -171,12 +171,12 @@ $(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/jdbc_demo">JEE Servlet Demo</a>
+              <a class="navbar-brand" href="/">JEE Servlet Demo</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="inactive"><a href="drivers.jsp">Kierowcy</a></li>
-                <li class="active"><a href="vehicles.jsp">Pojazdy</a></li>
+                <li class="inactive"><a href="drivers">Kierowcy</a></li>
+                <li class="active"><a href="vehicles">Pojazdy</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!--/.container-fluid -->
