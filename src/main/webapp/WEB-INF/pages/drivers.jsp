@@ -1,8 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"
-import="com.jdbc.demo.domain.Driver"
-import="com.jdbc.demo.domain.Address"
 %>
 
 <!DOCTYPE html>
@@ -124,7 +125,6 @@ $(function() {
 </head>
 
 <body>
-<jsp:useBean id="addresses" class="com.jdbc.demo.services.AddressEntityManager" scope="application" />
 
  <div id="dialog-div" title="Edytuj kierowcę" class="modal-fade">
  
@@ -154,7 +154,7 @@ $(function() {
       <div class="form-group">
         <label for="driver-address-id">Adres</label>
         <select name="address-id" id="driver-address-id" class="form-control">
-          <c:forEach var="address" items="${addresses.all}">
+          <c:forEach var="address" items="${addresses}">
               <option value=${address.id}>${address.street} ${address.houseNumber}, ${address.town}, ${address.country}</option>
           </c:forEach>
         </select>
@@ -201,7 +201,7 @@ $(function() {
       </tr>
   </thead>
 
-  <c:forEach var="driver" items="${drivers.all}">
+  <c:forEach var="driver" items="${drivers}">
           <tr>
               <td>${driver.id}</td>
               <td>${driver.firstName}</td>
@@ -214,7 +214,7 @@ $(function() {
 
                 <td><button class="btn btn-primary edit-driver-button">Edytuj</button></td>
               <td>
-                <form name="delete_driver_form" action="driver" method="post">
+                <form name="delete_driver_form" action="drivers" method="post">
                   <input type="hidden" class="form-control" name="id" value="${driver.id}">
                   <button type=submit name="delete" value="true" class="btn btn-danger">Usuń</button>
                 </form>
@@ -223,29 +223,29 @@ $(function() {
   </c:forEach>
   </table>
 
-  <form name="add_driver_form" data-toggle="validator" action="driver" method="post">
+  <form name="add_driver_form" modelAttribute="addDriverForm" data-toggle="validator" action="drivers" method="post">
       <div class="form-group">
         <label for="first-name">Imie:</label>
-        <input type="text" class="form-control" name="first-name" id="first-name" required>
+        <input type="text" class="form-control" name="first-name"  path="firstName" id="first-name" required="true" />
       </div>
       <div class="form-group">
         <label for="last-name">Nazwisko:</label>
-        <input type="text" class="form-control" id="last-name" name="last-name" required>
+        <input type="text" class="form-control" id="last-name"  path="lastName" name="last-name" required="true" />
       </div>
       <div class="form-group">
         <label for="pesel">Pesel:</label>
-        <input type="text" class="form-control" id="pesel" data-minlength="11" data-error="PESEL musi miec dokładnie 11 znaków." data-maxlength="11" name="pesel" required>
+        <input type="text" class="form-control" id="pesel"  path="pesel" data-minlength="11" data-error="PESEL musi miec dokładnie 11 znaków." data-maxlength="11" name="pesel" required="true" />
       </div>
       <div class="form-group">
         <label for="address-id">Adres:</label>
-        <select name="address-id" id="address-id" class="form-control">
-          <c:forEach var="address" items="${addresses.all}">
+        <select name="address-id" id="address-id"  path="addressId" class="form-control">
+          <c:forEach var="address" items="${addresses}">
               <option value=${address.id}>${address.street} ${address.houseNumber}, ${address.town}, ${address.country}</option>
           </c:forEach>
         </select>
       </div>
       <div class="checkbox">
-        <label><input type="checkbox" checked="checked" id="available" name="available">Dostepny</label>
+        <label><input type="checkbox" checked="checked"  path="available" id="available" name="available" />Dostepny</label>
       </div>
       
         <button type="submit" class="btn btn-default">Dodaj</button>

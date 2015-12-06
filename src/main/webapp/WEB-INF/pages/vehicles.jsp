@@ -124,7 +124,6 @@ $(function() {
 </head>
 
 <body>
-<jsp:useBean id="vehicles" class="com.jdbc.demo.services.VehicleEntityManager" scope="application" />
 
 <div id="dialog-div" title="Edytuj kierowcę" class="modal-fade">
  
@@ -198,11 +197,11 @@ $(function() {
       </tr>
   </thead>
 
-  <c:forEach var="vehicle" items="${vehicles.all}">
+  <c:forEach var="vehicle" items="${vehicles}">
           <tr>
               <td>${vehicle.id}</td>
               <td>${vehicle.brand}</td>
-              <td>${vehicle.type}</td>
+              <td>${vehicle.model}</td>
               <td>${vehicle.engine}</td>
               <td>${vehicle.VIN}</td>
               <td>${vehicle.horsepower}</td>
