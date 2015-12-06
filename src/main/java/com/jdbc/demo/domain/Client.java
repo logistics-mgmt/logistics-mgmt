@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(sequenceName = "CLIENT_ID_SEQ", name = "ClientIdSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ClientIdSequence")
     @Column(name = "id_Client")
     private long id;
     private String name;

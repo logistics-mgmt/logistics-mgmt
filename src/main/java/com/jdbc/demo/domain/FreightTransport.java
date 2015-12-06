@@ -17,7 +17,8 @@ import java.util.List;
 public class FreightTransport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(sequenceName = "FREIGHT_TRANSPORT_ID_SEQ", name = "FreightTransportIdSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FreightTransportIdSequence")
     @Column(name = "id_FreightTransport")
     private long id;
 
