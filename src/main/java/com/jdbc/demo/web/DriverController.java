@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Mateusz on 30-Nov-15.
@@ -89,8 +87,9 @@ public class DriverController {
         return "drivers";
     }
 
-    @RequestMapping("/{id}")
-    public String getDriver(@RequestParam(value = "id") long id, ModelMap model){
-        return  "driver";
+    //Simple example of producing JSON responses
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
+    public @ResponseBody Driver getDriver(@PathVariable long id, ModelMap model){
+        return  driverManager.get(id);
     }
 }

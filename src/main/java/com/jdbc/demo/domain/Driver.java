@@ -1,5 +1,7 @@
 package com.jdbc.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
  * Created by Mateusz on 22-Oct-15.
  */
 @Entity
+@JsonIgnoreProperties({"transports"})
 @NamedNativeQueries({
         @NamedNativeQuery(name = "driver.all", query = "Select * from Driver", resultClass = Driver.class),
 })

@@ -1,12 +1,15 @@
 package com.jdbc.demo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"transports"})
 @NamedNativeQueries({
         @NamedNativeQuery(name = "vehicle.all", query = "Select * from Vehicle", resultClass = Vehicle.class),
 })
