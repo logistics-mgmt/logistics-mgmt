@@ -2,6 +2,7 @@
 
 <h2>How to run:</h2>
   Create local PostgreSQL database(DBScript.sql is located in main folder of repository):
+  `createdb -U postgres logistics`
   `psql -U postgres -d logistics -a -f DBScript.sql`
   
   Fill `logistics-mgmt/src/main/resources/jdbc.properties` with correct credentials to your local PostgreSQL database.
