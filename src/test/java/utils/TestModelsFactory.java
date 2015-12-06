@@ -76,7 +76,7 @@ public abstract class TestModelsFactory {
         vehicle1.setBrand("Scania");
         vehicle1.setEngine(16);
         vehicle1.setHorsepower(300);
-        vehicle1.setType("ZX-83");
+        vehicle1.setModel("ZX-83");
         vehicle1.setVIN("1M8GDM9A_KP042777");
         vehicle1.setProductionDate(new Date(System.currentTimeMillis()));
         return vehicle1;
@@ -87,7 +87,7 @@ public abstract class TestModelsFactory {
         vehicle2.setBrand("Scania");
         vehicle2.setEngine(16);
         vehicle2.setHorsepower(300);
-        vehicle2.setType("ZX-83");
+        vehicle2.setModel("ZX-83");
         vehicle2.setVIN("1M8GDM9A_KE042777");
         vehicle2.setProductionDate(new Date(System.currentTimeMillis()));
         return vehicle2;

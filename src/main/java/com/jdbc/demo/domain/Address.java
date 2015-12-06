@@ -1,23 +1,37 @@
 package com.jdbc.demo.domain;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Created by Mateusz on 22-Oct-15.
  */
-public class Address {
 
+@Entity
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "address.all", query = "Select * from Address", resultClass = Address.class),
+})
+public class Address implements Serializable {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_Address")
+    private long id;
+
     private String town;
     private String street;
     private String code;
+
+    @Column(nullable = false, name="house_number")
     private String houseNumber;
+
     private String country;
 
     public Address(){
         
     }
 
-    public Address(int id, String town, String street, String code, String houseNumber, String country) {
+    public Address(long id, String town, String street, String code, String houseNumber, String country) {
         this.id = id;
         this.town = town;
         this.street = street;
@@ -44,7 +58,7 @@ public class Address {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int)id;
         result = 31 * result + town.hashCode();
         result = 31 * result + street.hashCode();
         result = 31 * result + code.hashCode();
@@ -65,14 +79,15 @@ public class Address {
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
+    @Column(nullable = false)
     public String getTown() {
         return town;
     }
@@ -81,6 +96,7 @@ public class Address {
         this.town = town;
     }
 
+    @Column(nullable = false)
     public String getStreet() {
         return street;
     }
@@ -89,6 +105,7 @@ public class Address {
         this.street = street;
     }
 
+    @Column(nullable = false)
     public String getCode() {
         return code;
     }
@@ -105,6 +122,7 @@ public class Address {
         this.houseNumber = houseNumber;
     }
 
+    @Column(nullable = false)
     public String getCountry() {
         return country;
     }

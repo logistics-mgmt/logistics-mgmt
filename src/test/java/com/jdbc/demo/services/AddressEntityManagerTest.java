@@ -1,20 +1,34 @@
 package com.jdbc.demo.services;
 
+import com.jdbc.demo.AddressDAO;
 import com.jdbc.demo.domain.Address;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import utils.TestModelsFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mateusz on 03-Nov-15.
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:/beans.xml" })
+@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
+@Transactional
 public class AddressEntityManagerTest {
 
-    private AddressEntityManager addressEntityManager = new AddressEntityManager();
+    @Autowired
+    private AddressDAO addressManager;
+    
     private ArrayList<Address> testAddresses = new ArrayList<Address>();
 
     @Before
@@ -23,55 +37,48 @@ public class AddressEntityManagerTest {
         testAddresses.add(TestModelsFactory.createTestAddress2());
     }
 
-    @After
-    public void tearDown() throws Exception {
-        for (Address testAddress: testAddresses){
-            addressEntityManager.delete(testAddress.getId());
-        }
-    }
-
     @Test
     public void testGetAll() throws Exception {
-        addressEntityManager.add(testAddresses.get(0));
-        addressEntityManager.add(testAddresses.get(1));
+        addressManager.add(testAddresses.get(0));
+        addressManager.add(testAddresses.get(1));
 
-        Assert.assertTrue(addressEntityManager.getAll().size()>=2);
-        Assert.assertTrue(addressEntityManager.getAll().contains(testAddresses.get(0)));
-        Assert.assertTrue(addressEntityManager.getAll().contains(testAddresses.get(1)));
+        List<Address> addresses = addressManager.getAll();
+        Assert.assertTrue(addresses.size()>=2);
+        Assert.assertTrue(addresses.contains(testAddresses.get(0)));
+        Assert.assertTrue(addresses.contains(testAddresses.get(1)));
     }
 
     @Test
     public void testAdd() throws Exception {
-        int sizeBeforeAddition = addressEntityManager.getAll().size();
-        addressEntityManager.add(testAddresses.get(0));
-
-        Assert.assertTrue(addressEntityManager.getAll().contains(testAddresses.get(0)));
-        Assert.assertEquals(sizeBeforeAddition+1, addressEntityManager.getAll().size());
+        int sizeBeforeAddition = addressManager.getAll().size();
+        addressManager.add(testAddresses.get(0));
+        List<Address> addresses = addressManager.getAll();
+        Assert.assertTrue(addresses.contains(testAddresses.get(0)));
+        Assert.assertEquals(sizeBeforeAddition+1, addresses.size());
     }
 
     @Test
     public void testGet() throws Exception {
-        Address address = addressEntityManager.add(testAddresses.get(0));
+        Address address = addressManager.add(testAddresses.get(0));
 
-        Assert.assertEquals(address, addressEntityManager.get(address.getId()));
+        Assert.assertEquals(address, addressManager.get(address.getId()));
     }
 
     @Test
     public void testDelete() throws Exception {
-        Address address = addressEntityManager.add(testAddresses.get(0));
-        Address address2 = addressEntityManager.add(testAddresses.get(1));
-        addressEntityManager.delete(address.getId());
-
-        Assert.assertFalse(addressEntityManager.getAll().contains(address));
-        Assert.assertTrue(addressEntityManager.getAll().contains(address2));
+        Address address = addressManager.add(testAddresses.get(0));
+        Address address2 = addressManager.add(testAddresses.get(1));
+        addressManager.delete(address.getId());
+        List<Address> addresses = addressManager.getAll();
+        Assert.assertFalse(addresses.contains(address));
+        Assert.assertTrue(addresses.contains(address2));
     }
 
     @Test
     public void testUpdate() throws Exception {
-        Address address = addressEntityManager.add(testAddresses.get(0));
+        Address address = addressManager.add(testAddresses.get(0));
         address.setTown("Kielce");
-        addressEntityManager.update(address);
-
-        Assert.assertEquals(address, addressEntityManager.get(address.getId()));
+        addressManager.update(address);
+        Assert.assertEquals(address, addressManager.get(address.getId()));
     }
 }

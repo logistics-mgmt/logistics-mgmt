@@ -124,7 +124,6 @@ $(function() {
 </head>
 
 <body>
-<jsp:useBean id="vehicles" class="com.jdbc.demo.services.VehicleEntityManager" scope="application" />
 
 <div id="dialog-div" title="Edytuj kierowcę" class="modal-fade">
  
@@ -172,12 +171,12 @@ $(function() {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/jdbc_demo">JEE Servlet Demo</a>
+              <a class="navbar-brand" href="/">JEE Servlet Demo</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="inactive"><a href="drivers.jsp">Kierowcy</a></li>
-                <li class="active"><a href="vehicles.jsp">Pojazdy</a></li>
+                <li class="inactive"><a href="drivers">Kierowcy</a></li>
+                <li class="active"><a href="vehicles">Pojazdy</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!--/.container-fluid -->
@@ -198,11 +197,11 @@ $(function() {
       </tr>
   </thead>
 
-  <c:forEach var="vehicle" items="${vehicles.all}">
+  <c:forEach var="vehicle" items="${vehicles}">
           <tr>
               <td>${vehicle.id}</td>
               <td>${vehicle.brand}</td>
-              <td>${vehicle.type}</td>
+              <td>${vehicle.model}</td>
               <td>${vehicle.engine}</td>
               <td>${vehicle.VIN}</td>
               <td>${vehicle.horsepower}</td>
