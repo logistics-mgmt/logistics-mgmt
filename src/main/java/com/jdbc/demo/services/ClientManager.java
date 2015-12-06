@@ -16,15 +16,13 @@ import java.util.List;
  * Created by Mateusz on 02-Nov-15.
  */
 @Component
-@Transactional
+@Transactional(transactionManager = "txManager")
 public class ClientManager implements ClientDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ClientManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private ClientManager clientEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

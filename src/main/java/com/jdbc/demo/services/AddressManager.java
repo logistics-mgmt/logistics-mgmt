@@ -17,15 +17,13 @@ import java.util.List;
  */
 
 @Component
-@Transactional
+@Transactional(transactionManager = "txManager")
 public class AddressManager implements AddressDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AddressManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private AddressManager addressEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

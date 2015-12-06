@@ -17,15 +17,13 @@ import java.util.List;
  */
 
 @Component
-@Transactional
+@Transactional(transactionManager = "txManager")
 public class DriverManager implements DriverDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(DriverManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private AddressManager addressEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Component
-@Transactional
+@Transactional(transactionManager = "txManager")
 public class VehicleManager implements VehicleDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(VehicleManager.class);

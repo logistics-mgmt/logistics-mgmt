@@ -17,15 +17,13 @@ import java.util.List;
  */
 
 @Component
-@Transactional
+@Transactional(transactionManager = "txManager")
 public class FreightTransportManager implements FreightTransportDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    private AddressManager addressEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
