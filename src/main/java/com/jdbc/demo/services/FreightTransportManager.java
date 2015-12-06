@@ -18,14 +18,14 @@ import java.util.List;
 
 @Component
 @Transactional
-public class FreightTransportEntityManager implements FreightTransportDAO {
+public class FreightTransportManager implements FreightTransportDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportEntityManager.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    private AddressEntityManager addressEntityManager;
+    private AddressManager addressEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

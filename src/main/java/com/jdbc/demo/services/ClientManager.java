@@ -17,14 +17,14 @@ import java.util.List;
  */
 @Component
 @Transactional
-public class ClientEntityManager implements ClientDAO {
+public class ClientManager implements ClientDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ClientEntityManager.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(ClientManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    private ClientEntityManager clientEntityManager;
+    private ClientManager clientEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

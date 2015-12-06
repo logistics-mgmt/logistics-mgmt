@@ -18,14 +18,14 @@ import java.util.List;
 
 @Component
 @Transactional
-public class AddressEntityManager implements AddressDAO {
+public class AddressManager implements AddressDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(AddressEntityManager.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(AddressManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    private AddressEntityManager addressEntityManager;
+    private AddressManager addressEntityManager;
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

@@ -1,8 +1,6 @@
 package com.jdbc.demo.services;
 
-import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.FreightTransport;
 import com.jdbc.demo.domain.Vehicle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +18,9 @@ import java.util.List;
 
 @Component
 @Transactional
-public class VehicleEntityManager implements VehicleDAO {
+public class VehicleManager implements VehicleDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(VehicleEntityManager.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(VehicleManager.class);
 
     @Autowired
     private SessionFactory sessionFactory;
