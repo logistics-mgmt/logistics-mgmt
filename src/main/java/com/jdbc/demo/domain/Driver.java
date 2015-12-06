@@ -18,7 +18,8 @@ import java.util.List;
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(sequenceName = "DRIVER_ID_SEQ", name = "DriverIdSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DriverIdSequence")
     @Column(name = "id_Driver")
     private long id;
 

@@ -57,7 +57,7 @@ public class DriverController {
     @RequestMapping(method = RequestMethod.POST, params = {"id"} )
     public String updateDriver(@RequestParam("id")long id, @RequestParam("first-name")String firstName,
                                @RequestParam("last-name")String lastName, @RequestParam("pesel")String pesel,
-                               @RequestParam("available")Boolean available, @RequestParam("address-id")long addressId,
+                               @RequestParam(value = "available", required = false)Boolean available, @RequestParam("address-id")long addressId,
                                ModelMap model){
 
         Driver driver = driverManager.get(id);

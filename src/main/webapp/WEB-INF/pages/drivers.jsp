@@ -128,7 +128,7 @@ $(function() {
 
  <div id="dialog-div" title="Edytuj kierowcę" class="modal-fade">
  
-  <form id="dialog-form" data-toggle="validator" action="driver" method="post">
+  <form id="dialog-form" data-toggle="validator" action="drivers" method="post">
     <fieldset>
       <input type="hidden" name="id" id="driver-id">
       <div class="form-group">
