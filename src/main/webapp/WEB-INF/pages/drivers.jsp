@@ -26,7 +26,7 @@ $(function() {
     var dialog, form,
 
       firstName = $( "#driver-first-name" ),
-      lastName = $( "#druver-last-name" ),
+      lastName = $( "#driver-last-name" ),
       pesel = $( "#driver-pesel" ),
       salary = $( "#driver-salary" ),
       salaryBonus = $( "#driver-salary-bonus" ),
@@ -248,7 +248,7 @@ $(function() {
         <label><input type="checkbox" checked="checked"  path="available" id="available" name="available" />Dostepny</label>
       </div>
       
-        <button type="submit" class="btn btn-default">Dodaj</button>
+        <button type="submit" class="btn btn-default">Edytuj</button>
   </form>
 </body>
 </html>
