@@ -82,7 +82,7 @@ CREATE TABLE FreightTransportDrivers (
 
 CREATE TABLE FreightTransportVehicles (
   id_FreightTransport INTEGER NOT NULL REFERENCES FreightTransport(id_FreightTransport),
-  id_Vehicle INTEGER NOT NULL REFERENCES Driver(id_Driver),
+  id_Vehicle INTEGER NOT NULL REFERENCES Vehicle(id_Vehicle),
   PRIMARY KEY(id_FreightTransport, id_Vehicle)
 );
 
