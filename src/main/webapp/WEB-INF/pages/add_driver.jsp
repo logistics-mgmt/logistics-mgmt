@@ -45,27 +45,26 @@ pageEncoding="UTF-8"
           </div><!--/.container-fluid -->
         </nav>
 
-  <form name="edit_driver_form" id="edit_driver_form" modelAttribute="editDriverForm" data-toggle="validator" onsubmit="return editDriver();">
-      <input type="hidden" value="${driver.id}" path="id" id="id" name="id"/>
+  <form name="add_driver_form" id="add_driver_form" modelAttribute="addDriverForm" data-toggle="validator" onsubmit="return addDriver();">
       <div class="form-group">
         <label for="firstName">Imie:</label>
-        <input type="text" value="${driver.firstName}" class="form-control" name="firstName"  path="firstName" id="firstName" required="true" />
+        <input type="text" class="form-control" name="firstName"  path="firstName" id="firstName" required="true" />
       </div>
       <div class="form-group">
         <label for="lastName">Nazwisko:</label>
-        <input type="text" value="${driver.lastName}" class="form-control" id="lastName"  path="lastName" name="lastName" required="true" />
+        <input type="text" class="form-control" id="lastName"  path="lastName" name="lastName" required="true" />
       </div>
       <div class="form-group">
         <label for="pesel">Pesel:</label>
-        <input type="text" value="${driver.PESEL}" class="form-control" id="pesel"  path="pesel" data-minlength="11" data-error="pesel musi miec dokładnie 11 znaków." data-maxlength="11" name="pesel" required="true" />
+        <input type="text" class="form-control" id="pesel"  path="pesel" data-minlength="11" data-error="pesel musi miec dokładnie 11 znaków." data-maxlength="11" name="pesel" required="true" />
       </div>
       <div class="form-group">
         <label for="salary">Pensja:</label>
-        <input type="text" value="${driver.salary}" class="form-control" id="salary" name="salary"  path="salary" />
+        <input type="text" class="form-control" id="salary" name="salary"  path="salary" />
        </div>
       <div class="form-group">
         <label for="salaryBonus">Premia:</label>
-        <input type="text" value="${driver.salaryBonus}" class="form-control" id="salaryBonus" name="salaryBonus"  path="salaryBonus" />
+        <input type="text" class="form-control" id="salaryBonus" name="salaryBonus"  path="salaryBonus" />
       </div>
       <div class="form-group">
         <label for="addressId">Adres:</label>
@@ -78,8 +77,8 @@ pageEncoding="UTF-8"
       <div class="checkbox">
         <label><input type="checkbox" checked="checked"  path="available" id="available" name="available"/>Dostepny</label>
       </div>
-      
-        <button type="submit" class="btn btn-primary">Edytuj</button>
+
+        <button type="submit" class="btn btn-success">Dodaj</button>
         <a class="btn btn-warning" href="/drivers">Anuluj</a>
   </form>
 </body>
