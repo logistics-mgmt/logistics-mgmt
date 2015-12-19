@@ -55,13 +55,12 @@ public class DriverRestController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = {"application/json; charset=UTF-8"},
             produces={"application/json; charset=UTF-8"})
     public @ResponseBody Driver updateDriver(@RequestBody Driver driver){
-
         LOGGER.info(String.format("Updating driver %s.", driver));
         return driverManager.update(driver);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteDriver(@RequestParam("id")long id){
+    public void deleteDriver(@PathVariable("id")long id){
 
         Driver driver = driverManager.get(id);
         LOGGER.info(String.format("Deleting driver %s.", driver));

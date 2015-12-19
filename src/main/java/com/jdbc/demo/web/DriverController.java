@@ -36,6 +36,7 @@ public class DriverController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addDriver(ModelMap model){
+        model.addAttribute("addresses", addressManager.getAll());
         return "add_driver";
     }
 

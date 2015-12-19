@@ -11,7 +11,7 @@ public interface AddressDAO {
     List<Address> getAll();
     Address add(Address address);
     Address get(long id);
-    void update(Address address);
+    Address update(Address address);
     void delete(long id);
     void delete(Address address);
 }
