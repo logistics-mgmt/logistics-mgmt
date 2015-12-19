@@ -41,8 +41,9 @@ public class DriverManager implements DriverDAO {
     }
 
     @Override
-    public void update(Driver driver) {
+    public Driver update(Driver driver) {
         sessionFactory.getCurrentSession().update(driver);
+        return (Driver) sessionFactory.getCurrentSession().get(Driver.class, driver.getId());
     }
 
     @Override
