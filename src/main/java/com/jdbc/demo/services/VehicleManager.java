@@ -41,8 +41,9 @@ public class VehicleManager implements VehicleDAO {
     }
 
     @Override
-    public void update(Vehicle vehicle) {
+    public Vehicle update(Vehicle vehicle) {
         sessionFactory.getCurrentSession().update(vehicle);
+        return (Vehicle) sessionFactory.getCurrentSession().get(Vehicle.class, vehicle.getId());
     }
 
     @Override

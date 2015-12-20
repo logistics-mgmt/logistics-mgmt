@@ -56,14 +56,12 @@ public class AddressRestController {
             produces={"application/json; charset=UTF-8"})
     public @ResponseBody Address updateAddress(@RequestBody Address address){
 
-        //
-
         LOGGER.info(String.format("Updating address %s.", address));
         return addressManager.update(address);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteAddress(@RequestParam("id")long id){
+    public void deleteAddress(@PathVariable("id")long id){
 
         Address address = addressManager.get(id);
         LOGGER.info(String.format("Deleting address %s.", address));
