@@ -41,7 +41,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">JEE Servlet Demo</a>
+				<a class="navbar-brand" href="/">logistics_mgmt</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -52,7 +52,6 @@
 			<!--/.nav-collapse -->
 		</div>
 		<!--/.container-fluid -->
-	</nav>
 
 	<form name="edit_driver_form" id="edit_driver_form"
 		modelAttribute="editDriverForm" data-toggle="validator"
