@@ -41,8 +41,9 @@ public class AddressManager implements AddressDAO {
     }
 
     @Override
-    public void update(Address address) {
+    public Address update(Address address) {
         sessionFactory.getCurrentSession().update(address);
+        return (Address) sessionFactory.getCurrentSession().get(Address.class, address.getId());
     }
 
     @Override
