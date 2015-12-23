@@ -1,14 +1,30 @@
 package com.jdbc.demo.domain;
 
+import javax.persistence.*;
+
 /**
  * Created by Mateusz on 22-Oct-15.
  */
+
+@Entity
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "client.all", query = "Select * from Client", resultClass = Client.class),
+})
 public class Client {
 
-    private int id;
+    @Id
+    @SequenceGenerator(sequenceName = "CLIENT_ID_SEQ", name = "ClientIdSequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ClientIdSequence")
+    @Column(name = "id_Client")
+    private long id;
     private String name;
     private String NIP;
+
+    @Column(name = "account_number")
     private String bankAccountNumber;
+
+    @ManyToOne
+    @JoinColumn(name="id_Address")
     private Address address;
 
     public Client() {
@@ -33,7 +49,7 @@ public class Client {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int)id;
         result = 31 * result + name.hashCode();
         result = 31 * result + (NIP != null ? NIP.hashCode() : 0);
         result = 31 * result + (bankAccountNumber != null ? bankAccountNumber.hashCode() : 0);
@@ -52,14 +68,15 @@ public class Client {
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
+    @Column(nullable = false)
     public Address getAddress() {
         return address;
     }
@@ -68,6 +85,7 @@ public class Client {
         this.address = address;
     }
 
+    @Column(nullable = false)
     public String getName() {
         return name;
     }

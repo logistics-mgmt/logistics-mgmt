@@ -10,7 +10,8 @@ import java.util.List;
 public interface AddressDAO {
     List<Address> getAll();
     Address add(Address address);
-    Address get(int id);
-    void update(Address address);
-    void delete(int id);
+    Address get(long id);
+    Address update(Address address);
+    void delete(long id);
+    void delete(Address address);
 }

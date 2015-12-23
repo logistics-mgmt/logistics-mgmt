@@ -1,0 +1,6 @@
+target*
+.idea*
+jdbc_demo.iml
+*.properties
+*.jar
+*.war

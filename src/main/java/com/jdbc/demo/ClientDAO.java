@@ -10,8 +10,8 @@ import java.util.List;
 public interface ClientDAO {
     List<Client> getAll();
     Client add(Client client);
-    Client get(int id);
-    Client get(String name);
+    Client get(long id);
     void update(Client client);
-    void delete(int id);
+    void delete(long id);
+    void delete(Client client);
 }
