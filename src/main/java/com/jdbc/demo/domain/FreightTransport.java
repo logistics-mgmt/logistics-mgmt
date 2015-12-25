@@ -57,7 +57,7 @@ public class FreightTransport {
             inverseJoinColumns = { @JoinColumn(name="id_Vehicle") })
     private List<Vehicle> vehicles = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name="FreightTransportDrivers", joinColumns = { @JoinColumn(name="id_FreightTransport") },
             inverseJoinColumns = { @JoinColumn(name="id_Driver") })
     private List<Driver> drivers = new ArrayList<>();

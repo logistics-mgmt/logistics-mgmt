@@ -46,4 +46,11 @@ public class DriverController {
         model.addAttribute("addresses", addressManager.getAll());
         return "edit_driver";
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String driverDetails(@PathVariable long id, ModelMap model){
+        model.addAttribute("driver", driverManager.get(id));
+        model.addAttribute("addresses", addressManager.getAll());
+        return "driver_details";
+    }
 }

@@ -42,20 +42,64 @@ pageEncoding="UTF-8"
           </div><!--/.container-fluid -->
         </nav>
 
-<iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=AIzaSyAAONK8KCLueoDJQhrkKzQgZsKy7F48LmM" allowfullscreen></iframe>
 
+<div class="container-fluid">
+  <div class="col-sm-6">
+    <iframe width="600" height="450" frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=AIzaSyAAONK8KCLueoDJQhrkKzQgZsKy7F48LmM&mode=driving" allowfullscreen></iframe>
+  </div>
 
-<div class="list-group">
-  <h>Kierowcy</h>
-  <c:forEach var="driver" items="${transport.drivers}">
-    <a href="#" class="list-group-item">
-        <h4 class="list-group-item-heading">${driver.firstName} ${driver.lastName} (${driver.PESEL})</h4>
-        <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-      </a>
-  </c:forEach>
+  <div class="col-sm-6">
+    <div class="row list-group">
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">Kierowcy:</h4>
+      </div>
+      <c:forEach var="driver" items="${drivers}">
+        <a href="/drivers/${driver.id}" class="list-group-item">
+            <h4 class="list-group-item-text">${driver.firstName} ${driver.lastName} (${driver.PESEL})</h4>
+          </a>
+      </c:forEach>
+    </div>
+
+    <div class="row list-group">
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading">Pojazdy:</h4>
+      </div>
+      <c:forEach var="vehicle" items="${vehicles}">
+        <a href="/vehicles/${vehicle.id}" class="list-group-item">
+            <h4 class="list-group-item-text">${vehicle.brand} ${vehicle.model} (${vehicle.VIN})</h4>
+        </a>
+      </c:forEach>
+    </div>
+
+    <div class="row">
+
+       <div class="col-sm-6">
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading">Data załadunku:</h4>
+          <h4 class="list-group-item-text">${transport.loadDate}</h4>
+        </div>
+      </div>
+
+       <div class="col-sm-6">
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading">Data rozładunku:</h4>
+          <h4 class="list-group-item-text">${transport.unloadDate}</h4>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading">Wartość:</h4>
+          <h4 class="list-group-item-text">${transport.value}</h4>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
-
 
 </body>
 </html>

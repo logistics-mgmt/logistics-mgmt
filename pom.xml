@@ -180,6 +180,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.5.1</version>
         </dependency>
+        <!-- Google Maps Client -->
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>0.1.9</version>
+        </dependency>
     </dependencies>
 
 <build>

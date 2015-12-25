@@ -2,6 +2,7 @@ target*
 .idea*
 jdbc_demo.iml
 *.properties
+*.default
 *.jar
 *.war
 *.project

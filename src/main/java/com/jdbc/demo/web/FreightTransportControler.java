@@ -25,6 +25,7 @@ public class FreightTransportControler {
         FreightTransport transport = transportManager.get(id);
         model.addAttribute("transport", transport);
         model.addAttribute("drivers", transport.getDrivers());
+        model.addAttribute("vehicles", transport.getVehicles());
         return "transport_overview";
     }
 }
