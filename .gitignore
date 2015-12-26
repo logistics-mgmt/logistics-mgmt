@@ -4,3 +4,6 @@ jdbc_demo.iml
 *.properties
 *.jar
 *.war
+*.project
+*.settings
+*.classpath
