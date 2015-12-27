@@ -24,6 +24,8 @@
               <ul class="nav navbar-nav">
                 <li class="inactive"><a href="drivers">Kierowcy</a></li>
                 <li class="inactive"><a href="vehicles">Pojazdy</a></li>
+                <li class="inactive"><a href="clients">Klienci</a></li>
+                <li class="inactive"><a href="transports">Transporty</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!--/.container-fluid -->
