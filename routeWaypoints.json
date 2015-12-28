@@ -1,0 +1,5 @@
+{"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Gliwice", "timestamp": ISODate("2015-06-25T13:17:51.638Z")}
+{"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Wrocław", "timestamp": ISODate("2015-06-26T13:17:51.638Z")}
+{"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Drezno", "timestamp": ISODate("2015-06-26T14:17:51.638Z")}
+{"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Dortmund", "timestamp": ISODate("2015-06-26T15:17:51.638Z")}
+{"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Arnhem", "timestamp": ISODate("2015-06-27T13:17:51.638Z")}

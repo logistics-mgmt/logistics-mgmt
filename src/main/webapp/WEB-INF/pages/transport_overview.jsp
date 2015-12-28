@@ -42,11 +42,18 @@ pageEncoding="UTF-8"
           </div><!--/.container-fluid -->
         </nav>
 
-
 <div class="container-fluid">
   <div class="col-sm-6">
-    <iframe width="600" height="450" frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=AIzaSyAAONK8KCLueoDJQhrkKzQgZsKy7F48LmM&mode=driving" allowfullscreen></iframe>
+  <c:choose>
+      <c:when test="${waypointsString != null}">
+        <iframe width="600" height="450" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=AIzaSyAAONK8KCLueoDJQhrkKzQgZsKy7F48LmM&mode=driving&waypoints=${waypointsString}" allowfullscreen></iframe>
+      </c:when>
+      <c:otherwise>
+          <iframe width="600" height="450" frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=AIzaSyAAONK8KCLueoDJQhrkKzQgZsKy7F48LmM&mode=driving" allowfullscreen></iframe>
+      </c:otherwise>
+  </c:choose>
   </div>
 
   <div class="col-sm-6">
