@@ -59,13 +59,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", NIP='" + NIP + '\'' +
-                ", bankAccountNumber='" + bankAccountNumber + '\'' +
-                ", address=" + address +
-                '}';
+        return String.format("%s, Adres: %s", name, address);
     }
 
     public long getId() {

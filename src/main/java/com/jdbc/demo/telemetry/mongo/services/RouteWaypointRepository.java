@@ -11,7 +11,7 @@ import java.util.List;
 public interface RouteWaypointRepository extends MongoRepository<RouteWaypoint, String> {
     public List<RouteWaypoint> findByDriverId(long driverId);
     public List<RouteWaypoint> findByVehicleId(long vehicleId);
-    public List<RouteWaypoint> findByFreightTransportId(long freightTransportId);
+    public List<RouteWaypoint> findByFreightTransportIdOrderByTimestampAsc(long freightTransportId);
     public List<RouteWaypoint> findByFreightTransportIdAndVehicleId(long freightTransportId, long vehicleId);
     public List<RouteWaypoint> findByFreightTransportIdAndDriverId(long freightTransportId, long driverId);
 }

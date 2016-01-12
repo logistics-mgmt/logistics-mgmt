@@ -70,14 +70,7 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", town='" + town + '\'' +
-                ", street='" + street + '\'' +
-                ", code='" + code + '\'' +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return String.format("%s %s, %s %s, %s", street, houseNumber, code, town, country);
     }
 
     public long getId() {
