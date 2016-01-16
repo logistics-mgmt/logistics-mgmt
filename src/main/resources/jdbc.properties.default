@@ -2,3 +2,6 @@ jdbc.driverClassName=org.postgresql.Driver
 jdbc.url=jdbc:postgresql://localhost:5432/logistics
 jdbc.username=postgres
 jdbc.password=YOUR_PASSWORD
+mongodb.driverClassName=org.mongodb.
+mongodb.host=localhost
+mongodb.databaseName=test
