@@ -13,10 +13,10 @@ pageEncoding="UTF-8"
 <meta charset="UTF-8">
 <title>Transport</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -81,8 +81,23 @@ pageEncoding="UTF-8"
     </div>
 
   </div>
+  <div class="col-sm-6">
+      <c:choose>
+              <c:when test="${transport.finished == true}">
+               <span class="label label-success">
+                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Zakończony
+               </span>
+              </c:when>
+              <c:otherwise>
+                  <span class="label label-default">
+                    <span class="glyphicon glyphicon-road" aria-hidden="true"></span>W trakcie
+                  </span>
+              </c:otherwise>
+        </c:choose>
+      </div>
 
   <div class="col-sm-6">
+
     <div class="row list-group">
       <div class="list-group-item">
         <h4 class="list-group-item-heading">Kierowcy:</h4>

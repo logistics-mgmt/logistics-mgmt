@@ -10,20 +10,22 @@ pageEncoding="UTF-8"
 <meta charset="UTF-8">
 <title>Pojazdy</title>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <!-- bootbox.js at 4.4.0 -->
 <script src="https://rawgit.com/makeusabrew/bootbox/f3a04a57877cab071738de558581fbc91812dce9/bootbox.js"></script>
+
 <script src="/js/utils.js"></script>
 <script src="/js/vehicle.js"></script>
 
 
 <script>
 $(function() {
+$( ".clickable-row" ).click( function() {
+                window.document.location = $(this).data("href");
+        });
 
 $( ".delete-vehicle-button" ).button().on( "click", function() {
         var $this = $(this).closest('tr').children();
@@ -46,7 +48,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
 <body>
 
 <!-- Static navbar -->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -86,7 +88,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
   </thead>
 
   <c:forEach var="vehicle" items="${vehicles}">
-          <tr>
+          <tr class="clickable-row" data-href="/vehicles/${vehicle.id}">
               <td>${vehicle.id}</td>
               <td>${vehicle.brand}</td>
               <td>${vehicle.model}</td>

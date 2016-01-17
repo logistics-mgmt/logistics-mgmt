@@ -15,7 +15,7 @@
   
   * Create local MongoDB database (routeWaypoints.json file is located in main folder of the repository):
   	1. `mongod # Run local mongoDB instance`
-  	2. `mongoimport --db test --collection routeWaypoints --drop --file routeWaypoints.json` 
+  	2. `mongoimport --db test --collection routeWaypoint --drop --file routeWaypoints.json` 
   
   
   * Fill `logistics-mgmt/src/main/resources/jdbc.properties.default` file with correct credentials to your local PostgreSQL and MongoDB databases and copy/rename it to `jdbc.properties`.

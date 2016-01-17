@@ -5,3 +5,10 @@
 {"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Dortmund", "timestamp": ISODate("2015-06-27T08:17:51.638Z")}
 {"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Arnhem", "timestamp": ISODate("2015-06-27T13:17:51.638Z")}
 {"freightTransportId": 1, "driverId": 1, "vehicleId": 3, "location": "Amsterdam", "timestamp": ISODate("2015-06-27T18:17:51.638Z")}
+
+
+{"freightTransportId": 5, "driverId": 3, "vehicleId": 1, "location": "Warszawa", "timestamp": ISODate("2015-06-25T10:17:51.638Z")}
+{"freightTransportId": 5, "driverId": 3, "vehicleId": 1, "location": "Poznań", "timestamp": ISODate("2015-06-25T13:17:51.638Z")}
+{"freightTransportId": 5, "driverId": 3, "vehicleId": 1, "location": "Hanower", "timestamp": ISODate("2015-06-26T15:21:51.638Z")}
+{"freightTransportId": 5, "driverId": 3, "vehicleId": 1, "location": "Duisburg", "timestamp": ISODate("2015-06-26T21:17:51.638Z")}
+{"freightTransportId": 5, "driverId": 3, "vehicleId": 1, "location": "Antwerpia", "timestamp": ISODate("2015-06-27T08:17:51.638Z")}
