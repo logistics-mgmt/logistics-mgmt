@@ -57,6 +57,9 @@
     </bean>
 
     <!-- MongoDB config -->
+    <mongo:mongo host="localhost"/>
+
+    <mongo:db-factory dbname="${mongodb.databaseName}" />
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>

@@ -97,7 +97,7 @@
 		</thead>
 
 		<c:forEach var="driver" items="${drivers}">
-			<tr class="clickable-row" data-href="/transports/${transport.id}">
+			<tr class="clickable-row" data-href="/drivers/${driver.id}">
 				<td>${driver.id}</td>
 				<td>${driver.firstName}</td>
 				<td>${driver.lastName}</td>
