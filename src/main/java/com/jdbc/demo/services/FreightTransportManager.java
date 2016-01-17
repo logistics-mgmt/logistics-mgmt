@@ -1,7 +1,9 @@
 package com.jdbc.demo.services;
 
 import com.jdbc.demo.FreightTransportDAO;
+import com.jdbc.demo.domain.Driver;
 import com.jdbc.demo.domain.FreightTransport;
+import com.jdbc.demo.domain.Vehicle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -68,5 +70,35 @@ public class FreightTransportManager implements FreightTransportDAO {
         FreightTransport freightTransportToDelete = (FreightTransport) session.load(FreightTransport.class, id);
         session.delete(freightTransportToDelete);
         session.flush();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Boolean isDriverOnRoad(Driver driver){
+        List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
+                                                    .getNamedQuery("freightTransport.allActive")
+                                                    .list();
+
+        for(FreightTransport transport: activeTransports){
+            if(transport.getDrivers().contains(driver))
+                return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Boolean isVehicleOnRoad(Vehicle vehicle){
+        List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
+                .getNamedQuery("freightTransport.allActive")
+                .list();
+
+        for(FreightTransport transport: activeTransports){
+            if(transport.getVehicles().contains(vehicle))
+                return true;
+        }
+
+        return false;
     }
 }

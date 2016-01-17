@@ -80,17 +80,18 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>1.2.5.RELEASE</version>
         </dependency>
+        <!-- Spring Data MongoDB -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>1.8.2.RELEASE</version>
+        </dependency>
 
         <!-- Hibernate dependencies -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${org.hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.4.0.GA</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -107,12 +108,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.12</version>
+            <version>1.7.13</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.12</version>
+            <version>1.7.13</version>
         </dependency>
         <!-- Logging Facade for Hibernate -->
         <dependency>
@@ -184,6 +185,18 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.5.1</version>
+        </dependency>
+        <!-- Google Maps Client -->
+        <dependency>
+            <groupId>com.google.maps</groupId>
+            <artifactId>google-maps-services</artifactId>
+            <version>0.1.9</version>
+        </dependency>
+        <!-- MongoDB uber JAR -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.0.4</version>
         </dependency>
     </dependencies>
 

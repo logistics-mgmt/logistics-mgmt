@@ -11,12 +11,12 @@ pageEncoding="UTF-8"
 
 <head>
 <meta charset="UTF-8">
-<title>Edycja Kierowcy</title>
+<title>Dodawanie Kierowcy</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <script src="/js/utils.js"></script>
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
@@ -25,7 +25,7 @@ pageEncoding="UTF-8"
 <body>
 
 <!-- Static navbar -->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,7 +34,7 @@ pageEncoding="UTF-8"
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">JEE Servlet Demo</a>
+              <a class="navbar-brand" href="/">logistics_mgmt</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
@@ -48,24 +48,29 @@ pageEncoding="UTF-8"
   <form name="add_driver_form" id="add_driver_form" modelAttribute="addDriverForm" data-toggle="validator" onsubmit="return addDriver();">
       <div class="form-group">
         <label for="firstName">Imie:</label>
-        <input type="text" class="form-control" name="firstName"  path="firstName" id="firstName" required="true" />
+        <input type="text" class="form-control" name="firstName" minlength="2"  path="firstName" id="firstName" required="true" />
       </div>
       <div class="form-group">
         <label for="lastName">Nazwisko:</label>
-        <input type="text" class="form-control" id="lastName"  path="lastName" name="lastName" required="true" />
+        <input type="text" class="form-control" id="lastName" minlength="2"  path="lastName" name="lastName" required="true" />
       </div>
       <div class="form-group">
         <label for="pesel">Pesel:</label>
-        <input type="text" class="form-control" id="pesel"  path="pesel" data-minlength="11" data-error="pesel musi miec dokładnie 11 znaków." data-maxlength="11" name="pesel" required="true" />
+        <input type="text" class="form-control" id="pesel"  path="pesel" minlength="11" data-error="pesel musi miec dokładnie 11 znaków." maxlength="11" name="pesel" required="true" />
       </div>
       <div class="form-group">
-        <label for="salary">Pensja:</label>
-        <input type="text" class="form-control" id="salary" name="salary"  path="salary" />
-       </div>
+                    <label for="salary">Pensja:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">zł</span>
+                        <input type="number" class="form-control" id="salary" name="salary"  path="salary" required="true" />
+                    </div>
       <div class="form-group">
-        <label for="salaryBonus">Premia:</label>
-        <input type="text" class="form-control" id="salaryBonus" name="salaryBonus"  path="salaryBonus" />
-      </div>
+                    <label for="salaryBonus">Premia:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">zł</span>
+                        <input type="number" class="form-control" id="salaryBonus" name="salaryBonus"  path="salaryBonus" />
+                    </div>
+                  </div>
       <div class="form-group">
         <label for="addressId">Adres:</label>
         <select name="addressId" id="addressId"  path="addressId" class="form-control">

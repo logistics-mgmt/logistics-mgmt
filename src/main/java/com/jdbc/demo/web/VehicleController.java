@@ -35,9 +35,16 @@ public class VehicleController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editVehicles(@PathVariable long id, ModelMap model){
+    public String editVehicle(@PathVariable long id, ModelMap model){
         model.addAttribute("vehicle", vehicleManager.get(id));
         return "edit_vehicle";
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String vehicleDetails(@PathVariable long id, ModelMap model){
+        model.addAttribute("vehicle", vehicleManager.get(id));
+        return "vehicle_details";
     }
 
 

@@ -1,6 +1,8 @@
 package com.jdbc.demo;
 
+import com.jdbc.demo.domain.Driver;
 import com.jdbc.demo.domain.FreightTransport;
+import com.jdbc.demo.domain.Vehicle;
 
 import java.util.List;
 
@@ -14,4 +16,7 @@ public interface FreightTransportDAO {
     void delete(long id);
     void delete(FreightTransport freightTransport);
     FreightTransport get(long id);
+
+    Boolean isDriverOnRoad(Driver driver);
+    Boolean isVehicleOnRoad(Vehicle vehicle);
 }

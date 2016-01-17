@@ -11,7 +11,7 @@ pageEncoding="UTF-8"
 
 <head>
 <meta charset="UTF-8">
-<title>Edycja Pojazdu</title>
+<title>Dane Pojazdu ${vehicle.brand} ${vehicle.model}(${vehicle.VIN})</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -37,50 +37,50 @@ pageEncoding="UTF-8"
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/vehicles">Kierowcy</a></li>
-                <li class="inactive"><a href="/vehicles">Pojazdy</a></li>
+                <li class="inactive"><a href="/vehicles">Kierowcy</a></li>
+                <li class="active"><a href="/vehicles">Pojazdy</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!--/.container-fluid -->
         </nav>
 
-  <form name="edit_vehicle_form" id="edit_vehicle_form" data-toggle="validator" onsubmit="return editVehicle();">
+  <form name="vehicle_disabled_form" id="vehicle_disabled_form" data-toggle="validator" onsubmit="return editVehicle();">
       <input type="hidden" value="${vehicle.id}" path="id" id="id" name="id"/>
       <div class="form-group">
         <label for="brand">Marka:</label>
-        <input type="text" value="${vehicle.brand}" class="form-control" name="brand"  path="brand" id="brand" required="true" />
+        <input type="text" value="${vehicle.brand}" class="form-control" name="brand"  path="brand" id="brand" disabled />
       </div>
       <div class="form-group">
         <label for="model">Model:</label>
-        <input type="text" value="${vehicle.model}" class="form-control" id="model"  path="model" name="model" required="true" />
+        <input type="text" value="${vehicle.model}" class="form-control" id="model"  path="model" name="model" disabled />
       </div>
       <div class="form-group">
         <label for="engine">Silnik:</label>
-        <input type="number" value="${vehicle.engine}" class="form-control" id="engine"  path="engine" name="engine" required="true" />
+        <input type="text" value="${vehicle.engine}" class="form-control" id="engine"  path="engine" name="engine" disabled />
       </div>
       <div class="form-group">
         <label for="vin">VIN:</label>
-        <input type="text" value="${vehicle.VIN}" class="form-control" id="vin" name="vin" path="vin"
-          minlength="17" maxlength="17" data-error="VIN musi miec dokładnie 17 znaków." required="true"/>
+        <input type="text" value="${vehicle.VIN}" class="form-control" id="vin" name="vin" path="vin" disabled />
        </div>
       <div class="form-group">
         <label for="mileage">Przebieg:</label>
-        <input type="number" value="${vehicle.mileage}" class="form-control" id="mileage" name="mileage" path="mileage" required="true" />
+        <input type="text" value="${vehicle.mileage}" class="form-control" id="mileage" name="mileage" path="mileage" disabled />
       </div>
       <div class="form-group">
         <label for="horsepower">KM:</label>
-        <input type="number" value="${vehicle.horsepower}" class="form-control" id="horsepower" name="horsepower" path="horsepower" required="true" />
+        <input type="text" value="${vehicle.horsepower}" class="form-control" id="horsepower" name="horsepower"
+         path="horsepower" disabled />
       </div>
       <div class="form-group">
         <label for="productionDate">Data produkcji:</label>
-        <input type="date" value="${vehicle.productionDate}" class="form-control" id="productionDate" name="productionDate" path="productionDate" required="true" />
+        <input type="text" value="${vehicle.productionDate}" class="form-control" id="productionDate"
+         name="productionDate" path="productionDate" disabled/>
       </div>
       <div class="checkbox">
-        <label><input type="checkbox" checked="checked"  path="available" id="available" name="available"/>Dostepny</label>
+        <label><input type="checkbox" checked="checked"  path="available" id="available" name="available" disabled/>Dostepny</label>
       </div>
-      
-        <button model="submit" class="btn btn-primary">Edytuj</button>
-        <a class="btn btn-warning" href="/vehicles">Anuluj</a>
+
+        <a class="btn btn-success" href="/vehicles">Powrót do listy pojazdów</a>
   </form>
 </body>
 </html>
