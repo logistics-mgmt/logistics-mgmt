@@ -11,7 +11,7 @@ pageEncoding="UTF-8"
 
 <head>
 <meta charset="UTF-8">
-<title>Dane Pojazdu ${vehicle.brand} ${vehicle.model}(${vehicle.vin})</title>
+<title>Dane Pojazdu ${vehicle.brand} ${vehicle.model}(${vehicle.VIN})</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

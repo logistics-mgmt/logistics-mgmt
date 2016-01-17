@@ -105,8 +105,7 @@
 				<td>${driver.salary}</td>
 				<td>${driver.salaryBonus}</td>
 				<td style="display: none;">${driver.address.id}</td>
-				<td>${driver.address.street}${driver.address.houseNumber},
-					${driver.address.town}, ${driver.address.country}</td>
+				<td>${driver.address}</td>
 
 				<td><a class="btn btn-primary edit-driver-button"
 					href="/drivers/edit/${driver.id}">Edytuj</a></td>
