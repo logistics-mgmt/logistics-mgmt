@@ -36,7 +36,7 @@ pageEncoding="UTF-8"
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="/transports">Transporty</a></li>
-                <li class="inactive"><a href="/vehicles">Kierowcy</a></li>
+                <li class="inactive"><a href="/drivers">Kierowcy</a></li>
                 <li class="inactive"><a href="/vehicles">Pojazdy</a></li>
               </ul>
             </div><!--/.nav-collapse -->
@@ -48,7 +48,7 @@ pageEncoding="UTF-8"
   <c:choose>
       <c:when test="${waypointsString != null}">
         <iframe width="600" height="450" frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/directions?origin=${transport.loadAddress.town}&destination=${transport.unloadAddress.town}&key=${api_key}&mode=driving&waypoints=${waypointsString}" allowfullscreen></iframe>
+        src="https://www.google.com/maps/embed/v1/directions?origin=${route.originLocation}&destination=${route.destinationLocation}&key=${api_key}&mode=driving&waypoints=${waypointsString}" allowfullscreen></iframe>
       </c:when>
       <c:otherwise>
           <iframe width="600" height="450" frameborder="0" style="border:0"

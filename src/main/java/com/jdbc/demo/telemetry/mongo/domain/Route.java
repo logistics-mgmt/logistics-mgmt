@@ -88,4 +88,12 @@ public class Route {
         return waypointsList;
     }
 
+    public String getDestinationLocation(){
+        return stages.get(stages.size()-1).getDestination().getLocation();
+    }
+
+    public String getOriginLocation(){
+        return stages.get(0).getOrigin().getLocation();
+    }
+
 }
