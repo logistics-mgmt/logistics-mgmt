@@ -26,9 +26,6 @@
 
 <script type="text/javascript">
 	$(function() {
-        $( ".clickable-row" ).click( function() {
-                window.document.location = $(this).data("href");
-        });
 
 		$(".delete-driver-button").button().on(
 				"click",
@@ -91,13 +88,14 @@
 				<td>Pensja</td>
 				<td>Premia</td>
 				<td>Adres</td>
+				<td>Szczegóły</td>
 				<td>Edycja</td>
 				<td>Usuwanie</td>
 			</tr>
 		</thead>
 
 		<c:forEach var="driver" items="${drivers}">
-			<tr class="clickable-row" data-href="/drivers/${driver.id}">
+			<tr>
 				<td>${driver.id}</td>
 				<td>${driver.firstName}</td>
 				<td>${driver.lastName}</td>
@@ -106,7 +104,7 @@
 				<td>${driver.salaryBonus}</td>
 				<td style="display: none;">${driver.address.id}</td>
 				<td>${driver.address}</td>
-
+                <td><a class="btn btn-default details-driver-button" href="drivers/'+ drivers[i].id+ "><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
 				<td><a class="btn btn-primary edit-driver-button"
 					href="/drivers/edit/${driver.id}">Edytuj</a></td>
 				<td><button class="btn btn-danger delete-driver-button"

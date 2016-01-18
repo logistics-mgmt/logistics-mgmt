@@ -23,9 +23,6 @@ pageEncoding="UTF-8"
 
 <script>
 $(function() {
-$( ".clickable-row" ).click( function() {
-                window.document.location = $(this).data("href");
-        });
 
 $( ".delete-vehicle-button" ).button().on( "click", function() {
         var $this = $(this).closest('tr').children();
@@ -82,13 +79,14 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
            <td>VIN</td>
            <td>KM</td>
            <td>Przebieg</td>
+           <td>Szczegóły</td>
            <td>Edycja</td>
            <td>Usuwanie</td>
       </tr>
   </thead>
 
   <c:forEach var="vehicle" items="${vehicles}">
-          <tr class="clickable-row" data-href="/vehicles/${vehicle.id}">
+          <t>
               <td>${vehicle.id}</td>
               <td>${vehicle.brand}</td>
               <td>${vehicle.model}</td>
@@ -96,7 +94,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
               <td>${vehicle.VIN}</td>
               <td>${vehicle.horsepower}</td>
               <td>${vehicle.mileage}</td>
-
+              <td><a class="btn btn-default details-driver-button" href="drivers/'+ drivers[i].id+ "><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td>
               <td><a class="btn btn-primary edit-vehicle-button" href="/vehicles/edit/${vehicle.id}">Edytuj</a></td>
               <td><button class="btn btn-danger delete-vehicle-button" id="delete-button-${vehicle.id}">Usuń</button></td>
           </tr>
