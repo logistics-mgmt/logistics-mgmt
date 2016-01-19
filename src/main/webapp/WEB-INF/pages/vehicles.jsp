@@ -94,7 +94,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
               <td>${vehicle.VIN}</td>
               <td>${vehicle.horsepower}</td>
               <td>${vehicle.mileage}</td>
-              <td><a class="btn btn-default details-driver-button" href="drivers/'+ drivers[i].id+ "><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td>
+              <td><a class="btn btn-default details-driver-button" href="/vehicles/${vehicle.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td>
               <td><a class="btn btn-primary edit-vehicle-button" href="/vehicles/edit/${vehicle.id}">Edytuj</a></td>
               <td><button class="btn btn-danger delete-vehicle-button" id="delete-button-${vehicle.id}">Usuń</button></td>
           </tr>

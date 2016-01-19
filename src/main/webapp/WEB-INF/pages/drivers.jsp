@@ -104,7 +104,7 @@
 				<td>${driver.salaryBonus}</td>
 				<td style="display: none;">${driver.address.id}</td>
 				<td>${driver.address}</td>
-                <td><a class="btn btn-default details-driver-button" href="drivers/'+ drivers[i].id+ "><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
+                <td><a class="btn btn-default details-driver-button" href="drivers/${driver.id}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
 				<td><a class="btn btn-primary edit-driver-button"
 					href="/drivers/edit/${driver.id}">Edytuj</a></td>
 				<td><button class="btn btn-danger delete-driver-button"
