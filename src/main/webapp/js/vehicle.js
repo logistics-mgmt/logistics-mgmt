@@ -64,3 +64,20 @@ function deleteVehicle(vehicleId){
 
     return false;
 };
+
+function getVehicle(id){
+    return $.ajax({
+        url: '/api/vehicles/' + id,
+        type : "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        success : function(result) {
+            console.log(result);
+        },
+        error: function(xhr, resp, text) {
+            console.log(xhr, resp, text);
+        }
+    })
+}

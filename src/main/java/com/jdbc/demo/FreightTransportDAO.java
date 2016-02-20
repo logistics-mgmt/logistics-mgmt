@@ -12,6 +12,8 @@ import java.util.List;
 public interface FreightTransportDAO {
 	List<FreightTransport> getAll();
 
+	List<FreightTransport> getAllActive();
+
 	FreightTransport add(FreightTransport freightTransport);
 
 	FreightTransport update(FreightTransport freightTransport);

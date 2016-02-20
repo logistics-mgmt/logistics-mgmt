@@ -16,7 +16,7 @@ public class ScheduleEvent {
 	private String title;
 
 	// Default value: true
-	private Boolean allDay;
+	private Boolean allDay = true;
 	private Date start;
 	private Date end;
 	private String url;
@@ -30,8 +30,6 @@ public class ScheduleEvent {
 	public ScheduleEvent(String title, Date start) {
 		this.title = title;
 		this.start = start;
-
-		this.allDay = true;
 	}
 
 	@Override

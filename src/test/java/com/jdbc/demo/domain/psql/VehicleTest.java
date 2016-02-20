@@ -16,77 +16,72 @@ import java.util.List;
  */
 public class VehicleTest {
 
-	private final static String LOAD_DATE_STRING = "2016-02-21";
-	private final static String UNLOAD_DATE_STRING = "2016-02-29";
-	private final static String TRANSPORT_NAME = "test";
-	private final static String EVENT_URL = "/transports/0";
+    private final static String LOAD_DATE_STRING = "2016-02-21";
+    private final static String UNLOAD_DATE_STRING = "2016-02-29";
+    private final static String TRANSPORT_NAME = "test";
 
-	@Test
-	public void testGetSchedule() throws Exception {
-		Vehicle vehicle = TestModelsFactory.createTestVehicle1();
+    @Test
+    public void testGetSchedule() throws Exception {
+        Vehicle vehicle = TestModelsFactory.createTestVehicle1();
 
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date loadDate = format.parse(LOAD_DATE_STRING);
-		Date unloadDate = format.parse(UNLOAD_DATE_STRING);
+        Date loadDate = format.parse(LOAD_DATE_STRING);
+        Date unloadDate = format.parse(UNLOAD_DATE_STRING);
 
-		FreightTransport transport = new FreightTransport();
-		transport.setName(TRANSPORT_NAME);
-		transport.setLoadDate(loadDate);
-		transport.setUnloadDate(unloadDate);
+        FreightTransport transport = new FreightTransport();
+        transport.setName(TRANSPORT_NAME);
+        transport.setLoadDate(loadDate);
+        transport.setUnloadDate(unloadDate);
 
-		vehicle.addTransport(transport);
+        vehicle.addTransport(transport);
 
-		ScheduleEvent expectedEvent = new ScheduleEvent(TRANSPORT_NAME, loadDate);
-		expectedEvent.setEnd(unloadDate);
-		expectedEvent.setUrl(EVENT_URL);
+        ScheduleEvent expectedEvent = new FreightTransportEvent(transport);
 
-		Assert.assertTrue(vehicle.getSchedule().contains(expectedEvent));
-		Assert.assertEquals(1, vehicle.getSchedule().size());
-	}
+        Assert.assertTrue(vehicle.getSchedule().contains(expectedEvent));
+        Assert.assertEquals(1, vehicle.getSchedule().size());
+    }
 
-	@Test
-	public void testGetScheduleConstrained() throws Exception {
-		Vehicle vehicle = TestModelsFactory.createTestVehicle1();
+    @Test
+    public void testGetScheduleConstrained() throws Exception {
+        Vehicle vehicle = TestModelsFactory.createTestVehicle1();
 
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-		Date loadDate = format.parse(LOAD_DATE_STRING);
-		Date unloadDate = format.parse(UNLOAD_DATE_STRING);
+        Date loadDate = format.parse(LOAD_DATE_STRING);
+        Date unloadDate = format.parse(UNLOAD_DATE_STRING);
 
-		FreightTransport transport = new FreightTransport();
-		transport.setName(TRANSPORT_NAME);
-		transport.setLoadDate(loadDate);
-		transport.setUnloadDate(unloadDate);
+        FreightTransport transport = new FreightTransport();
+        transport.setName(TRANSPORT_NAME);
+        transport.setLoadDate(loadDate);
+        transport.setUnloadDate(unloadDate);
 
-		vehicle.addTransport(transport);
+        vehicle.addTransport(transport);
 
+        ScheduleEvent expectedEvent = new FreightTransportEvent(transport);
 
-        	ScheduleEvent expectedEvent = new FreightTransportEvent(transport);
+        List<ScheduleEvent> schedule = vehicle.getSchedule();
+        Assert.assertTrue(vehicle.getSchedule().contains(expectedEvent));
+        Assert.assertEquals(1, vehicle.getSchedule(loadDate, unloadDate).size());
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetScheduleMalformedConstraint() throws Exception {
+        Vehicle vehicle = TestModelsFactory.createTestVehicle1();
 
-		List<ScheduleEvent> schedule = vehicle.getSchedule();
-		Assert.assertTrue(vehicle.getSchedule().contains(expectedEvent));
-		Assert.assertEquals(1, vehicle.getSchedule(loadDate, unloadDate).size());
-	}
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testGetScheduleMalformedConstraint() throws Exception {
-		Vehicle vehicle = TestModelsFactory.createTestVehicle1();
+        // Mind that dates are reversed
+        Date loadDate = format.parse(UNLOAD_DATE_STRING);
+        Date unloadDate = format.parse(LOAD_DATE_STRING);
 
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        FreightTransport transport = new FreightTransport();
+        transport.setName(TRANSPORT_NAME);
+        transport.setLoadDate(loadDate);
+        transport.setUnloadDate(unloadDate);
 
-		// Mind that dates are reversed
-		Date loadDate = format.parse(UNLOAD_DATE_STRING);
-		Date unloadDate = format.parse(LOAD_DATE_STRING);
+        vehicle.addTransport(transport);
 
-		FreightTransport transport = new FreightTransport();
-		transport.setName(TRANSPORT_NAME);
-		transport.setLoadDate(loadDate);
-		transport.setUnloadDate(unloadDate);
-
-		vehicle.addTransport(transport);
-
-		vehicle.getSchedule(loadDate, unloadDate);
-	}
+        vehicle.getSchedule(loadDate, unloadDate);
+    }
 }
