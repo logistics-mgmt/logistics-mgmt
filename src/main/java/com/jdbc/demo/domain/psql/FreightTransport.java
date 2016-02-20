@@ -29,6 +29,8 @@ public class FreightTransport {
     @Column(name = "id_FreightTransport")
     private long id;
 
+    private String name;
+
     @ManyToOne
     @JoinColumn(name="id_load_Address")
     private Address loadAddress;
@@ -234,5 +236,13 @@ public class FreightTransport {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

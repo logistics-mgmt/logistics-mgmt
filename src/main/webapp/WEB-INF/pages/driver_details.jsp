@@ -24,6 +24,22 @@ pageEncoding="UTF-8"
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
 <script src="/js/token.js"></script>
+<link rel='stylesheet' href='/js/fullcalendar-2.6.1/fullcalendar.css' />
+<script src='/js/fullcalendar-2.6.1/lib/moment.min.js'></script>
+<script src='/js/fullcalendar-2.6.1/fullcalendar.js'></script>
+<script>
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+        events: '/api/drivers/${driver.id}/schedule'
+
+    })
+
+});
+</script>
 </head>
 
 <body>
@@ -110,6 +126,8 @@ pageEncoding="UTF-8"
               <p>Brak danych o ostatniej lokalizacji.</p>
           </c:otherwise>
     </c:choose>
+  </div>
+  <div class="col-md-4" id="calendar">
   </div>
 </body>
 </html>

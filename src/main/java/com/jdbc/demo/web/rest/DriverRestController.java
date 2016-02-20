@@ -2,11 +2,16 @@ package com.jdbc.demo.web.rest;
 
 import com.jdbc.demo.DriverDAO;
 import com.jdbc.demo.domain.psql.Driver;
+import com.jdbc.demo.domain.schedule.ScheduleEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +26,17 @@ public class DriverRestController {
 
     @Autowired
     DriverDAO driverManager;
+
+    /**
+     * Allows binding of dates provided by FullCalendar or other clients which use 'yyyy-MM-dd' date format.
+     * @param binder
+     */
+    @InitBinder
+    private void dateBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+        binder.registerCustomEditor(Date.class, editor);
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody
@@ -65,6 +81,23 @@ public class DriverRestController {
         Driver driver = driverManager.get(id);
         LOGGER.info(String.format("Deleting driver %s.", driver));
         driverManager.delete(driver);
+    }
+
+    @RequestMapping(value = "/{id}/schedule", method = RequestMethod.GET)
+    public List<ScheduleEvent> getSchedule(@PathVariable("id")long id){
+
+        Driver driver = driverManager.get(id);
+        LOGGER.info(String.format("GET schedule for driver %s.", driver));
+        return driver.getSchedule();
+    }
+
+    @RequestMapping(value = "/{id}/schedule", params = {"start", "end"}, method = RequestMethod.GET)
+    public List<ScheduleEvent> getSchedule(@PathVariable("id")long id,@RequestParam("start") Date start,
+                                           @RequestParam("end") Date end){
+
+        Driver driver = driverManager.get(id);
+        LOGGER.info(String.format("GET schedule(%s-%s) for driver %s.", start, end, driver));
+        return driver.getSchedule(start, end);
     }
 
 }
