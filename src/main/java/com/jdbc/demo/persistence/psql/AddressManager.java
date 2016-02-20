@@ -1,7 +1,7 @@
-package com.jdbc.demo.services;
+package com.jdbc.demo.persistence.psql;
 
 import com.jdbc.demo.AddressDAO;
-import com.jdbc.demo.domain.Address;
+import com.jdbc.demo.domain.psql.Address;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;

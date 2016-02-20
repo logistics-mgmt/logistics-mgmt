@@ -1,7 +1,7 @@
-package com.jdbc.demo.web;
+package com.jdbc.demo.web.rest;
 
 import com.jdbc.demo.AddressDAO;
-import com.jdbc.demo.domain.Address;
+import com.jdbc.demo.domain.psql.Address;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

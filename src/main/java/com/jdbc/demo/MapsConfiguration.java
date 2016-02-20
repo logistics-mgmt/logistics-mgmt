@@ -1,4 +1,4 @@
-package com.jdbc.demo.telemetry.maps;
+package com.jdbc.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

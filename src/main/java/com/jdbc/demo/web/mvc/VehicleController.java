@@ -1,4 +1,4 @@
-package com.jdbc.demo.web;
+package com.jdbc.demo.web.mvc;
 
 import com.jdbc.demo.VehicleDAO;
 import org.slf4j.Logger;

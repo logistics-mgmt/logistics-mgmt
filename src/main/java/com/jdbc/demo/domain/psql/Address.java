@@ -1,4 +1,4 @@
-package com.jdbc.demo.domain;
+package com.jdbc.demo.domain.psql;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
-package com.jdbc.demo.telemetry.mongo.domain;
+package com.jdbc.demo.domain.mongo;
 
 import com.google.maps.model.Distance;
-import com.jdbc.demo.telemetry.maps.DistanceUtils;
+import com.jdbc.demo.services.maps.DistanceUtils;
 
 /**
  * Created by Mateusz on 05-Jan-16.

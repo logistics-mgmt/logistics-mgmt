@@ -1,4 +1,4 @@
-package com.jdbc.demo.domain;
+package com.jdbc.demo.domain.psql;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

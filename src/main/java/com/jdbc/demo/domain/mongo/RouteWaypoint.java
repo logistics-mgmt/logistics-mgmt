@@ -1,4 +1,4 @@
-package com.jdbc.demo.telemetry.mongo.domain;
+package com.jdbc.demo.domain.mongo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;

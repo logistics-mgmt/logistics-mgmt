@@ -1,4 +1,4 @@
-package com.jdbc.demo.telemetry.mongo.domain;
+package com.jdbc.demo.domain.mongo;
 
 import java.util.ArrayList;
 import java.util.List;

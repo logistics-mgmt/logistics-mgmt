@@ -1,11 +1,11 @@
-package com.jdbc.demo.web;
+package com.jdbc.demo.web.mvc;
 
 import com.jdbc.demo.FreightTransportDAO;
 
-import com.jdbc.demo.domain.FreightTransport;
-import com.jdbc.demo.telemetry.maps.MapsConfiguration;
-import com.jdbc.demo.telemetry.mongo.domain.Route;
-import com.jdbc.demo.telemetry.mongo.services.RouteWaypointRepository;
+import com.jdbc.demo.domain.psql.FreightTransport;
+import com.jdbc.demo.MapsConfiguration;
+import com.jdbc.demo.domain.mongo.Route;
+import com.jdbc.demo.persistence.mongo.RouteWaypointRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

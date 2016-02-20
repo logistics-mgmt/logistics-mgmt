@@ -1,4 +1,4 @@
-package com.jdbc.demo.domain;
+package com.jdbc.demo.domain.psql;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,9 +12,13 @@ import java.util.List;
 
 @Entity
 @NamedNativeQueries({
-        @NamedNativeQuery(name = "freightTransport.all", query = "Select * from FreightTransport",
+        @NamedNativeQuery(name = "freightTransport.all", query = "Select * from FreightTransport;",
                 resultClass = FreightTransport.class),
-        @NamedNativeQuery(name = "freightTransport.allActive", query = "Select * from FreightTransport WHERE finished = false",
+        @NamedNativeQuery(name = "freightTransport.allActive", query = "Select * from FreightTransport WHERE" +
+                " finished = false AND load_date < CURRENT_DATE;",
+                resultClass = FreightTransport.class),
+        @NamedNativeQuery(name = "freightTransport.allPlanned", query = "Select * from FreightTransport WHERE" +
+                " finished = false AND load_date > CURRENT_DATE;",
                 resultClass = FreightTransport.class),
 })
 public class FreightTransport {

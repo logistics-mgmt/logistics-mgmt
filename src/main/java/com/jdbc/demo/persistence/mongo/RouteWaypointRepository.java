@@ -1,6 +1,6 @@
-package com.jdbc.demo.telemetry.mongo.services;
+package com.jdbc.demo.persistence.mongo;
 
-import com.jdbc.demo.telemetry.mongo.domain.RouteWaypoint;
+import com.jdbc.demo.domain.mongo.RouteWaypoint;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

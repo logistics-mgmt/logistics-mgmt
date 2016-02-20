@@ -1,10 +1,11 @@
-package com.jdbc.demo.telemetry.maps;
+package com.jdbc.demo.services.maps;
 
 import com.google.maps.DistanceMatrixApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.Distance;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.DistanceMatrixRow;
+import com.jdbc.demo.MapsConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
