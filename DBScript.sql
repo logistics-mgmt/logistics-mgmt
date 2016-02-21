@@ -65,6 +65,7 @@ CREATE TABLE FreightTransport (
   id_Client INTEGER  NOT NULL REFERENCES Client(id_Client),
   distance INTEGER NULL CHECK(distance>0 OR distance IS NULL),
   value DECIMAL(8,2) NOT NULL CHECK(value>=0),
+  name VARCHAR(100) NULL,
   load_date timestamp NULL,
   unload_date timestamp NULL,
   payment_date timestamp NULL,
@@ -146,15 +147,29 @@ INSERT INTO FreightTransport (id_load_Address, id_unload_Address, id_Client, dis
 INSERT INTO FreightTransport (id_load_Address, id_unload_Address, id_Client, distance, value, load_date, unload_date, payment_date, finished) VALUES (8, 20, 5,494, 27867.23, '2014-01-11', '2014-01-13', '2014-01-22', '1');
 INSERT INTO FreightTransport (id_load_Address, id_unload_Address, id_Client, distance, value, load_date, unload_date) VALUES (21, 13, 1, 768, 38786.89, '2014-05-02', '2014-05-04');
 
+
+INSERT INTO FreightTransport (id_load_Address, id_unload_Address, id_Client, distance, value, load_date, unload_date, name) VALUES (21, 13, 1, 768, 38786.89, '2016-02-02', '2016-02-28', 'Test drive');
+
 INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (1,3);
 INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (2,4);
 INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (3,1);
 INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (4,3);
 INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (5,1);
+INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (6,1);
+INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (6,2);
+INSERT INTO FreightTransportVehicles (id_FreightTransport, id_Vehicle) VALUES (6,3);
+
+
 
 INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (1,1);
 INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (1,2);
 INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (3,5);
 INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (4,2);
 INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (5,3);
-INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (5,4); 
+INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (5,4);
+INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (6,1);
+INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (6,2);
+INSERT INTO FreightTransportDrivers (id_FreightTransport, id_Driver) VALUES (6,3);
+
+
+
