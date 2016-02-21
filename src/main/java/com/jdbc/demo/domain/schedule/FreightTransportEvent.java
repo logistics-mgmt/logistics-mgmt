@@ -16,7 +16,7 @@ public class FreightTransportEvent extends ScheduleEvent {
         super(transport.getName(), transport.getLoadDate());
         this.setEnd(transport.getUnloadDate());
         this.setUrl(API_URL + transport.getId());
-        if(transport.isFinished())
+        if(transport.getFinished())
             this.setColor(FINISHED_COLOR);
         else if(transport.isPlanned())
             this.setColor(PLANNED_COLOR);

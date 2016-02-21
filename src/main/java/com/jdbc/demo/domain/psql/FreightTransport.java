@@ -222,7 +222,7 @@ public class FreightTransport {
         this.paymentDate = paymentDate;
     }
 
-    public Boolean isFinished() {
+    public Boolean getFinished() {
         return finished;
     }
 
