@@ -29,11 +29,7 @@ pageEncoding="UTF-8"
 <script src='/js/fullcalendar-2.6.1/fullcalendar.js'></script>
 <script>
 $(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
-
     $('#calendar').fullCalendar({
-        // put your options and callbacks here
         events: '/api/drivers/${driver.id}/schedule'
 
     })

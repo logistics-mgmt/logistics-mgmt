@@ -2,6 +2,8 @@ package com.jdbc.demo.domain.psql;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jdbc.demo.domain.schedule.FreightTransportEvent;
+import com.jdbc.demo.domain.schedule.ScheduleEvent;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -175,5 +177,38 @@ public class Vehicle {
 
     public void setTransports(List<FreightTransport> transports) {
         this.transports = transports;
+    }
+
+    public List<ScheduleEvent> getSchedule(){
+        ArrayList<ScheduleEvent> schedule = new ArrayList<>();
+
+        for(FreightTransport transport: getTransports()){
+            ScheduleEvent event = new FreightTransportEvent(transport);
+            schedule.add(event);
+        }
+        return schedule;
+    }
+
+    public List<ScheduleEvent> getSchedule(Date start, Date end){
+
+        if(start.compareTo(end) > 0){
+            throw new IllegalArgumentException(String.format("Attempted to get vehicle's schedule with malformed" +
+                    " constraint. Start date: %s, End date: %s", start, end));
+        }
+
+        ArrayList<ScheduleEvent> schedule = new ArrayList<>();
+
+        for(FreightTransport transport: getTransports()){
+            if (!(transport.getLoadDate().compareTo(start) >= 0 && transport.getUnloadDate().compareTo(end) <= 0))
+                continue;
+
+            ScheduleEvent event = new FreightTransportEvent(transport);
+            schedule.add(event);
+        }
+        return schedule;
+    }
+
+    public void addTransport(FreightTransport transport){
+        transports.add(transport);
     }
 }

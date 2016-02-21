@@ -1,6 +1,7 @@
 package com.jdbc.demo.domain.psql;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jdbc.demo.domain.schedule.FreightTransportEvent;
 import com.jdbc.demo.domain.schedule.ScheduleEvent;
 
 import javax.persistence.*;
@@ -204,10 +205,7 @@ public class Driver {
         ArrayList<ScheduleEvent> schedule = new ArrayList<>();
 
         for(FreightTransport transport: getTransports()){
-            ScheduleEvent event = new ScheduleEvent(transport.getName(), transport.getLoadDate());
-            event.setEnd(transport.getUnloadDate());
-            //TODO: fix messy hardcoded URL...
-            event.setUrl(String.format("/transports/%d", transport.getId()));
+            ScheduleEvent event = new FreightTransportEvent(transport);
             schedule.add(event);
         }
             return schedule;
@@ -225,10 +223,8 @@ public class Driver {
         for(FreightTransport transport: getTransports()){
             if (!(transport.getLoadDate().compareTo(start) >= 0 && transport.getUnloadDate().compareTo(end) <= 0))
                 continue;
-            ScheduleEvent event = new ScheduleEvent(transport.getName(), transport.getLoadDate());
-            event.setEnd(transport.getUnloadDate());
-            //TODO: fix messy hardcoded URL...
-            event.setUrl(String.format("/transports/%d", transport.getId()));
+
+            ScheduleEvent event = new FreightTransportEvent(transport);
             schedule.add(event);
         }
         return schedule;

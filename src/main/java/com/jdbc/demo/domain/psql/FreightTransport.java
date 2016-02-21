@@ -222,8 +222,14 @@ public class FreightTransport {
         this.paymentDate = paymentDate;
     }
 
-    public Boolean getFinished() {
+    public Boolean isFinished() {
         return finished;
+    }
+
+    public Boolean isPlanned() {
+        if(loadDate.compareTo(new Date()) > 0)
+            return true;
+        return false;
     }
 
     public void setFinished(Boolean finished) {
