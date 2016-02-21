@@ -206,13 +206,20 @@ public class Driver {
         for(FreightTransport transport: getTransports()){
             ScheduleEvent event = new ScheduleEvent(transport.getName(), transport.getLoadDate());
             event.setEnd(transport.getUnloadDate());
+            //TODO: fix messy hardcoded URL...
+            event.setUrl(String.format("/transports/%d", transport.getId()));
             schedule.add(event);
         }
-
             return schedule;
     }
 
     public List<ScheduleEvent> getSchedule(Date start, Date end){
+
+        if(start.compareTo(end) > 0){
+            throw new IllegalArgumentException(String.format("Attempted to get driver's schedule with malformed" +
+                    " constraint. Start date: %s, End date: %s", start, end));
+        }
+
         ArrayList<ScheduleEvent> schedule = new ArrayList<>();
 
         for(FreightTransport transport: getTransports()){
@@ -220,12 +227,14 @@ public class Driver {
                 continue;
             ScheduleEvent event = new ScheduleEvent(transport.getName(), transport.getLoadDate());
             event.setEnd(transport.getUnloadDate());
-
             //TODO: fix messy hardcoded URL...
             event.setUrl(String.format("/transports/%d", transport.getId()));
             schedule.add(event);
         }
-
         return schedule;
+    }
+
+    public void addTransport(FreightTransport transport){
+        transports.add(transport);
     }
 }
