@@ -1,11 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"
 %>
+<meta name="_csrf" content="${_csrf.token}" />
 
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <!DOCTYPE html>
 <html>
 
@@ -20,6 +22,7 @@ pageEncoding="UTF-8"
 <script src="/js/utils.js"></script>
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
+<script src="/js/token.js"></script>
 </head>
 
 <body>

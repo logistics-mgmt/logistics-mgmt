@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -11,6 +11,9 @@ pageEncoding="UTF-8"
 
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" content="${_csrf.token}" />
+
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Dane kierowcy ${driver.firstName} ${driver.lastName}</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -20,6 +23,7 @@ pageEncoding="UTF-8"
 <script src="/js/utils.js"></script>
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
+<script src="/js/token.js"></script>
 </head>
 
 <body>
