@@ -1,7 +1,7 @@
 package com.jdbc.demo.services;
 
 import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.Vehicle;
+import com.jdbc.demo.domain.psql.Vehicle;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,6 +1,6 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.Vehicle;
+import com.jdbc.demo.domain.psql.Vehicle;
 
 import java.util.List;
 

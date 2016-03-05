@@ -1,7 +1,7 @@
 package com.jdbc.demo.services;
 
 import com.jdbc.demo.*;
-import com.jdbc.demo.domain.*;
+import com.jdbc.demo.domain.psql.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

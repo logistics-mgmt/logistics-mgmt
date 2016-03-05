@@ -1,8 +1,8 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.Driver;
-import com.jdbc.demo.domain.FreightTransport;
-import com.jdbc.demo.domain.Vehicle;
+import com.jdbc.demo.domain.psql.Driver;
+import com.jdbc.demo.domain.psql.FreightTransport;
+import com.jdbc.demo.domain.psql.Vehicle;
 
 import java.util.List;
 

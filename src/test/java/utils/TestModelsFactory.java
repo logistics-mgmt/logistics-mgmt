@@ -1,6 +1,6 @@
 package utils;
 
-import com.jdbc.demo.domain.*;
+import com.jdbc.demo.domain.psql.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;

@@ -1,6 +1,6 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.Client;
+import com.jdbc.demo.domain.psql.Client;
 
 import java.util.List;
 

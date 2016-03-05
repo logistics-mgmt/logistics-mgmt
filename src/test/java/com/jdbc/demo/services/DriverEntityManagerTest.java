@@ -2,8 +2,8 @@ package com.jdbc.demo.services;
 
 import com.jdbc.demo.AddressDAO;
 import com.jdbc.demo.DriverDAO;
-import com.jdbc.demo.domain.Address;
-import com.jdbc.demo.domain.Driver;
+import com.jdbc.demo.domain.psql.Address;
+import com.jdbc.demo.domain.psql.Driver;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
