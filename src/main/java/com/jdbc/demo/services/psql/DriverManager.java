@@ -20,54 +20,53 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class DriverManager implements DriverDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DriverManager.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(DriverManager.class);
 
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Driver> getAll() {
-        return sessionFactory.getCurrentSession().getNamedQuery("driver.all")
-                .list();
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Driver> getAll() {
+		return sessionFactory.getCurrentSession().getNamedQuery("driver.all").list();
+	}
 
-    @Override
-    public Driver update(Driver driver) {
-        sessionFactory.getCurrentSession().update(driver);
-        return (Driver) sessionFactory.getCurrentSession().get(Driver.class, driver.getId());
-    }
+	@Override
+	public Driver update(Driver driver) {
+		sessionFactory.getCurrentSession().update(driver);
+		return (Driver) sessionFactory.getCurrentSession().get(Driver.class, driver.getId());
+	}
 
-    @Override
-    public Driver get(long id) {
-        return (Driver) sessionFactory.getCurrentSession().get(Driver.class, id);
-    }
+	@Override
+	public Driver get(long id) {
+		return (Driver) sessionFactory.getCurrentSession().get(Driver.class, id);
+	}
 
-    @Override
-    public Driver add(Driver driver) {
-        Session session = sessionFactory.getCurrentSession();
-        Long id = (Long) session.save(driver);
-        return (Driver) session.get(Driver.class, id);
-    }
+	@Override
+	public Driver add(Driver driver) {
+		Session session = sessionFactory.getCurrentSession();
+		Long id = (Long) session.save(driver);
+		return (Driver) session.get(Driver.class, id);
+	}
 
-    @Override
-    public void delete(Driver driver) {
-        sessionFactory.getCurrentSession().delete(driver);
-    }
+	@Override
+	public void delete(Driver driver) {
+		sessionFactory.getCurrentSession().delete(driver);
+	}
 
-    @Override
-    public void delete(long id) {
-        Session session = sessionFactory.getCurrentSession();
-        Driver driverToDelete = (Driver) session.load(Driver.class, id);
-        session.delete(driverToDelete);
-        session.flush();
-    }
+	@Override
+	public void delete(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		Driver driverToDelete = (Driver) session.load(Driver.class, id);
+		session.delete(driverToDelete);
+		session.flush();
+	}
 }

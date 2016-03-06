@@ -26,51 +26,51 @@ import java.util.List;
 @RequestMapping("/drivers")
 public class DriverController {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(DriverController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(DriverController.class);
 
-    @Autowired
-    DriverDAO driverManager;
+	@Autowired
+	DriverDAO driverManager;
 
-    @Autowired
-    AddressDAO addressManager;
+	@Autowired
+	AddressDAO addressManager;
 
-    @Autowired
-    FreightTransportDAO transportManager;
+	@Autowired
+	FreightTransportDAO transportManager;
 
-    @Autowired
-    RouteWaypointRepository routeRepository;
+	@Autowired
+	RouteWaypointRepository routeRepository;
 
-    @RequestMapping(method = RequestMethod.GET )
-    public String getDrivers(ModelMap model){
-        model.addAttribute("drivers", driverManager.getAll());
-        model.addAttribute("addresses", addressManager.getAll());
-        return "drivers";
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public String getDrivers(ModelMap model) {
+		model.addAttribute("drivers", driverManager.getAll());
+		model.addAttribute("addresses", addressManager.getAll());
+		return "drivers";
+	}
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addDriver(ModelMap model){
-        model.addAttribute("addresses", addressManager.getAll());
-        return "add_driver";
-    }
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String addDriver(ModelMap model) {
+		model.addAttribute("addresses", addressManager.getAll());
+		return "add_driver";
+	}
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editDriver(@PathVariable long id, ModelMap model){
-        model.addAttribute("driver", driverManager.get(id));
-        model.addAttribute("addresses", addressManager.getAll());
-        return "edit_driver";
-    }
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editDriver(@PathVariable long id, ModelMap model) {
+		model.addAttribute("driver", driverManager.get(id));
+		model.addAttribute("addresses", addressManager.getAll());
+		return "edit_driver";
+	}
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String driverDetails(@PathVariable long id, ModelMap model){
-        Driver driver = driverManager.get(id);
-        model.addAttribute("driver", driver);
-        model.addAttribute("addresses", addressManager.getAll());
-        model.addAttribute("api_key", MapsConfiguration.getBrowserApiKey());
-        model.addAttribute("on_road", transportManager.isDriverOnRoad(driver));
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String driverDetails(@PathVariable long id, ModelMap model) {
+		Driver driver = driverManager.get(id);
+		model.addAttribute("driver", driver);
+		model.addAttribute("addresses", addressManager.getAll());
+		model.addAttribute("api_key", MapsConfiguration.getBrowserApiKey());
+		model.addAttribute("on_road", transportManager.isDriverOnRoad(driver));
 
-        List<RouteWaypoint> waypoints = routeRepository.findByDriverIdOrderByTimestampDesc(id);
-        if(waypoints != null && waypoints.size() > 0)
-            model.addAttribute("latest_waypoint", waypoints.get(0));
-        return "driver_details";
-    }
+		List<RouteWaypoint> waypoints = routeRepository.findByDriverIdOrderByTimestampDesc(id);
+		if (waypoints != null && waypoints.size() > 0)
+			model.addAttribute("latest_waypoint", waypoints.get(0));
+		return "driver_details";
+	}
 }

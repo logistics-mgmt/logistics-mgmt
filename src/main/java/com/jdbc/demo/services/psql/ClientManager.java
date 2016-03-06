@@ -19,53 +19,53 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class ClientManager implements ClientDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ClientManager.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(ClientManager.class);
 
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Client> getAll() {
-        return sessionFactory.getCurrentSession().getNamedQuery("client.all")
-                .list();
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Client> getAll() {
+		return sessionFactory.getCurrentSession().getNamedQuery("client.all").list();
+	}
 
-    @Override
-    public void update(Client client) {
-        sessionFactory.getCurrentSession().update(client);
-    }
+	@Override
+	public Client update(Client client) {
+		sessionFactory.getCurrentSession().update(client);
+		return (Client) sessionFactory.getCurrentSession().get(Client.class, client.getId());
+	}
 
-    @Override
-    public Client get(long id) {
-        return (Client) sessionFactory.getCurrentSession().get(Client.class, id);
-    }
+	@Override
+	public Client get(long id) {
+		return (Client) sessionFactory.getCurrentSession().get(Client.class, id);
+	}
 
-    @Override
-    public Client add(Client client) {
-        Session session = sessionFactory.getCurrentSession();
-        Long id = (Long) session.save(client);
-        return (Client) session.get(Client.class, id);
-    }
+	@Override
+	public Client add(Client client) {
+		Session session = sessionFactory.getCurrentSession();
+		Long id = (Long) session.save(client);
+		return (Client) session.get(Client.class, id);
+	}
 
-    @Override
-    public void delete(Client client) {
-        sessionFactory.getCurrentSession().delete(client);
-    }
+	@Override
+	public void delete(Client client) {
+		sessionFactory.getCurrentSession().delete(client);
+	}
 
-    @Override
-    public void delete(long id) {
-        Session session = sessionFactory.getCurrentSession();
-        Client clientToDelete = (Client) session.load(Client.class, id);
-        session.delete(clientToDelete);
-        session.flush();
-    }
+	@Override
+	public void delete(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		Client clientToDelete = (Client) session.load(Client.class, id);
+		session.delete(clientToDelete);
+		session.flush();
+	}
 }

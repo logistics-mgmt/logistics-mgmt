@@ -24,59 +24,59 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class AddressManagerTest {
 
-    @Autowired
-    private AddressDAO addressManager;
-    
-    private ArrayList<Address> testAddresses = new ArrayList<Address>();
+	@Autowired
+	private AddressDAO addressManager;
 
-    @Before
-    public void setUp() throws Exception {
-        testAddresses.add(TestModelsFactory.createTestAddress1());
-        testAddresses.add(TestModelsFactory.createTestAddress2());
-    }
+	private ArrayList<Address> testAddresses = new ArrayList<Address>();
 
-    @Test
-    public void testGetAll() throws Exception {
-        addressManager.add(testAddresses.get(0));
-        addressManager.add(testAddresses.get(1));
+	@Before
+	public void setUp() throws Exception {
+		testAddresses.add(TestModelsFactory.createTestAddress1());
+		testAddresses.add(TestModelsFactory.createTestAddress2());
+	}
 
-        List<Address> addresses = addressManager.getAll();
-        Assert.assertTrue(addresses.size()>=2);
-        Assert.assertTrue(addresses.contains(testAddresses.get(0)));
-        Assert.assertTrue(addresses.contains(testAddresses.get(1)));
-    }
+	@Test
+	public void testGetAll() throws Exception {
+		addressManager.add(testAddresses.get(0));
+		addressManager.add(testAddresses.get(1));
 
-    @Test
-    public void testAdd() throws Exception {
-        int sizeBeforeAddition = addressManager.getAll().size();
-        addressManager.add(testAddresses.get(0));
-        List<Address> addresses = addressManager.getAll();
-        Assert.assertTrue(addresses.contains(testAddresses.get(0)));
-        Assert.assertEquals(sizeBeforeAddition+1, addresses.size());
-    }
+		List<Address> addresses = addressManager.getAll();
+		Assert.assertTrue(addresses.size() >= 2);
+		Assert.assertTrue(addresses.contains(testAddresses.get(0)));
+		Assert.assertTrue(addresses.contains(testAddresses.get(1)));
+	}
 
-    @Test
-    public void testGet() throws Exception {
-        Address address = addressManager.add(testAddresses.get(0));
+	@Test
+	public void testAdd() throws Exception {
+		int sizeBeforeAddition = addressManager.getAll().size();
+		addressManager.add(testAddresses.get(0));
+		List<Address> addresses = addressManager.getAll();
+		Assert.assertTrue(addresses.contains(testAddresses.get(0)));
+		Assert.assertEquals(sizeBeforeAddition + 1, addresses.size());
+	}
 
-        Assert.assertEquals(address, addressManager.get(address.getId()));
-    }
+	@Test
+	public void testGet() throws Exception {
+		Address address = addressManager.add(testAddresses.get(0));
 
-    @Test
-    public void testDelete() throws Exception {
-        Address address = addressManager.add(testAddresses.get(0));
-        Address address2 = addressManager.add(testAddresses.get(1));
-        addressManager.delete(address.getId());
-        List<Address> addresses = addressManager.getAll();
-        Assert.assertFalse(addresses.contains(address));
-        Assert.assertTrue(addresses.contains(address2));
-    }
+		Assert.assertEquals(address, addressManager.get(address.getId()));
+	}
 
-    @Test
-    public void testUpdate() throws Exception {
-        Address address = addressManager.add(testAddresses.get(0));
-        address.setTown("Kielce");
-        addressManager.update(address);
-        Assert.assertEquals(address, addressManager.get(address.getId()));
-    }
+	@Test
+	public void testDelete() throws Exception {
+		Address address = addressManager.add(testAddresses.get(0));
+		Address address2 = addressManager.add(testAddresses.get(1));
+		addressManager.delete(address.getId());
+		List<Address> addresses = addressManager.getAll();
+		Assert.assertFalse(addresses.contains(address));
+		Assert.assertTrue(addresses.contains(address2));
+	}
+
+	@Test
+	public void testUpdate() throws Exception {
+		Address address = addressManager.add(testAddresses.get(0));
+		address.setTown("Kielce");
+		addressManager.update(address);
+		Assert.assertEquals(address, addressManager.get(address.getId()));
+	}
 }

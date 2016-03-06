@@ -24,81 +24,83 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @Transactional(transactionManager = "txManager")
+
 public class ClientManagerTest {
-    
-    @Autowired
-    private ClientDAO clientManager;
-    
-    @Autowired
-    private AddressDAO addressManager;
-    
-    private ArrayList<Client> testClients = new ArrayList<Client>();
-    private ArrayList<Address> testAddresses = new ArrayList<Address>();
 
-    @Before
-    public void setUp() throws Exception {
-        testAddresses.add(addressManager.add(TestModelsFactory.createTestAddress1()));
-        testClients.add(TestModelsFactory.createTestClient1(testAddresses.get(0)));
-        testClients.add(TestModelsFactory.createTestClient2(testAddresses.get(0)));
-    }
 
-    @Test
-    public void testGetAll() throws Exception {
+	@Autowired
+	private ClientDAO clientManager;
 
-        Client client1 = clientManager.add(testClients.get(0));
-        Client client2 = clientManager.add(testClients.get(1));
+	@Autowired
+	private AddressDAO addressManager;
 
-        List<Client> clients = clientManager.getAll();
+	private ArrayList<Client> testClients = new ArrayList<Client>();
+	private ArrayList<Address> testAddresses = new ArrayList<Address>();
 
-        Assert.assertTrue(clients.size()>=2);
-        Assert.assertTrue(clients.contains(client1));
-        Assert.assertTrue(clients.contains(client2));
+	@Before
+	public void setUp() throws Exception {
+		testAddresses.add(addressManager.add(TestModelsFactory.createTestAddress1()));
+		testClients.add(TestModelsFactory.createTestClient1(testAddresses.get(0)));
+		testClients.add(TestModelsFactory.createTestClient2(testAddresses.get(0)));
+	}
 
-    }
+	@Test
+	public void testGetAll() throws Exception {
 
-    @Test
-    public void testAdd() throws Exception {
-        int sizeBeforeAddition = clientManager.getAll().size();
-        Client client1 = clientManager.add(testClients.get(0));
+		Client client1 = clientManager.add(testClients.get(0));
+		Client client2 = clientManager.add(testClients.get(1));
 
-        List<Client> clients = clientManager.getAll();
+		List<Client> clients = clientManager.getAll();
 
-        Assert.assertTrue(clients.contains(client1));
-        Assert.assertEquals(sizeBeforeAddition + 1, clients.size());
-    }
+		Assert.assertTrue(clients.size() >= 2);
+		Assert.assertTrue(clients.contains(client1));
+		Assert.assertTrue(clients.contains(client2));
 
-    @Test
-    public void testGetById() throws Exception {
-        Client client1 = clientManager.add(testClients.get(0));
+	}
 
-        Client foundClient1 = clientManager.get(client1.getId());
+	@Test
+	public void testAdd() throws Exception {
+		int sizeBeforeAddition = clientManager.getAll().size();
+		Client client1 = clientManager.add(testClients.get(0));
 
-        Assert.assertEquals(foundClient1, client1);
-    }
+		List<Client> clients = clientManager.getAll();
 
-    @Test
-    public void testUpdate() throws Exception {
-        Client client1 = clientManager.add(testClients.get(0));
+		Assert.assertTrue(clients.contains(client1));
+		Assert.assertEquals(sizeBeforeAddition + 1, clients.size());
+	}
 
-        client1.setName("DEF SA");
-        clientManager.update(client1);
+	@Test
+	public void testGetById() throws Exception {
+		Client client1 = clientManager.add(testClients.get(0));
 
-        Client updatedClient = clientManager.get(client1.getId());
+		Client foundClient1 = clientManager.get(client1.getId());
 
-        Assert.assertEquals(client1, updatedClient);
-    }
+		Assert.assertEquals(foundClient1, client1);
+	}
 
-    @Test
-    public void testDelete() throws Exception {
-        Client client1 = clientManager.add(testClients.get(0));
-        Client client2 = clientManager.add(testClients.get(1));
-        Assert.assertTrue(clientManager.getAll().contains(client1));
+	@Test
+	public void testUpdate() throws Exception {
+		Client client1 = clientManager.add(testClients.get(0));
 
-        clientManager.delete(client1.getId());
+		client1.setName("DEF SA");
+		clientManager.update(client1);
 
-        List<Client> clients = clientManager.getAll();
+		Client updatedClient = clientManager.get(client1.getId());
 
-        Assert.assertFalse(clients.contains(client1));
-        Assert.assertTrue(clients.contains(client2));
-    }
+		Assert.assertEquals(client1, updatedClient);
+	}
+
+	@Test
+	public void testDelete() throws Exception {
+		Client client1 = clientManager.add(testClients.get(0));
+		Client client2 = clientManager.add(testClients.get(1));
+		Assert.assertTrue(clientManager.getAll().contains(client1));
+
+		clientManager.delete(client1.getId());
+
+		List<Client> clients = clientManager.getAll();
+
+		Assert.assertFalse(clients.contains(client1));
+		Assert.assertTrue(clients.contains(client2));
+	}
 }
