@@ -46,8 +46,8 @@ public class Driver {
     private Boolean deleted;
 
     @ManyToMany
-    @JoinTable(name="FreightTransportDrivers", joinColumns = { @JoinColumn(name="id_Driver") },
-            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
+    @JoinTable(name="FreightTransportData", joinColumns = { @JoinColumn(name="id_Driver") },
+            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport")})
     private List<FreightTransport> transports = new ArrayList<>();
 
     public Driver(){

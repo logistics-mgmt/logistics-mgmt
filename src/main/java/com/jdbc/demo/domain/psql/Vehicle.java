@@ -37,7 +37,7 @@ public class Vehicle {
     private Boolean available;
 
     @ManyToMany
-    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_Vehicle") },
+    @JoinTable(name="FreightTransportData", joinColumns = { @JoinColumn(name="id_Vehicle") },
             inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
     private List<FreightTransport> transports = new ArrayList<>();
 

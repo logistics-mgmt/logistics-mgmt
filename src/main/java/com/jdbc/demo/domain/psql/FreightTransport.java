@@ -62,14 +62,14 @@ public class FreightTransport {
     private Client client;
 
     @ManyToMany
-    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_FreightTransport") },
-            inverseJoinColumns = { @JoinColumn(name="id_Vehicle") })
-    private List<Vehicle> vehicles = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name="FreightTransportDrivers", joinColumns = { @JoinColumn(name="id_FreightTransport") },
-            inverseJoinColumns = { @JoinColumn(name="id_Driver") })
-    private List<Driver> drivers = new ArrayList<>();
+	@JoinTable(name = "FreightTransportData", joinColumns = {
+			@JoinColumn(name = "id_FreightTransport") }, inverseJoinColumns = { 
+					@JoinColumn(name = "id_Vehicle") })
+	private List<Vehicle> vehicles = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "FreightTransportData", joinColumns = {
+			@JoinColumn(name = "id_FreightTransport") }, inverseJoinColumns = { @JoinColumn(name = "id_Driver") })
+	private List<Driver> drivers = new ArrayList<>();
 
     public FreightTransport(){
 
