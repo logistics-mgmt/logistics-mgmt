@@ -1,5 +1,6 @@
 package com.jdbc.demo.domain.psql;
 
+import com.jdbc.demo.domain.schedule.FreightTransportEvent;
 import com.jdbc.demo.domain.schedule.ScheduleEvent;
 import org.junit.Assert;
 import org.junit.Test;
@@ -36,9 +37,7 @@ public class DriverTest {
 
         driver.addTransport(transport);
 
-        ScheduleEvent expectedEvent = new ScheduleEvent(TRANSPORT_NAME, loadDate);
-        expectedEvent.setEnd(unloadDate);
-        expectedEvent.setUrl(EVENT_URL);
+        ScheduleEvent expectedEvent = new FreightTransportEvent(transport);
 
         Assert.assertTrue(driver.getSchedule().contains(expectedEvent));
         Assert.assertEquals(1, driver.getSchedule().size());
@@ -60,9 +59,7 @@ public class DriverTest {
 
         driver.addTransport(transport);
 
-        ScheduleEvent expectedEvent = new ScheduleEvent(TRANSPORT_NAME, loadDate);
-        expectedEvent.setEnd(unloadDate);
-        expectedEvent.setUrl(EVENT_URL);
+        ScheduleEvent expectedEvent = new FreightTransportEvent(transport);
 
         List<ScheduleEvent> schedule = driver.getSchedule();
         Assert.assertTrue(driver.getSchedule().contains(expectedEvent));

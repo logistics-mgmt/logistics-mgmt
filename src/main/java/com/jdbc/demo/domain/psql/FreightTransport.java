@@ -54,7 +54,7 @@ public class FreightTransport {
     @Temporal(TemporalType.DATE)
     private Date paymentDate;
 
-    private Boolean finished;
+    private Boolean finished = false;
     private String notes;
 
     @ManyToOne

@@ -5,7 +5,7 @@ import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.domain.psql.FreightTransport;
 import com.jdbc.demo.MapsConfiguration;
 import com.jdbc.demo.domain.mongo.Route;
-import com.jdbc.demo.persistence.mongo.RouteWaypointRepository;
+import com.jdbc.demo.services.mongo.RouteWaypointRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

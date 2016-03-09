@@ -1,4 +1,4 @@
-package com.jdbc.demo.persistence.psql;
+package com.jdbc.demo.services.psql;
 
 import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.domain.psql.Driver;

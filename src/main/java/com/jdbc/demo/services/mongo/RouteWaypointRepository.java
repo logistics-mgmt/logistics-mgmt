@@ -1,4 +1,4 @@
-package com.jdbc.demo.persistence.mongo;
+package com.jdbc.demo.services.mongo;
 
 import com.jdbc.demo.domain.mongo.RouteWaypoint;
 import org.springframework.data.mongodb.repository.MongoRepository;

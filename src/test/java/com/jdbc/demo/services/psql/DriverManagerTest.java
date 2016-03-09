@@ -1,4 +1,4 @@
-package com.jdbc.demo.services;
+package com.jdbc.demo.services.psql;
 
 import com.jdbc.demo.AddressDAO;
 import com.jdbc.demo.DriverDAO;
@@ -24,7 +24,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @Transactional(transactionManager = "txManager")
-public class DriverEntityManagerTest {
+public class DriverManagerTest {
 
     @Autowired
     private DriverDAO driverManager;

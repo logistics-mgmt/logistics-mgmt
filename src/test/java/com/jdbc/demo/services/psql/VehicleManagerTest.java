@@ -1,4 +1,4 @@
-package com.jdbc.demo.services;
+package com.jdbc.demo.services.psql;
 
 import com.jdbc.demo.VehicleDAO;
 import com.jdbc.demo.domain.psql.Vehicle;
@@ -23,7 +23,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @Transactional(transactionManager = "txManager")
-public class VehicleEntityManagerTest {
+public class VehicleManagerTest {
 
     @Autowired
     private VehicleDAO vehicleManager;
