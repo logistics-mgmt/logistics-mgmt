@@ -1,6 +1,7 @@
 package com.jdbc.demo.domain.psql;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jdbc.demo.domain.schedule.FreightTransportEvent;
 import com.jdbc.demo.domain.schedule.ScheduleEvent;
@@ -179,6 +180,7 @@ public class Vehicle {
         this.transports = transports;
     }
 
+    @JsonIgnore
     public List<ScheduleEvent> getSchedule(){
         ArrayList<ScheduleEvent> schedule = new ArrayList<>();
 
@@ -189,6 +191,7 @@ public class Vehicle {
         return schedule;
     }
 
+    @JsonIgnore
     public List<ScheduleEvent> getSchedule(Date start, Date end){
 
         if(start.compareTo(end) > 0){
