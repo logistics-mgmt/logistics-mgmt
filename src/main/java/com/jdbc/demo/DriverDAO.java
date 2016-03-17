@@ -5,6 +5,7 @@ import com.jdbc.demo.domain.psql.Driver;
 import java.util.List;
 
 public interface DriverDAO {
+
 	List<Driver> getAll();
 
 	Driver add(Driver driver);
@@ -14,6 +15,9 @@ public interface DriverDAO {
 	Driver update(Driver driver);
 
 	void delete(long id);
+	
+	void delete(String PESEL);
 
 	void delete(Driver driver);
+
 }

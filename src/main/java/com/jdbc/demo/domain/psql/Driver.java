@@ -1,5 +1,6 @@
 package com.jdbc.demo.domain.psql;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jdbc.demo.domain.schedule.FreightTransportEvent;
 import com.jdbc.demo.domain.schedule.ScheduleEvent;
@@ -17,6 +18,8 @@ import java.util.List;
 @JsonIgnoreProperties({ "transports" })
 @NamedNativeQueries({
 		@NamedNativeQuery(name = "driver.all", query = "Select * from Driver", resultClass = Driver.class), })
+
+@NamedQueries({ @NamedQuery(name = "deleteByPesel", query = "DELETE FROM Driver WHERE PESEL = :PESEL"), })
 public class Driver {
 
 	@Id
@@ -203,6 +206,7 @@ public class Driver {
 		this.transports = transports;
 	}
 
+	@JsonIgnore
 	public List<ScheduleEvent> getSchedule() {
 		ArrayList<ScheduleEvent> schedule = new ArrayList<>();
 
@@ -213,6 +217,7 @@ public class Driver {
 		return schedule;
 	}
 
+	@JsonIgnore
 	public List<ScheduleEvent> getSchedule(Date start, Date end) {
 
 		if (start.compareTo(end) > 0) {
@@ -233,7 +238,7 @@ public class Driver {
 		return schedule;
 	}
 
-	public void addTransport(FreightTransport transport) {
-		transports.add(transport);
-	}
+	public void addTransport(FreightTransport transport){
+        transports.add(transport);
+    }
 }
