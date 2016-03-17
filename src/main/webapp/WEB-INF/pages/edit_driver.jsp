@@ -1,4 +1,4 @@
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -10,9 +10,9 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="_csrf" content="${_csrf.token}" />
+    <meta name="_csrf" content="${_csrf.token}"/>
 
-<meta name="_csrf_header" content="${_csrf.headerName}" />
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>Edycja Kierowcy</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -44,6 +44,8 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/drivers">Kierowcy</a></li>
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
+					<li class="inactive"><a href="/clients">Klienci</a></li>
+					<li class="inactive"><a href="/transports">Transporty</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -90,6 +92,8 @@
 		<div class="form-group">
 			<label for="addressId">Adres:</label> <select name="addressId"
 				id="addressId" path="addressId" class="form-control">
+				<option value="${driver.address.id}" selected="selected">${driver.address.street}
+							${driver.address.houseNumber}, ${driver.address.town}, ${driver.address.country}</option>
 				<c:forEach var="address" items="${addresses}">
 					<option value=${address.id}>${address.street}
 						${address.houseNumber}, ${address.town}, ${address.country}</option>

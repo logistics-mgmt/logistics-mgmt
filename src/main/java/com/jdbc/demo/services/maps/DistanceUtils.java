@@ -18,56 +18,53 @@ import java.util.List;
  */
 public class DistanceUtils {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(DistanceUtils.class);
-    private final static String API_KEY = MapsConfiguration.getServerApiKey();
+	private static Logger LOGGER = LoggerFactory.getLogger(DistanceUtils.class);
+	private final static String API_KEY = MapsConfiguration.getServerApiKey();
 
+	public static List<Distance> getDistances(String[] origin, String[] destination) {
+		/**
+		 * Calculates distances for batch of origin and destination locations.
+		 */
+		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 
-    public static List<Distance> getDistances(String[] origin, String[] destination){
-        /**
-         * Calculates distances for batch of origin and destination locations.
-         */
-        GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
+		DistanceMatrix matrix = getDistanceMatrix(context, origin, destination);
 
-        DistanceMatrix matrix = getDistanceMatrix(context, origin, destination);
+		List<Distance> distances = new ArrayList<>();
 
-        List<Distance> distances = new ArrayList<>();
+		for (DistanceMatrixRow row : matrix.rows) {
+			distances.add(row.elements[0].distance);
+		}
 
-        for (DistanceMatrixRow row : matrix.rows){
-            distances.add(row.elements[0].distance);
-        }
+		return distances;
+	}
 
-        return distances;
-    }
+	public static Distance getDistance(String origin, String destination) {
+		/**
+		 * Convenience method for calculating distance between single pair of
+		 * origin and destination locations.
+		 */
+		String[] originArray = { origin };
+		String[] destinationArray = { destination };
+		GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
 
-    public static Distance getDistance(String origin, String destination){
-        /**
-         * Convenience method for calculating distance between single pair of origin and destination locations.
-         */
-        String[] originArray = {origin};
-        String[] destinationArray = {destination};
-        GeoApiContext context = new GeoApiContext().setApiKey(API_KEY);
+		DistanceMatrix matrix = getDistanceMatrix(context, originArray, destinationArray);
 
-        DistanceMatrix matrix = getDistanceMatrix(context, originArray, destinationArray);
+		return matrix.rows[0].elements[0].distance;
+	}
 
-        return matrix.rows[0].elements[0].distance;
-    }
+	private static DistanceMatrix getDistanceMatrix(GeoApiContext context, String[] origin, String[] destination) {
 
-    private static DistanceMatrix getDistanceMatrix(GeoApiContext context, String[] origin,
-                                                    String[] destination)
-    {
+		DistanceMatrix matrix = null;
 
-        DistanceMatrix matrix = null;
+		try {
+			LOGGER.info(String.format("Calculating distance between %s and %s. ", Arrays.toString(origin),
+					Arrays.toString(destination)));
+			matrix = DistanceMatrixApi.getDistanceMatrix(context, origin, destination).await();
+		} catch (Exception ex) {
+			LOGGER.error(String.format("Exception has been thrown during distance calculation between %s and %s.",
+					Arrays.toString(origin), Arrays.toString(destination)), ex);
+		}
 
-        try {
-            LOGGER.info(String.format("Calculating distance between %s and %s. ", Arrays.toString(origin),
-                    Arrays.toString(destination)));
-            matrix = DistanceMatrixApi.getDistanceMatrix(context, origin, destination).await();
-        }
-        catch (Exception ex){
-            LOGGER.error(String.format("Exception has been thrown during distance calculation between %s and %s.",
-                    Arrays.toString(origin),Arrays.toString(destination)), ex);
-        }
-
-        return matrix;
-    }
+		return matrix;
+	}
 }

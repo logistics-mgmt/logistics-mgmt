@@ -20,54 +20,53 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class VehicleManager implements VehicleDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(VehicleManager.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(VehicleManager.class);
 
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Vehicle> getAll() {
-        return sessionFactory.getCurrentSession().getNamedQuery("vehicle.all")
-                .list();
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Vehicle> getAll() {
+		return sessionFactory.getCurrentSession().getNamedQuery("vehicle.all").list();
+	}
 
-    @Override
-    public Vehicle update(Vehicle vehicle) {
-        sessionFactory.getCurrentSession().update(vehicle);
-        return (Vehicle) sessionFactory.getCurrentSession().get(Vehicle.class, vehicle.getId());
-    }
+	@Override
+	public Vehicle update(Vehicle vehicle) {
+		sessionFactory.getCurrentSession().update(vehicle);
+		return (Vehicle) sessionFactory.getCurrentSession().get(Vehicle.class, vehicle.getId());
+	}
 
-    @Override
-    public Vehicle get(long id) {
-        return (Vehicle) sessionFactory.getCurrentSession().get(Vehicle.class, id);
-    }
+	@Override
+	public Vehicle get(long id) {
+		return (Vehicle) sessionFactory.getCurrentSession().get(Vehicle.class, id);
+	}
 
-    @Override
-    public Vehicle add(Vehicle vehicle) {
-        Session session = sessionFactory.getCurrentSession();
-        Long id = (Long) session.save(vehicle);
-        return (Vehicle) session.get(Vehicle.class, id);
-    }
+	@Override
+	public Vehicle add(Vehicle vehicle) {
+		Session session = sessionFactory.getCurrentSession();
+		Long id = (Long) session.save(vehicle);
+		return (Vehicle) session.get(Vehicle.class, id);
+	}
 
-    @Override
-    public void delete(Vehicle vehicle) {
-        sessionFactory.getCurrentSession().delete(vehicle);
-    }
+	@Override
+	public void delete(Vehicle vehicle) {
+		sessionFactory.getCurrentSession().delete(vehicle);
+	}
 
-    @Override
-    public void delete(long id) {
-        Session session = sessionFactory.getCurrentSession();
-        Vehicle vehicleToDelete = (Vehicle) session.load(Vehicle.class, id);
-        session.delete(vehicleToDelete);
-        session.flush();
-    }
+	@Override
+	public void delete(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		Vehicle vehicleToDelete = (Vehicle) session.load(Vehicle.class, id);
+		session.delete(vehicleToDelete);
+		session.flush();
+	}
 }

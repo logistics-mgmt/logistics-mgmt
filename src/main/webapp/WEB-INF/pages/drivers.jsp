@@ -1,4 +1,4 @@
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -15,9 +15,12 @@
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <title>Kierowcy</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <!-- bootbox.js at 4.4.0 -->
 <script
@@ -27,6 +30,7 @@
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
 <script src="/js/token.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 
@@ -44,8 +48,8 @@
 							function(result) {
 								if (result == true)
 									deleteDriver(driverId);
-					});
-		});
+							});
+				});
 	});
 </script>
 
@@ -107,7 +111,10 @@
 				<td>${driver.salaryBonus}</td>
 				<td style="display: none;">${driver.address.id}</td>
 				<td>${driver.address}</td>
-                <td><a class="btn btn-default details-driver-button" href="drivers/${driver.id}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button></td>
+				<td><a class="btn btn-default details-driver-button"
+					href="drivers/${driver.id}"><span
+						class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						</button></td>
 				<td><a class="btn btn-primary edit-driver-button"
 					href="/drivers/edit/${driver.id}">Edytuj</a></td>
 				<td><button class="btn btn-danger delete-driver-button"

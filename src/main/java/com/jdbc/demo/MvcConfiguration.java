@@ -16,42 +16,42 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
-    @Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/pages/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
+	@Bean
+	public ViewResolver getViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/pages/");
+		resolver.setSuffix(".jsp");
+		return resolver;
+	}
 
-    @Override
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 
-    @Bean
-    public FilterRegistrationBean osivFilterRegistration() {
-        /*
-        Registering OpenSessionInViewFilter to enable use of lazy initialized collections
-        in Spring MVC controllers.
-         */
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(osivFilter());
-        registration.addUrlPatterns("/*");
-        registration.setName("osivFilter");
+	@Bean
+	public FilterRegistrationBean osivFilterRegistration() {
+		/*
+		 * Registering OpenSessionInViewFilter to enable use of lazy initialized
+		 * collections in Spring MVC controllers.
+		 */
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(osivFilter());
+		registration.addUrlPatterns("/*");
+		registration.setName("osivFilter");
 
-        /*
-         Defining sessionFactoryBeanName, perhaps renaming hibernateSessionFactory to sessionFactory
-         in beans.xml would be a better solution.
-         TODO: refactor beans.xml - use default name for SessionFactory etc.
-         */
-        registration.addInitParameter("sessionFactoryBeanName", "hibernateSessionFactory");
-        return registration;
-    }
+		/*
+		 * Defining sessionFactoryBeanName, perhaps renaming
+		 * hibernateSessionFactory to sessionFactory in beans.xml would be a
+		 * better solution. TODO: refactor beans.xml - use default name for
+		 * SessionFactory etc.
+		 */
+		registration.addInitParameter("sessionFactoryBeanName", "hibernateSessionFactory");
+		return registration;
+	}
 
-    @Bean(name = "osivFilter")
-    public OpenSessionInViewFilter osivFilter() {
-        return new OpenSessionInViewFilter();
-    }
+	@Bean(name = "osivFilter")
+	public OpenSessionInViewFilter osivFilter() {
+		return new OpenSessionInViewFilter();
+	}
 }

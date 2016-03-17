@@ -1,4 +1,4 @@
-﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -12,11 +12,40 @@
 	pageEncoding="UTF-8"%>
 <title>Klienci</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script
+	src="https://rawgit.com/makeusabrew/bootbox/f3a04a57877cab071738de558581fbc91812dce9/bootbox.js"></script>
+
+<script src="/js/utils.js"></script>
+<script src="/js/address.js"></script>
+<script src="/js/client.js"></script>
 <script src="/js/token.js"></script>
 
+<script type="text/javascript">
+$(function() {
+
+	$(".delete-client-button").button().on(
+			"click",
+			function() {
+				var $this = $(this).closest('tr').children();
+
+				var clientName = $this.eq(3).text();
+				clientId = $this.eq(0).text();
+				console.log("deleting");
+				bootbox.confirm("Usunąć klienta "  + clientName + "?",
+						function(result) {
+							if (result == true)
+								deleteClient(clientId);
+						});
+			});
+});
+</script>
 <body>
 	<!-- Static navbar -->
 	<nav class="navbar navbar-inverse">
@@ -29,7 +58,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">JEE Servlet Demo</a>
+				<a class="navbar-brand" href="#">logistics-mgmt</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -43,6 +72,7 @@
 		</div>
 		<!--/.container-fluid -->
 	</nav>
+	<a href="/clients/add" class="btn btn-success">Dodaj klienta</a>
 	<table class="table table-hover" id="clients_table">
 		<thead>
 			<tr>
@@ -50,7 +80,7 @@
 				<td>Adres</td>
 				<td>Nazwa</td>
 				<td>NIP</td>
-				<td>Numer konta bankowego </td>
+				<td>Numer konta bankowego</td>
 				<td>Edycja</td>
 				<td>Usuwanie</td>
 			</tr>
@@ -64,8 +94,8 @@
 				<td>${client.name}</td>
 				<td>${client.NIP}</td>
 				<td>${client.bankAccountNumber}</td>
-				
-				
+
+
 
 				<td><a class="btn btn-primary edit-client-button"
 					href="/clients/edit/${client.id}">Edytuj</a></td>

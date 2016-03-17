@@ -24,48 +24,45 @@ import java.util.List;
 @RequestMapping("/vehicles")
 public class VehicleController {
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(VehicleController.class);
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(VehicleController.class);
+	@Autowired
+	VehicleDAO vehicleManager;
 
-    @Autowired
-    VehicleDAO vehicleManager;
+	@Autowired
+	FreightTransportDAO transportManager;
 
-    @Autowired
-    FreightTransportDAO transportManager;
+	@Autowired
+	RouteWaypointRepository routeRepository;
 
-    @Autowired
-    RouteWaypointRepository routeRepository;
+	@RequestMapping(method = RequestMethod.GET)
+	public String getVehicles(ModelMap model) {
+		model.addAttribute("vehicles", vehicleManager.getAll());
+		return "vehicles";
+	}
 
-    @RequestMapping(method = RequestMethod.GET )
-    public String getVehicles(ModelMap model){
-        model.addAttribute("vehicles", vehicleManager.getAll());
-        return "vehicles";
-    }
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String addVehicle(ModelMap model) {
+		return "add_vehicle";
+	}
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addVehicle(ModelMap model){
-        return "add_vehicle";
-    }
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String editVehicle(@PathVariable long id, ModelMap model) {
+		model.addAttribute("vehicle", vehicleManager.get(id));
+		return "edit_vehicle";
+	}
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editVehicle(@PathVariable long id, ModelMap model){
-        model.addAttribute("vehicle", vehicleManager.get(id));
-        return "edit_vehicle";
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String vehicleDetails(@PathVariable long id, ModelMap model) {
+		Vehicle vehicle = vehicleManager.get(id);
+		model.addAttribute("vehicle", vehicleManager.get(id));
+		model.addAttribute("api_key", MapsConfiguration.getBrowserApiKey());
+		model.addAttribute("on_road", transportManager.isVehicleOnRoad(vehicle));
 
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String vehicleDetails(@PathVariable long id, ModelMap model){
-        Vehicle vehicle = vehicleManager.get(id);
-        model.addAttribute("vehicle", vehicleManager.get(id));
-        model.addAttribute("api_key", MapsConfiguration.getBrowserApiKey());
-        model.addAttribute("on_road", transportManager.isVehicleOnRoad(vehicle));
-
-        List<RouteWaypoint> waypoints = routeRepository.findByDriverIdOrderByTimestampDesc(id);
-        if(waypoints != null && waypoints.size() > 0)
-            model.addAttribute("latest_waypoint", waypoints.get(0));
-        return "vehicle_details";
-    }
-
+		List<RouteWaypoint> waypoints = routeRepository.findByDriverIdOrderByTimestampDesc(id);
+		if (waypoints != null && waypoints.size() > 0)
+			model.addAttribute("latest_waypoint", waypoints.get(0));
+		return "vehicle_details";
+	}
 
 }

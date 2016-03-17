@@ -20,54 +20,53 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class AddressManager implements AddressDAO {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(AddressManager.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(AddressManager.class);
 
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Address> getAll() {
-        return sessionFactory.getCurrentSession().getNamedQuery("address.all")
-                .list();
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Address> getAll() {
+		return sessionFactory.getCurrentSession().getNamedQuery("address.all").list();
+	}
 
-    @Override
-    public Address update(Address address) {
-        sessionFactory.getCurrentSession().update(address);
-        return (Address) sessionFactory.getCurrentSession().get(Address.class, address.getId());
-    }
+	@Override
+	public Address update(Address address) {
+		sessionFactory.getCurrentSession().update(address);
+		return (Address) sessionFactory.getCurrentSession().get(Address.class, address.getId());
+	}
 
-    @Override
-    public Address get(long id) {
-        return (Address) sessionFactory.getCurrentSession().get(Address.class, id);
-    }
+	@Override
+	public Address get(long id) {
+		return (Address) sessionFactory.getCurrentSession().get(Address.class, id);
+	}
 
-    @Override
-    public Address add(Address address) {
-        Session session = sessionFactory.getCurrentSession();
-        Long id = (Long) session.save(address);
-        return (Address) session.get(Address.class, id);
-    }
+	@Override
+	public Address add(Address address) {
+		Session session = sessionFactory.getCurrentSession();
+		Long id = (Long) session.save(address);
+		return (Address) session.get(Address.class, id);
+	}
 
-    @Override
-    public void delete(Address address) {
-        sessionFactory.getCurrentSession().delete(address);
-    }
+	@Override
+	public void delete(Address address) {
+		sessionFactory.getCurrentSession().delete(address);
+	}
 
-    @Override
-    public void delete(long id) {
-        Session session = sessionFactory.getCurrentSession();
-        Address addressToDelete = (Address) session.load(Address.class, id);
-        session.delete(addressToDelete);
-        session.flush();
-    }
+	@Override
+	public void delete(long id) {
+		Session session = sessionFactory.getCurrentSession();
+		Address addressToDelete = (Address) session.load(Address.class, id);
+		session.delete(addressToDelete);
+		session.flush();
+	}
 }
