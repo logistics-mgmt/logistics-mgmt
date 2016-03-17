@@ -1,5 +1,6 @@
 package utils;
 
+
 import com.jdbc.demo.domain.psql.*;
 
 import java.math.BigDecimal;
@@ -53,6 +54,7 @@ public abstract class TestModelsFactory {
         driver1.setAddress(address);
         driver1.setFirstName("Jerzy");
         driver1.setLastName("Banan");
+        driver1.setSalary(new BigDecimal(3200).setScale(2, BigDecimal.ROUND_CEILING));
         driver1.setPESEL("12345678910");
         driver1.setAvailable(true);
         driver1.setDeleted(false);
@@ -71,6 +73,19 @@ public abstract class TestModelsFactory {
         return driver2;
     }
 
+    
+    public static Driver createTestDriver3(Address address){
+        Driver driver3 = new Driver();
+        driver3.setAddress(address);
+        driver3.setFirstName("Jan");
+        driver3.setLastName("Czapla");
+        driver3.setSalary(new BigDecimal(3200).setScale(2, BigDecimal.ROUND_CEILING));
+        driver3.setPESEL("12345687911");
+        driver3.setAvailable(true);
+        driver3.setDeleted(false);
+        return driver3;
+    }
+    
     public static Vehicle createTestVehicle1(){
         Vehicle vehicle1 = new Vehicle();
         vehicle1.setBrand("Scania");
