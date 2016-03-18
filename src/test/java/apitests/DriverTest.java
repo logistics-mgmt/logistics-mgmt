@@ -21,6 +21,7 @@ import com.jdbc.demo.domain.psql.Address;
 import com.jdbc.demo.domain.psql.Driver;
 import utils.TestModelsFactory;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import static org.hamcrest.Matchers.hasSize;
@@ -51,12 +52,6 @@ public class DriverTest {
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 
-	Driver driver1;
-	Driver driver2;
-	
-	Driver testDriver1;
-	Driver testDriver2;
-	
 	private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
@@ -65,9 +60,9 @@ public class DriverTest {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 		this.addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
-		driver1 = driverManager.add(TestModelsFactory.createTestDriver1(addressList.get(0)));
+		Driver driver1 = driverManager.add(TestModelsFactory.createTestDriver1(addressList.get(0)));
 		driverList.add(driver1);
-		driver2 = driverManager.add(TestModelsFactory.createTestDriver2(addressList.get(0)));
+		Driver driver2 = driverManager.add(TestModelsFactory.createTestDriver2(addressList.get(0)));
 		driverList.add(driver2);
 
 	}
@@ -83,59 +78,72 @@ public class DriverTest {
 	@Test
 	public void getDriver() throws Exception {
 		
-		testDriver1 = driverList.get(1);
+		Driver testDriver = driverList.get(1);
 				
-		mockMvc.perform(get("/api/drivers/" + testDriver1.getId()))
+		mockMvc.perform(get("/api/drivers/" + testDriver.getId()))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$.id", is( (int) testDriver1.getId() )))
-				.andExpect(jsonPath("$.firstName", is(testDriver1.getFirstName())))
-				.andExpect(jsonPath("$.lastName", is(testDriver1.getLastName())))
-				.andExpect(jsonPath("$.salary", is(testDriver1.getSalary().doubleValue())))
-				.andExpect(jsonPath("$.pesel", is(testDriver1.getPESEL())))
-				.andExpect(jsonPath("$.available", is(testDriver1.isAvailable())))
-				.andExpect(jsonPath("$.deleted", is(testDriver1.isDeleted())));
+				.andExpect(jsonPath("$.id", is( (int) testDriver.getId() )))
+				.andExpect(jsonPath("$.firstName", is(testDriver.getFirstName())))
+				.andExpect(jsonPath("$.lastName", is(testDriver.getLastName())))
+				.andExpect(jsonPath("$.salary", is(testDriver.getSalary().doubleValue())))
+				.andExpect(jsonPath("$.pesel", is(testDriver.getPESEL())))
+				.andExpect(jsonPath("$.available", is(testDriver.isAvailable())))
+				.andExpect(jsonPath("$.deleted", is(testDriver.isDeleted())));
 	}
 
 	@Test
 	public void postDriver() throws Exception {
 		
-		Driver json = TestModelsFactory.createTestDriver3(addressList.get(0));
+		Driver testDriver = TestModelsFactory.createTestDriver3(addressList.get(0));
 		
 		mockMvc.perform(post("/api/drivers/")
-				.contentType(contentType).content(convertObjectToJsonBytes(json)))
+				.contentType(contentType).content(convertObjectToJsonBytes(testDriver)))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$.id", is((int) driver2.getId() + 1)))
-				.andExpect(jsonPath("$.firstName", is("Jan")))
-				.andExpect(jsonPath("$.lastName", is("Czapla")))
-				.andExpect(jsonPath("$.salary", is(3200.00)))
-				.andExpect(jsonPath("$.pesel", is("12345687911")))
-				.andExpect(jsonPath("$.available", is(true)))
-				.andExpect(jsonPath("$.deleted", is(false)));
-
-		driverManager.delete(driver2.getId() + 1);
+				.andExpect(jsonPath("$.id", is((int) driverList.get(1).getId() + 1)))
+				.andExpect(jsonPath("$.firstName", is(testDriver.getFirstName())))
+				.andExpect(jsonPath("$.lastName", is(testDriver.getLastName())))
+				.andExpect(jsonPath("$.salary", is(testDriver.getSalary().doubleValue())))
+				.andExpect(jsonPath("$.pesel", is(testDriver.getPESEL())))
+				.andExpect(jsonPath("$.available", is(testDriver.isAvailable())))
+				.andExpect(jsonPath("$.deleted", is(testDriver.isDeleted())));
+		/*
+		Driver testDriver2 = new Driver();
+		testDriver2.setId(driverList.get(1).getId() + 1);
+		testDriver2.setAddress(addressList.get(0));
+		testDriver2.setFirstName(testDriver.getFirstName());
+		testDriver2.setLastName(testDriver.getLastName());
+		testDriver2.setSalary(testDriver.getSalary());
+		testDriver2.setPESEL(testDriver.getPESEL());
+		testDriver2.setAvailable(testDriver.isAvailable());
+		testDriver2.setDeleted(testDriver.isDeleted());
+		*/
+		Driver testDriver2 = driverManager.get((int) driverList.get(1).getId() + 1);
+		Assert.assertTrue(driverManager.getAll().contains(testDriver2));
+		
+		driverManager.delete((int) driverList.get(1).getId() + 1);
 	}
 
 	@Test
 	public void deleteDriver() throws Exception {
 
-		testDriver1 = driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
+		Driver testDriver = driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
 
 		mockMvc.perform(
-				MockMvcRequestBuilders.delete("/api/drivers/" + testDriver1.getId())
+				MockMvcRequestBuilders.delete("/api/drivers/" + testDriver.getId())
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 
-		Assert.assertFalse(driverManager.getAll().contains(testDriver1));
+		Assert.assertFalse(driverManager.getAll().contains(testDriver));
 
 	}
 
 	@Test
 	public void getDrivers() throws Exception {
 
-		testDriver1 = driverManager.getAll().get(0);
-		testDriver2 = driverManager.getAll().get(1);
+		Driver testDriver1 = driverManager.getAll().get(0);
+		Driver testDriver2 = driverManager.getAll().get(1);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/drivers").accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
@@ -160,21 +168,20 @@ public class DriverTest {
 	@Test
 	public void updateDriver() throws Exception {
 		
-		testDriver1 = driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
-		driverList.add(testDriver1);
-		Driver json = testDriver1;
+		Driver testDriver= driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
+		driverList.add(testDriver);
 		
-		mockMvc.perform(post("/api/drivers/" + testDriver1.getId()).contentType(contentType)
-				.content(convertObjectToJsonBytes(json))
+		mockMvc.perform(post("/api/drivers/" + testDriver.getId()).contentType(contentType)
+				.content(convertObjectToJsonBytes(testDriver))
 				).andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$.id", is((int)testDriver1.getId())))
-				.andExpect(jsonPath("$.firstName", is(testDriver1.getFirstName())))
-				.andExpect(jsonPath("$.lastName", is(testDriver1.getLastName())))
-				.andExpect(jsonPath("$.salary", is(testDriver1.getSalary().doubleValue())))
-				.andExpect(jsonPath("$.pesel", is(testDriver1.getPESEL())))
-				.andExpect(jsonPath("$.available", is(testDriver1.isAvailable())))
-				.andExpect(jsonPath("$.deleted", is(testDriver1.isDeleted())));
+				.andExpect(jsonPath("$.id", is((int)testDriver.getId())))
+				.andExpect(jsonPath("$.firstName", is(testDriver.getFirstName())))
+				.andExpect(jsonPath("$.lastName", is(testDriver.getLastName())))
+				.andExpect(jsonPath("$.salary", is(testDriver.getSalary().doubleValue())))
+				.andExpect(jsonPath("$.pesel", is(testDriver.getPESEL())))
+				.andExpect(jsonPath("$.available", is(testDriver.isAvailable())))
+				.andExpect(jsonPath("$.deleted", is(testDriver.isDeleted())));
 
 	}
 
