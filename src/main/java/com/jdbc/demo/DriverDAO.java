@@ -10,5 +10,6 @@ public interface DriverDAO {
     Driver get(long id);
     Driver update(Driver driver);
     void delete(long id);
+    void delete(String PESEL);
     void delete(Driver driver);
 }

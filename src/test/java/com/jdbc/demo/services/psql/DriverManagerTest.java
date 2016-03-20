@@ -72,6 +72,16 @@ public class DriverManagerTest {
     }
 
     @Test
+    public void deleteByPeselTest  () throws Exception {
+        Driver driver1 = driverManager.add(testDrivers.get(0));
+        Driver driver2 = driverManager.add(testDrivers.get(1));
+        driverManager.delete(driver1.getPESEL());
+        List<Driver> drivers = driverManager.getAll();
+        Assert.assertFalse(drivers.contains(driver1));
+        Assert.assertTrue(drivers.contains(driver2));
+    }
+    
+    @Test
     public void getByIdTest  () throws Exception {
         Driver driver1 = driverManager.add(testDrivers.get(0));
 

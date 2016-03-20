@@ -21,7 +21,6 @@ import com.jdbc.demo.domain.psql.Address;
 import com.jdbc.demo.domain.psql.Driver;
 import utils.TestModelsFactory;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import static org.hamcrest.Matchers.hasSize;
@@ -71,7 +70,7 @@ public class DriverTest {
 	public void cleanup() throws Exception {
 
 		for (Driver driver : driverList) {
-			driverManager.delete(driver);
+			driverManager.delete(driver.getPESEL());
 		}
 	}
 
@@ -96,6 +95,7 @@ public class DriverTest {
 	public void postDriver() throws Exception {
 		
 		Driver testDriver = TestModelsFactory.createTestDriver3(addressList.get(0));
+		driverList.add(testDriver);
 		
 		mockMvc.perform(post("/api/drivers/")
 				.contentType(contentType).content(convertObjectToJsonBytes(testDriver)))
@@ -108,35 +108,20 @@ public class DriverTest {
 				.andExpect(jsonPath("$.pesel", is(testDriver.getPESEL())))
 				.andExpect(jsonPath("$.available", is(testDriver.isAvailable())))
 				.andExpect(jsonPath("$.deleted", is(testDriver.isDeleted())));
-		/*
-		Driver testDriver2 = new Driver();
-		testDriver2.setId(driverList.get(1).getId() + 1);
-		testDriver2.setAddress(addressList.get(0));
-		testDriver2.setFirstName(testDriver.getFirstName());
-		testDriver2.setLastName(testDriver.getLastName());
-		testDriver2.setSalary(testDriver.getSalary());
-		testDriver2.setPESEL(testDriver.getPESEL());
-		testDriver2.setAvailable(testDriver.isAvailable());
-		testDriver2.setDeleted(testDriver.isDeleted());
-		*/
-		Driver testDriver2 = driverManager.get((int) driverList.get(1).getId() + 1);
-		Assert.assertTrue(driverManager.getAll().contains(testDriver2));
-		
-		driverManager.delete((int) driverList.get(1).getId() + 1);
 	}
 
 	@Test
 	public void deleteDriver() throws Exception {
 
 		Driver testDriver = driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
-
+		driverList.add(testDriver);
+		
 		mockMvc.perform(
 				MockMvcRequestBuilders.delete("/api/drivers/" + testDriver.getId())
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 
 		Assert.assertFalse(driverManager.getAll().contains(testDriver));
-
 	}
 
 	@Test
