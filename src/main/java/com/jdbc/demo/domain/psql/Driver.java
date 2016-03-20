@@ -18,7 +18,9 @@ import java.util.List;
 @JsonIgnoreProperties({"transports"})
 @NamedNativeQueries({
         @NamedNativeQuery(name = "driver.all", query = "Select * from Driver", resultClass = Driver.class),
-        @NamedNativeQuery(name = "deleteByPesel",query = "DELETE FROM Driver WHERE PESEL = :PESEL", resultClass = Driver.class),
+})
+@NamedQueries({
+    @NamedQuery(name = "deleteByPesel",query = "DELETE FROM Driver WHERE PESEL = :PESEL"),
 })
 public class Driver {
 

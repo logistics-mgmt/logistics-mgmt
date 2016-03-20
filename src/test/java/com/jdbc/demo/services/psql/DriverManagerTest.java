@@ -41,6 +41,7 @@ public class DriverManagerTest {
         testAddresses.add(addressManager.add(TestModelsFactory.createTestAddress1()));
         testDrivers.add(TestModelsFactory.createTestDriver1(testAddresses.get(0)));
         testDrivers.add(TestModelsFactory.createTestDriver2(testAddresses.get(0)));
+        testDrivers.add(TestModelsFactory.createTestDriver3(testAddresses.get(0)));
     }
 
     @Test
