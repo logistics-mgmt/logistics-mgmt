@@ -58,7 +58,7 @@ public class DriverTest {
 	public void setup() throws Exception {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-		this.addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
+		addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
 		Driver driver1 = driverManager.add(TestModelsFactory.createTestDriver1(addressList.get(0)));
 		driverList.add(driver1);
 		Driver driver2 = driverManager.add(TestModelsFactory.createTestDriver2(addressList.get(0)));
@@ -72,6 +72,8 @@ public class DriverTest {
 		for (Driver driver : driverList) {
 			driverManager.delete(driver.getPESEL());
 		}
+		
+		addressManager.delete(addressList.get(0));
 	}
 
 	@Test

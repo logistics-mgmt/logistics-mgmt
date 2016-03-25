@@ -39,6 +39,7 @@ public abstract class TestModelsFactory {
         testAddress1.setStreet("Dolna");
         return testAddress1;
     }
+    
     public static Address createTestAddress2(){
         Address testAddress2 = new Address();
         testAddress2.setTown("Sosnowiec");
@@ -48,7 +49,16 @@ public abstract class TestModelsFactory {
         testAddress2.setStreet("Agrarna");
         return testAddress2;
     }
-
+    
+    public static Address createTestAddress3(){
+        Address testAddress3 = new Address();
+        testAddress3.setTown("Bialystok");
+        testAddress3.setCode("88-777");
+        testAddress3.setCountry("Polska");
+        testAddress3.setHouseNumber("21/5");
+        testAddress3.setStreet("Gorna");
+        return testAddress3;
+    }
     public static Driver createTestDriver1(Address address){
         Driver driver1 = new Driver();
         driver1.setAddress(address);
@@ -72,7 +82,6 @@ public abstract class TestModelsFactory {
         driver2.setDeleted(false);
         return driver2;
     }
-
     
     public static Driver createTestDriver3(Address address){
         Driver driver3 = new Driver();
