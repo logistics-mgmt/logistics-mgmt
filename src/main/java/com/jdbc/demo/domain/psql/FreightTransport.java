@@ -42,6 +42,9 @@ public class FreightTransport {
     private int distance;
     private BigDecimal value;
 
+    @Column(name="payload_weight")
+    private Integer payloadWeight;
+
     @Column(nullable = false, name="load_date")
     @Temporal(TemporalType.DATE)
     private Date loadDate;
@@ -128,6 +131,7 @@ public class FreightTransport {
                 ", loadDate=" + loadDate +
                 ", unloadDate=" + unloadDate +
                 ", paymentDate=" + paymentDate +
+                ", payloadWeight=" + payloadWeight +
                 ", finished=" + finished +
                 ", notes='" + notes + '\'' +
                 ", client=" + client +
@@ -253,5 +257,13 @@ public class FreightTransport {
     @JsonIgnore
     public MappedRoute getRoute(){
         return DirectionsService.getRoute(this.loadAddress.getTown(), this.unloadAddress.getTown());
+    }
+
+    public Integer getPayloadWeight() {
+        return payloadWeight;
+    }
+
+    public void setPayloadWeight(Integer payloadWeight) {
+        this.payloadWeight = payloadWeight;
     }
 }

@@ -118,6 +118,10 @@ $(document).ready(function() {
           <h4 class="list-group-item-text">${transport.value}</h4>
       </div>
       <div class="list-group-item">
+          <h4 class="list-group-item-heading">Ładunek (kg):</h4>
+          <h4 class="list-group-item-text">${transport.payloadWeight}</h4>
+      </div>
+      <div class="list-group-item">
           <h4 class="list-group-item-heading">Data załadunku:</h4>
           <h4 class="list-group-item-text">${transport.loadDate}</h4>
       </div>

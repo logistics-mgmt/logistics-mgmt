@@ -93,6 +93,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
            <td>ID</td>
            <td>Marka</td>
            <td>Typ</td>
+           <td>Ładowność</td>
            <td>Silnik</td>
            <td>VIN</td>
            <td>KM</td>
@@ -108,6 +109,7 @@ $( ".delete-vehicle-button" ).button().on( "click", function() {
               <td>${vehicle.id}</td>
               <td>${vehicle.brand}</td>
               <td>${vehicle.model}</td>
+              <td>${vehicle.maxPayload}</td>
               <td>${vehicle.engine}</td>
               <td>${vehicle.VIN}</td>
               <td>${vehicle.horsepower}</td>

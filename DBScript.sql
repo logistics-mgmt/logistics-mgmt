@@ -58,6 +58,7 @@ CREATE TABLE Vehicle (
   production_date DATE NOT NULL,
   VIN CHAR(17) UNIQUE  NOT NULL CHECK(char_length(VIN)=17),
   horsepower INTEGER  NOT NULL,
+  max_payload INTEGER NULL DEFAULT 0,
   available boolean DEFAULT '1'
 );
 
@@ -98,6 +99,7 @@ CREATE TABLE FreightTransport (
   id_Client INTEGER  NOT NULL REFERENCES Client(id_Client),
   distance INTEGER NULL CHECK(distance>0 OR distance IS NULL),
   value DECIMAL(8,2) NOT NULL CHECK(value>=0),
+  payload_weight INTEGER NULL DEFAULT 0,
   name VARCHAR(100) NULL,
   load_date timestamp NULL,
   unload_date timestamp NULL,
@@ -190,12 +192,12 @@ INSERT INTO Driver ( id_Address, last_name, first_name, pesel) VALUES (22, 'Opol
 INSERT INTO Driver ( id_Address, last_name, first_name, pesel, salary) VALUES (23, 'Tabaka', 'Jan', '80050908432', 3000);
 INSERT INTO Driver ( id_Address, last_name, first_name, pesel) VALUES (4, 'Koło', 'Jan', '88030106789');
 
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('Scania', 'R-500', 12456, 16, '2010-02-01', '1M8GDM9A_KP042788', 500);
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('Scania', 'R-500', 78219, 16, '2009-10-12', '1M8GDM9A_KP145890', 500);
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('MAN', 'TGA', 123798, 12, '2007-05-19', '1N8GTM6B_KP047893', 430);
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('MAN', 'TGA', 156129, 12, '2007-03-10', '1N8GTM6B_KP123487', 430);
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('MAN', 'TGX', 194982, 12, '2007-03-10', '1N8GTM6B_KP548730', 540);
-INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower) VALUES ('DAF', 'XF 105', 48723, 14, '2006-02-10', '2Y3TTE6B_KP432334', 560);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('Scania', 'R-500', 12456, 16, '2010-02-01', '1M8GDM9A_KP042788', 500, 15000);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('Scania', 'R-500', 78219, 16, '2009-10-12', '1M8GDM9A_KP145890', 500, 20000);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('MAN', 'TGA', 123798, 12, '2007-05-19', '1N8GTM6B_KP047893', 430, 25000);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('MAN', 'TGA', 156129, 12, '2007-03-10', '1N8GTM6B_KP123487', 430, 25000);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('MAN', 'TGX', 194982, 12, '2007-03-10', '1N8GTM6B_KP548730', 540, 15000);
+INSERT INTO Vehicle (brand, model, mileage, engine, production_date, VIN, horsepower, max_payload) VALUES ('DAF', 'XF 105', 48723, 14, '2006-02-10', '2Y3TTE6B_KP432334', 560, 24000);
 
 
 INSERT INTO FreightTransport (id_load_Address, id_unload_Address, id_Client, distance, value, load_date, unload_date, payment_date, finished) VALUES (8, 15, 4, 794, 25416.23, '2014-03-14', '2014-03-17', '2014-03-19', '1');

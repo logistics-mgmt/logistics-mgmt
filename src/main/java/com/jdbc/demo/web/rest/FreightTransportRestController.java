@@ -4,6 +4,7 @@ import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.domain.psql.FreightTransport;
 
 import com.jdbc.demo.services.maps.model.MappedRoute;
+import com.jdbc.demo.services.planning.Planner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class FreightTransportRestController {
 
 	@Autowired
 	FreightTransportDAO transportManager;
+
+	@Autowired
+	Planner transportPlanner;
 
 	@RequestMapping(method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
 	public @ResponseBody
@@ -68,4 +72,10 @@ public class FreightTransportRestController {
 		return transportManager.get(id).getRoute();
 	}
 
+
+	@RequestMapping(value= "/plan", method = RequestMethod.POST,
+	consumes = {"application/json; charset=UTF-8"}, produces = {"application/json; charset=UTF-8"})
+	public @ResponseBody FreightTransport planTransport(@RequestBody FreightTransport tranportPlan){
+		return transportPlanner.planTransport(tranportPlan);
+	}
 }
