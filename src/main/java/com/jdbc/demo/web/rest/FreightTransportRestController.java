@@ -3,6 +3,7 @@ package com.jdbc.demo.web.rest;
 import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.domain.psql.FreightTransport;
 
+import com.jdbc.demo.services.maps.model.MappedRoute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,18 @@ public class FreightTransportRestController {
 	@Autowired
 	FreightTransportDAO transportManager;
 
-	@RequestMapping(method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
-	public @ResponseBody List<FreightTransport> getFreightTransports() {
-		return transportManager.getAll();
+	@RequestMapping(method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
+	public @ResponseBody
+	List<FreightTransport> getTransports(@RequestParam(name="active", required=false, defaultValue="false")
+										 boolean active){
+		if(active){
+			LOGGER.info("GET active transports.");
+			return transportManager.getAllActive();
+		}
+		else{
+			LOGGER.info("GET all transports.");
+			return transportManager.getAll();
+		}
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
@@ -46,10 +56,16 @@ public class FreightTransportRestController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = {
 			"application/json; charset=UTF-8" }, produces = { "application/json; charset=UTF-8" })
-
 	public @ResponseBody FreightTransport updateFreightTransport(@RequestBody FreightTransport freightTransport) {
 		LOGGER.info(String.format("Updating Freight Transport %s.", freightTransport));
 		return transportManager.update(freightTransport);
+	}
+
+	@RequestMapping(value = "/{id}/route", method = RequestMethod.GET,
+			produces={"application/json; charset=UTF-8"})
+	public @ResponseBody
+	MappedRoute getRoute(@PathVariable("id") long id){
+		return transportManager.get(id).getRoute();
 	}
 
 }

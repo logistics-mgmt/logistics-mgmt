@@ -6,7 +6,7 @@ import com.jdbc.demo.DriverDAO;
 import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.VehicleDAO;
 import com.jdbc.demo.domain.psql.FreightTransport;
-import com.jdbc.demo.services.maps.DistanceUtils;
+import com.jdbc.demo.services.maps.DistanceService;
 import com.jdbc.demo.MapsConfiguration;
 import com.jdbc.demo.domain.mongo.Route;
 import com.jdbc.demo.services.mongo.RouteWaypointRepository;

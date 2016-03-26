@@ -22,82 +22,92 @@ import java.util.List;
 @Transactional(transactionManager = "txManager")
 public class FreightTransportManager implements FreightTransportDAO {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportManager.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportManager.class);
 
-	@Autowired
-	private SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<FreightTransport> getAll() {
-		return sessionFactory.getCurrentSession().getNamedQuery("freightTransport.all").list();
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<FreightTransport> getAll() {
+        return sessionFactory.getCurrentSession().getNamedQuery("freightTransport.all")
+                .list();
+    }
 
-	@Override
-	public FreightTransport update(FreightTransport freightTransport) {
-		sessionFactory.getCurrentSession().update(freightTransport);
-		return (FreightTransport) sessionFactory.getCurrentSession().get(FreightTransport.class,
-				freightTransport.getId());
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<FreightTransport> getAllActive() {
+        return sessionFactory.getCurrentSession().getNamedQuery("freightTransport.allActive")
+                .list();
+    }
 
-	@Override
-	public FreightTransport get(long id) {
-		return (FreightTransport) sessionFactory.getCurrentSession().get(FreightTransport.class, id);
-	}
+    @Override
+    public FreightTransport update(FreightTransport freightTransport) {
+        sessionFactory.getCurrentSession().update(freightTransport);
+        return (FreightTransport) sessionFactory.getCurrentSession().get(FreightTransport.class,
+                freightTransport.getId());
+    }
 
-	@Override
-	public FreightTransport add(FreightTransport freightTransport) {
-		Session session = sessionFactory.getCurrentSession();
-		Long id = (Long) session.save(freightTransport);
-		return (FreightTransport) session.get(FreightTransport.class, id);
-	}
+    @Override
+    public FreightTransport get(long id) {
+        return (FreightTransport) sessionFactory.getCurrentSession().get(FreightTransport.class, id);
+    }
 
-	@Override
-	public void delete(FreightTransport freightTransport) {
-		sessionFactory.getCurrentSession().delete(freightTransport);
-	}
+    @Override
+    public FreightTransport add(FreightTransport freightTransport) {
+        Session session = sessionFactory.getCurrentSession();
+        Long id = (Long) session.save(freightTransport);
+        return (FreightTransport) session.get(FreightTransport.class, id);
+    }
 
-	@Override
-	public void delete(long id) {
-		Session session = sessionFactory.getCurrentSession();
-		FreightTransport freightTransportToDelete = (FreightTransport) session.load(FreightTransport.class, id);
-		session.delete(freightTransportToDelete);
-		session.flush();
-	}
+    @Override
+    public void delete(FreightTransport freightTransport) {
+        sessionFactory.getCurrentSession().delete(freightTransport);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public Boolean isDriverOnRoad(Driver driver) {
-		List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
-				.getNamedQuery("freightTransport.allActive").list();
+    @Override
+    public void delete(long id) {
+        Session session = sessionFactory.getCurrentSession();
+        FreightTransport freightTransportToDelete = (FreightTransport) session.load(FreightTransport.class, id);
+        session.delete(freightTransportToDelete);
+        session.flush();
+    }
 
-		for (FreightTransport transport : activeTransports) {
-			if (transport.getDrivers().contains(driver))
-				return true;
-		}
+    @Override
+    @SuppressWarnings("unchecked")
+    public Boolean isDriverOnRoad(Driver driver){
+        List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
+                                                    .getNamedQuery("freightTransport.allActive")
+                                                    .list();
 
-		return false;
-	}
+        for(FreightTransport transport: activeTransports){
+            if(transport.getDrivers().contains(driver))
+                return true;
+        }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public Boolean isVehicleOnRoad(Vehicle vehicle) {
-		List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
-				.getNamedQuery("freightTransport.allActive").list();
+        return false;
+    }
 
-		for (FreightTransport transport : activeTransports) {
-			if (transport.getVehicles().contains(vehicle))
-				return true;
-		}
+    @Override
+    @SuppressWarnings("unchecked")
+    public Boolean isVehicleOnRoad(Vehicle vehicle){
+        List<FreightTransport> activeTransports = sessionFactory.getCurrentSession()
+                .getNamedQuery("freightTransport.allActive")
+                .list();
 
-		return false;
-	}
+        for(FreightTransport transport: activeTransports){
+            if(transport.getVehicles().contains(vehicle))
+                return true;
+        }
+
+        return false;
+    }
 }

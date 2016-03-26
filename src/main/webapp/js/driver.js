@@ -87,3 +87,20 @@ function deleteDriver(driverId){
 
     return false;
 };
+
+function getDriver(id){
+    return $.ajax({
+        url: '/api/drivers/' + id,
+        type : "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        success : function(result) {
+            console.log(result);
+        },
+        error: function(xhr, resp, text) {
+            console.log(xhr, resp, text);
+        }
+    })
+}

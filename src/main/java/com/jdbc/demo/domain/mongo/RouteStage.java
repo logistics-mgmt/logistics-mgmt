@@ -1,7 +1,7 @@
 package com.jdbc.demo.domain.mongo;
 
 import com.google.maps.model.Distance;
-import com.jdbc.demo.services.maps.DistanceUtils;
+import com.jdbc.demo.services.maps.DistanceService;
 
 /**
  * Created by Mateusz on 05-Jan-16.
@@ -19,7 +19,7 @@ public class RouteStage {
 
 		this.origin = origin;
 		this.destination = destination;
-		this.distance = DistanceUtils.getDistance(origin.getLocation(), destination.getLocation());
+		this.distance = DistanceService.getDistance(origin.getLocation(), destination.getLocation());
 		this.duration = destination.getTimestamp().getTime() - origin.getTimestamp().getTime();
 	}
 

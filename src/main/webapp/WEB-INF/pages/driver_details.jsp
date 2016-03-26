@@ -23,19 +23,27 @@ pageEncoding="UTF-8"
 <script src="/js/utils.js"></script>
 <script src="/js/address.js"></script>
 <script src="/js/driver.js"></script>
-<script src="/js/token.js"></script>
-<link rel='stylesheet' href='/js/fullcalendar-2.6.1/fullcalendar.css' />
-<script src='/js/fullcalendar-2.6.1/lib/moment.min.js'></script>
-<script src='/js/fullcalendar-2.6.1/fullcalendar.js'></script>
+<script src="/js/maps.js"></script>
+
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.css' />
 <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js'></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js'></script>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=${api_key}"></script>
+<link rel="stylesheet" type="text/css" href="/css/map.css">
+
 <script>
 $(document).ready(function() {
     $('#calendar').fullCalendar({
         events: '/api/drivers/${driver.id}/schedule'
 
-    })
+    });
+    var initialLocation = new google.maps.LatLng(52, 21);
+    var map = initializeMap(initialLocation);
+    var marker = initializeMarker(map, initialLocation);
+    setInterval(function(){
+    pollForLocation('driver', ${driver.id}, map, marker);
+    }, 5000);
 
 });
 </script>
@@ -118,10 +126,8 @@ $(document).ready(function() {
             </c:otherwise>
       </c:choose>
       <c:choose>
-              <c:when test="${latest_waypoint.location != null}">
-              <p>Ostatnia lokalizacja(${latest_waypoint.timestamp}): </p>
-               <iframe width="300" height="450" frameborder="0" style="border:0"
-                           src="https://www.google.com/maps/embed/v1/place?q=${latest_waypoint.location}&key=${api_key}" allowfullscreen></iframe>
+              <c:when test="${driver.latitude != null && driver.longitude != null}">
+               <div id="map-canvas" class="map-canvas"></div>
               </c:when>
               <c:otherwise>
                   <p>Brak danych o ostatniej lokalizacji.</p>

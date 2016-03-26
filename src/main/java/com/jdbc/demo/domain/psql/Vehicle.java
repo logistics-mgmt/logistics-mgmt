@@ -2,6 +2,7 @@ package com.jdbc.demo.domain.psql;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.jdbc.demo.domain.schedule.FreightTransportEvent;
 import com.jdbc.demo.domain.schedule.ScheduleEvent;
 
@@ -35,9 +36,13 @@ public class Vehicle {
 
     private Boolean available;
 
-    @ManyToMany
-    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_Vehicle") },
-            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
+    // TODO: move location coordinates to separate entity
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Double latitude;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Double longitude;
+
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="vehicles")
     private List<FreightTransport> transports = new ArrayList<>();
 
     public Vehicle() {
@@ -80,15 +85,17 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "id=" + id +
-                ", horsepower=" + horsepower +
-                ", engine=" + engine +
-                ", mileage=" + mileage +
-                ", model='" + model + '\'' +
-                ", brand='" + brand + '\'' +
-                ", VIN='" + VIN + '\'' +
-                ", productionDate=" + productionDate +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", available=" + available +
+                ", productionDate=" + productionDate +
+                ", VIN='" + VIN + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", mileage=" + mileage +
+                ", engine=" + engine +
+                ", horsepower=" + horsepower +
+                ", id=" + id +
                 '}';
     }
 
@@ -211,5 +218,21 @@ public class Vehicle {
 
     public void addTransport(FreightTransport transport){
         transports.add(transport);
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 }
