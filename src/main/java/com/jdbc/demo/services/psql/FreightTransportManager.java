@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Component
-@Transactional(transactionManager = "txManager")
+@Transactional
 public class FreightTransportManager implements FreightTransportDAO {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FreightTransportManager.class);

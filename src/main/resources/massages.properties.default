@@ -1,0 +1,6 @@
+NotEmpty.user.firstName=Podaj
+NotEmpty.user.lastName=Podaj
+NotEmpty.user.password=Podaj
+NotEmpty.user.ssoId=Podaj
+NotEmpty.user.userProfiles=Podaj
+non.unique.ssoId=SSO ID {0} istnieje. Login musi byc unikalny

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootApplication
 @ImportResource("classpath:/beans.xml")
 @EnableTransactionManagement
-@Transactional(transactionManager = "txManager")
+@Transactional
 public class Application {
 
 	public static void main(String[] args) {

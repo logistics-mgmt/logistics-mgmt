@@ -41,7 +41,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">logistics_mgmt</a>
+				<a class="navbar-brand" href="/index">logistics_mgmt</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -49,12 +49,24 @@
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
 					<li class="active"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="inactive"><a href="/users/">Panel
+							Administracyjny</a></li>
+					<li class="dropdown"><a href="/" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Zaloguj/Wyloguj <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/login">Zaloguj</a></li>
+							<li><a href="/logout">Wyloguj</a></li>
+						</ul></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 		<!--/.container-fluid -->
-
+	</nav>
 		<form name="edit_client_form" id="edit_client_form"
 			modelAttribute="editClientForm" data-toggle="validator"
 			onsubmit="return editClient();">

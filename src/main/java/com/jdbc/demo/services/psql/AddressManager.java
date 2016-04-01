@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Component
-@Transactional(transactionManager = "txManager")
+@Transactional
 public class AddressManager implements AddressDAO {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(AddressManager.class);
