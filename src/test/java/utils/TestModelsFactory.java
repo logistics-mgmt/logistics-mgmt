@@ -123,7 +123,7 @@ public abstract class TestModelsFactory {
         vehicle3.setEngine(16);
         vehicle3.setHorsepower(300);
         vehicle3.setModel("ZX-83");
-        vehicle3.setVIN("1M8GDM9A_KE042777");
+        vehicle3.setVIN("1M8GDM9A_KU042777");
         vehicle3.setProductionDate(new Date(System.currentTimeMillis()));
         return vehicle3;
     }
