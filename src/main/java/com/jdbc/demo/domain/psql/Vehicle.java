@@ -26,7 +26,12 @@ public class Vehicle {
     private int horsepower;
     private int engine;
     private int mileage;
-    private String model;
+
+    //hax with default value to allow Hibernate working on already spawned database
+	@Column(name = "max_payload", nullable = true)
+	private Integer maxPayload = 1000;
+
+	private String model;
     private String brand;
     private String VIN;
 
@@ -42,7 +47,9 @@ public class Vehicle {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Double longitude;
 
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy="vehicles")
+    @ManyToMany
+    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_Vehicle") },
+            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
     private List<FreightTransport> transports = new ArrayList<>();
 
     public Vehicle() {
@@ -85,17 +92,15 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", available=" + available +
-                ", productionDate=" + productionDate +
-                ", VIN='" + VIN + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", mileage=" + mileage +
-                ", engine=" + engine +
+                "id=" + id +
                 ", horsepower=" + horsepower +
-                ", id=" + id +
+                ", engine=" + engine +
+                ", mileage=" + mileage +
+                ", model='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                ", VIN='" + VIN + '\'' +
+                ", productionDate=" + productionDate +
+                ", available=" + available +
                 '}';
     }
 
@@ -219,6 +224,14 @@ public class Vehicle {
     public void addTransport(FreightTransport transport){
         transports.add(transport);
     }
+
+	public Integer getMaxPayload() {
+		return maxPayload;
+	}
+
+	public void setMaxPayload(Integer maxPayload) {
+		this.maxPayload = maxPayload;
+	}
 
     public Double getLatitude() {
         return latitude;

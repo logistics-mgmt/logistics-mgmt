@@ -76,6 +76,10 @@ pageEncoding="UTF-8"
         <input type="text" class="form-control" id="model"  path="model" name="model" required="true" />
       </div>
       <div class="form-group">
+        <label for="maxPayload">Ładowność:</label>
+        <input type="number" value="${vehicle.maxPayload}" class="form-control" id="maxPayload"  path="maxPayload" name="maxPayload" required="true" />
+      </div>
+      <div class="form-group">
         <label for="engine">Silnik:</label>
         <input type="number" class="form-control" id="engine"  path="engine" data-minlength="11" name="engine" required="true" />
       </div>

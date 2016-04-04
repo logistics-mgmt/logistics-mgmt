@@ -103,6 +103,10 @@ $(document).ready(function() {
             <input type="text" value="${vehicle.model}" class="form-control" id="model"  path="model" name="model" disabled />
           </div>
           <div class="form-group">
+            <label for="model">Ładowność:</label>
+            <input type="text" value="${vehicle.maxPayload}" class="form-control" id="maxPayload"  path="maxPayload" name="maxPayload" disabled />
+          </div>
+          <div class="form-group">
             <label for="engine">Silnik:</label>
             <input type="text" value="${vehicle.engine}" class="form-control" id="engine"  path="engine" name="engine" disabled />
           </div>

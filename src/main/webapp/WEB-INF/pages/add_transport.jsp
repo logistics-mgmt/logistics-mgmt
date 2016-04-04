@@ -87,76 +87,111 @@
 		<!--/.container-fluid -->
 	</nav>
 
-	<form name="add_transport_form" id="add_transport_form"
-		modelAttribute="addTransportForm" data-toggle="validator"
-		onsubmit="return addFreightTransport();">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+			<button class="btn btn-primary" onclick="planTransport();">Zaplanuj</button>
+				<form name="add_transport_form" id="add_transport_form"
+				modelAttribute="addTransportForm" data-toggle="validator"
+				onsubmit="return addFreightTransport();">
 
 
-		<div class="form-group">
-			<label for="loadAddressId">Adres załadunku:</label> <select
-				name="loadAddressId" id="loadAddressId" path="loadAddressId"
-				class="form-control">
-				<c:forEach var="loadAddress" items="${load_address}">
-					<option value=${loadAddress.id}>${loadAddress.street}
-						${loadAddress.houseNumber}, ${loadAddress.town},
-						${loadAddress.country}</option>
-				</c:forEach>
-			</select>
-		</div>
+					<div class="form-group">
+						<label for="loadAddressId">Adres załadunku:</label> <select
+							name="loadAddressId" id="loadAddressId" path="loadAddressId"
+							class="form-control">
+							<c:forEach var="loadAddress" items="${load_address}">
+								<option value=${loadAddress.id}>${loadAddress.street}
+									${loadAddress.houseNumber}, ${loadAddress.town},
+									${loadAddress.country}</option>
+							</c:forEach>
+						</select>
+					</div>
 
-		<div class="form-group">
-			<label for="unloadAddressId">Adres rozładunku:</label> <select
-				name="unloadAddressId" id="unloadAddressId" path="unloadAddressId"
-				class="form-control">
-				<c:forEach var="unloadAddress" items="${unload_address}">
-					<option value=${unloadAddress.id}>${unloadAddress.street}
-						${unloadAddress.houseNumber}, ${unloadAddress.town},
-						${unloadAddress.country}</option>
-				</c:forEach>
-			</select>
-		</div>
+					<div class="form-group">
+						<label for="unloadAddressId">Adres rozładunku:</label> <select
+							name="unloadAddressId" id="unloadAddressId" path="unloadAddressId"
+							class="form-control">
+							<c:forEach var="unloadAddress" items="${unload_address}">
+								<option value=${unloadAddress.id}>${unloadAddress.street}
+									${unloadAddress.houseNumber}, ${unloadAddress.town},
+									${unloadAddress.country}</option>
+							</c:forEach>
+						</select>
+					</div>
 
-		<div class="form-group">
-			<label for="clientId">Klient:</label> <select name="clientId"
-				id="clientId" path="clientId" class="form-control">
-				<c:forEach var="client" items="${clients}">
-					<option value=${client.id}>${client.name}</option>
-				</c:forEach>
-			</select>
-		</div>
+					<div class="form-group">
+						<label for="clientId">Klient:</label> <select name="clientId"
+							id="clientId" path="clientId" class="form-control">
+							<c:forEach var="client" items="${clients}">
+								<option value=${client.id}>${client.name}</option>
+							</c:forEach>
+						</select>
+					</div>
 
 
 
-		<div class="form-group">
-			<label for="value">Wartość:</label>
-			<div class="input-group">
-				<span class="input-group-addon">zł</span><input type="number"
-					step="any" class="form-control" id="value" name="value"
-					path="value" />
+					<div class="form-group">
+						<label for="value">Wartość:</label>
+						<div class="input-group">
+							<span class="input-group-addon">zł</span><input type="number"
+								step="any" class="form-control" id="value" name="value"
+								path="value" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="value">Ładunek:</label>
+						<div class="input-group">
+							<span class="input-group-addon">kg</span><input type="number"
+								step="any" class="form-control" id="payloadWeight" name="payloadWeight"
+								path="payloadWeight" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="value">Data załadunku:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="loadDate"
+								name="loadDate" path="loadDate" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="value">Data rozładunku:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="unloadDate"
+								name="unloadDate" path="unloadDate" />
+						</div>
+					</div>
+
+
+					<input type="hidden" class="form-control" id="distance"
+						name="distance" path="distance" value="1" />
+
+					<button type="submit" class="btn btn-success">Dodaj</button>
+					<a class="btn btn-warning" href="/transports">Anuluj</a>
+				</form>
+				
 			</div>
-		</div>
-
-		<div class="form-group">
-			<label for="value">Data załadunku:</label>
-			<div class="input-group">
-				<input type="text" class="form-control" id="loadDate"
-					name="loadDate" path="loadDate" />
+			<div class="col-md-4">
+				<div class="row list-group" id="vehicles_list">
+       				<div class="list-group-item">
+	          			<h4 class="list-group-item-heading">Pojazdy:</h4>
+	        		</div>
+	   			</div>
 			</div>
-		</div>
-		<div class="form-group">
-			<label for="value">Data rozładunku:</label>
-			<div class="input-group">
-				<input type="text" class="form-control" id="unloadDate"
-					name="unloadDate" path="unloadDate" />
+
+			<div class="col-md-4">
+				<div class="row list-group" id="drivers_list">
+       				<div class="list-group-item">
+	          			<h4 class="list-group-item-heading">Kierowcy:</h4>
+	        		</div>
+	   			</div>
 			</div>
+
 		</div>
+	</div>
 
-
-		<input type="hidden" class="form-control" id="distance"
-			name="distance" path="distance" value="1" />
-
-		<button type="submit" class="btn btn-success">Dodaj</button>
-		<a class="btn btn-warning" href="/transports">Anuluj</a>
-	</form>
+	
 </body>
 </html>

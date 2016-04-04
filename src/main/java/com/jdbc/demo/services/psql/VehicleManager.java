@@ -59,6 +59,7 @@ public class VehicleManager implements VehicleDAO {
 
 	@Override
 	public void delete(Vehicle vehicle) {
+		LOGGER.info(String.format("Deleting vehicle: %s", vehicle));
 		sessionFactory.getCurrentSession().delete(vehicle);
 	}
 

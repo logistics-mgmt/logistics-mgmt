@@ -4,7 +4,9 @@ package utils;
 import com.jdbc.demo.domain.psql.*;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -94,6 +96,7 @@ public abstract class TestModelsFactory {
 		vehicle1.setModel("ZX-83");
 		vehicle1.setVIN("1M8GDM9A_KP042777");
 		vehicle1.setProductionDate(new Date(System.currentTimeMillis()));
+		vehicle1.setMaxPayload(1500);
 		return vehicle1;
 	}
 
@@ -104,6 +107,7 @@ public abstract class TestModelsFactory {
 		vehicle2.setHorsepower(300);
 		vehicle2.setModel("ZX-83");
 		vehicle2.setVIN("1M8GDM9A_KE042777");
+		vehicle2.setMaxPayload(1000);
 		vehicle2.setProductionDate(new Date(System.currentTimeMillis()));
 		return vehicle2;
 	}
@@ -135,4 +139,17 @@ public abstract class TestModelsFactory {
 		freightTransport2.setVehicles(vehicles);
 		return freightTransport2;
 	}
+
+	public static FreightTransport createTransportPlan(Client client, Address loadAddress, Address unloadAddress,
+													   Date loadDate, Date unloadDate) {
+		FreightTransport transportPlan = new FreightTransport();
+		transportPlan.setFinished(false);
+		transportPlan.setClient(client);
+		transportPlan.setLoadAddress(loadAddress);
+		transportPlan.setLoadDate(loadDate);
+		transportPlan.setUnloadAddress(unloadAddress);
+		transportPlan.setUnloadDate(unloadDate);
+		return transportPlan;
+	}
+
 }
