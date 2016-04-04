@@ -169,7 +169,8 @@ public class FreightTransport {
     public void setUnloadAddress(Address unloadAddress) {
         this.unloadAddress = unloadAddress;
     }
-
+    
+    @JsonIgnore
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
@@ -177,7 +178,8 @@ public class FreightTransport {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
-
+    
+    @JsonIgnore
     public List<Driver> getDrivers() {
         return drivers;
     }
