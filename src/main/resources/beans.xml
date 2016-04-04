@@ -36,7 +36,7 @@
         enable the configuration of transactional behavior based on
         annotations
     -->
-    <tx:annotation-driven transaction-manager="txManager" />
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="hibernateSessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
@@ -51,7 +51,7 @@
         <property name="packagesToScan" value="com.jdbc.demo.domain" />
     </bean>
 
-    <bean id="txManager"
+    <bean id="transactionManager"
           class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernateSessionFactory" />
     </bean>

@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 @Component
-@Transactional(transactionManager = "txManager")
+@Transactional
 public class DriverManager implements DriverDAO {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(DriverManager.class);

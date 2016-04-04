@@ -23,7 +23,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
-@Transactional(transactionManager = "txManager")
+@Transactional
 
 public class ClientManagerTest {
 
