@@ -92,14 +92,19 @@ public class FreightTransportTest {
 		clientList.add(clientManager.add(TestModelsFactory.createTestClient2(addressList.get(0))));
 		
 		FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
-				vehicleList, addressList.get(0), addressList.get(1))));
+				vehicleList, addressList.get(0), addressList.get(1))));		
+		FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport2(clientList.get(0),driverList,
+			vehicleList, addressList.get(1), addressList.get(0))));		
+		
 	}
 
 	@After
 	public void cleanup() throws Exception {
 		
+		FreightTransportList.remove(1);
+		
 		for (FreightTransport freightTransport : FreightTransportList) {
-			FreightTransportManager.delete(freightTransport);
+			FreightTransportManager.delete(freightTransport.getId());
 		}		
 		
 		for (Client client : clientList) {
@@ -108,7 +113,7 @@ public class FreightTransportTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void getFreightTransport() throws Exception {
 		
 		FreightTransport testFreightTransport  = FreightTransportManager.getAll().get(0);
@@ -118,16 +123,59 @@ public class FreightTransportTest {
 				.andExpect(content().contentType(contentType));		
 	}		
 	
-	@Test
+	
+	//@Test
+	public void postFreightTransport() throws Exception {
+		
+		FreightTransport testFreightTransport = TestModelsFactory.createTestFreightTransport3(clientList.get(0),driverList,
+				vehicleList, addressList.get(1), addressList.get(0));
+		testFreightTransport.setId(addressList.get(1).getId() + 2);
+		FreightTransportList.add(testFreightTransport);
+		
+		mockMvc.perform(post("/api/transports")
+				.contentType(contentType).content(convertObjectToJsonBytes(testFreightTransport)))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(contentType));
+	}
+	
+	
+	//@Test
+	public void deleteFreightTransport() throws Exception {
+
+		FreightTransport testFreightTransport = FreightTransportManager.getAll().get(1);
+		//FreightTransportList.add(testFreightTransport);
+		
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transports/" + testFreightTransport.getId())
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+		
+		//FreightTransportList.remove(testFreightTransport);
+		//Assert.assertFalse(FreightTransportManager.getAll().contains(testFreightTransport));
+	}
+	
+	//@Test
 	public void getFreightTransports() throws Exception {
 
-		FreightTransport testFreightTransport1 = FreightTransportManager.getAll().get(0);
-		FreightTransport testFreightTransport2 =FreightTransportManager.getAll().get(1);
+		//FreightTransport testFreightTransport1 = FreightTransportManager.getAll().get(0);
+		//FreightTransport testFreightTransport2 =FreightTransportManager.getAll().get(1);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/transports").accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(content().contentType(contentType))
 				.andExpect(jsonPath("$", hasSize(FreightTransportManager.getAll().size())));
+	}
+	
+	//@Test
+	public void updateFreightTransport() throws Exception {
+		
+		FreightTransport testFreightTransport = FreightTransportManager.add(TestModelsFactory.createTestFreightTransport2(clientList.get(0),driverList,
+				vehicleList, addressList.get(1), addressList.get(0)));
+		
+		mockMvc.perform(post("/api/transports/" + testFreightTransport.getId()).contentType(contentType)
+				.content(convertObjectToJsonBytes(testFreightTransport))
+				).andExpect(status().isOk())
+				.andExpect(content().contentType(contentType));	
+
 	}
 	
 	
