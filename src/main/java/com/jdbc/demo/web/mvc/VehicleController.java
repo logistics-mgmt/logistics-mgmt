@@ -1,6 +1,6 @@
 package com.jdbc.demo.web.mvc;
 
-import java.util.List;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.jdbc.demo.FreightTransportDAO;
 import com.jdbc.demo.MapsConfiguration;
 import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.mongo.RouteWaypoint;
 import com.jdbc.demo.domain.psql.Vehicle;
-import com.jdbc.demo.services.mongo.RouteWaypointRepository;
 
 /**
  * Created by Mateusz on 06-Dec-15.
@@ -32,9 +30,6 @@ public class VehicleController {
 
 	@Autowired
 	FreightTransportDAO transportManager;
-
-	@Autowired
-	RouteWaypointRepository routeRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getVehicles(ModelMap model) {
@@ -60,9 +55,6 @@ public class VehicleController {
 		model.addAttribute("api_key", MapsConfiguration.getBrowserApiKey());
 		model.addAttribute("on_road", transportManager.isVehicleOnRoad(vehicle));
 
-		List<RouteWaypoint> waypoints = routeRepository.findByDriverIdOrderByTimestampDesc(id);
-		if (waypoints != null && waypoints.size() > 0)
-			model.addAttribute("latest_waypoint", waypoints.get(0));
 		return "vehicle_details";
 	}
 

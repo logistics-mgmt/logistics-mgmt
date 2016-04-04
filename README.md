@@ -35,5 +35,6 @@
 <h4>Running transport emulator:</h4>
   Enter `py-transport-emulator` directory and execute `python transport-emulator.py --api "http://localhost:8080/api" --username admin --password admin`.
   
-  <h4>Heroku deployment:</h4>
+<h4>Heroku deployment:</h4>
 Instructions about deploying app on Heroku can be found on heroku-support feature branch.
+
