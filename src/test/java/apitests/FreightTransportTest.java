@@ -90,18 +90,18 @@ public class FreightTransportTest {
 
 		clientList.add(clientManager.add(TestModelsFactory.createTestClient1(addressList.get(0))));
 		clientList.add(clientManager.add(TestModelsFactory.createTestClient2(addressList.get(0))));
-		
-		FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
-				vehicleList, addressList.get(0), addressList.get(1))));		
-		FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport2(clientList.get(0),driverList,
-			vehicleList, addressList.get(1), addressList.get(0))));		
+	
+		//FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
+		//		vehicleList, addressList.get(0), addressList.get(1))));		
+		//FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport2(clientList.get(0),driverList,
+		//	vehicleList, addressList.get(1), addressList.get(0))));		
 		
 	}
 
-	@After
+	//@After
 	public void cleanup() throws Exception {
 		
-		FreightTransportList.remove(1);
+		//FreightTransportList.remove(1);
 		
 		for (FreightTransport freightTransport : FreightTransportList) {
 			FreightTransportManager.delete(freightTransport.getId());
@@ -112,9 +112,13 @@ public class FreightTransportTest {
 		}
 		
 	}
-
+	//dziala
 	//@Test
 	public void getFreightTransport() throws Exception {
+		
+		 FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
+						vehicleList, addressList.get(0), addressList.get(1))));	
+		
 		
 		FreightTransport testFreightTransport  = FreightTransportManager.getAll().get(0);
 		
@@ -127,10 +131,10 @@ public class FreightTransportTest {
 	//@Test
 	public void postFreightTransport() throws Exception {
 		
-		FreightTransport testFreightTransport = TestModelsFactory.createTestFreightTransport3(clientList.get(0),driverList,
+		FreightTransport testFreightTransport = TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
 				vehicleList, addressList.get(1), addressList.get(0));
 		testFreightTransport.setId(addressList.get(1).getId() + 2);
-		FreightTransportList.add(testFreightTransport);
+		//FreightTransportList.add(testFreightTransport);
 		
 		mockMvc.perform(post("/api/transports")
 				.contentType(contentType).content(convertObjectToJsonBytes(testFreightTransport)))
@@ -138,11 +142,15 @@ public class FreightTransportTest {
 				.andExpect(content().contentType(contentType));
 	}
 	
-	
+	//dziala
 	//@Test
 	public void deleteFreightTransport() throws Exception {
 
-		FreightTransport testFreightTransport = FreightTransportManager.getAll().get(1);
+		 FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
+					vehicleList, addressList.get(0), addressList.get(1))));	
+		
+		
+		FreightTransport testFreightTransport = FreightTransportManager.getAll().get(0);
 		//FreightTransportList.add(testFreightTransport);
 		
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transports/" + testFreightTransport.getId())
@@ -153,11 +161,18 @@ public class FreightTransportTest {
 		//Assert.assertFalse(FreightTransportManager.getAll().contains(testFreightTransport));
 	}
 	
-	//@Test
+	@Test
 	public void getFreightTransports() throws Exception {
 
 		//FreightTransport testFreightTransport1 = FreightTransportManager.getAll().get(0);
 		//FreightTransport testFreightTransport2 =FreightTransportManager.getAll().get(1);
+		
+		 FreightTransportList.add(FreightTransportManager.add(TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
+					vehicleList, addressList.get(0), addressList.get(1))));
+		 
+		//FreightTransportManager.add(TestModelsFactory.createTestFreightTransport2(clientList.get(0),driverList,
+		//			vehicleList, addressList.get(1), addressList.get(0)));
+		
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/transports").accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
