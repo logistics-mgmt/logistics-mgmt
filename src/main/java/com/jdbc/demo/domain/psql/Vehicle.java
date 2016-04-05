@@ -60,9 +60,7 @@ public class Vehicle {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Double longitude;
 
-    @ManyToMany
-    @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_Vehicle") },
-            inverseJoinColumns = { @JoinColumn(name="id_FreightTransport") })
+    @ManyToMany(mappedBy="vehicles")
     private List<FreightTransport> transports = new ArrayList<>();
 
     public Vehicle() {

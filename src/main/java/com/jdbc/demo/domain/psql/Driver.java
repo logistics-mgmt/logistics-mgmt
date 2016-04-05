@@ -70,7 +70,7 @@ public class Driver {
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Double longitude;
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "drivers")
+	@ManyToMany(mappedBy = "drivers")
 	private List<FreightTransport> transports = new ArrayList<>();
 
 	public Driver() {
@@ -78,7 +78,7 @@ public class Driver {
 	}
 
 	public Driver(long id, Address address, String firstName, String lastName, String PESEL, BigDecimal salary,
-			BigDecimal salaryBonus, Boolean available, Boolean deleted) {
+				  BigDecimal salaryBonus, Boolean available, Boolean deleted) {
 		super();
 		this.id = id;
 		this.address = address;

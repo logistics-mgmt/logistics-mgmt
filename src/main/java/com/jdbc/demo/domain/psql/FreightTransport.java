@@ -79,12 +79,24 @@ public class FreightTransport {
     @JoinColumn(name="id_Client")
     private Client client;
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade =
+    {
+        CascadeType.DETACH,
+                CascadeType.MERGE,
+                CascadeType.REFRESH,
+                CascadeType.PERSIST
+    })
     @JoinTable(name="FreightTransportVehicles", joinColumns = { @JoinColumn(name="id_FreightTransport") },
             inverseJoinColumns = { @JoinColumn(name="id_Vehicle") })
     private List<Vehicle> vehicles = new ArrayList<>();
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade =
+            {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST
+            })
     @JoinTable(name="FreightTransportDrivers", joinColumns = { @JoinColumn(name="id_FreightTransport") },
             inverseJoinColumns = { @JoinColumn(name="id_Driver") })
     private List<Driver> drivers = new ArrayList<>();
