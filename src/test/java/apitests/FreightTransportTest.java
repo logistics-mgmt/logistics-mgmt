@@ -28,6 +28,7 @@ import com.jdbc.demo.domain.psql.Vehicle;
 import utils.TestModelsFactory;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -137,6 +138,8 @@ public class FreightTransportTest {
 	@Test
 	public void postFreightTransport() throws Exception {
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 		FreightTransport testFreightTransport = TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
 				vehicleList, addressList.get(1), addressList.get(0));
 		testFreightTransport.setId(FreightTransportList.get(1).getId() + 1);
@@ -152,7 +155,7 @@ public class FreightTransportTest {
 				.andExpect(jsonPath("$.value", is(testFreightTransport.getValue().doubleValue())))
 				.andExpect(jsonPath("$.finished", is(testFreightTransport.getFinished())));
 		
-		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(testFreightTransport.getLoadDate()));
+		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(format.format(testFreightTransport.getLoadDate())));
 	}	
 
 	@Test
@@ -197,6 +200,8 @@ public class FreightTransportTest {
 	@Test
 	public void updateFreightTransport() throws Exception {
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 		FreightTransport testFreightTransport = FreightTransportList.get(1);
 		FreightTransportList.add(testFreightTransport);
 		
@@ -210,7 +215,7 @@ public class FreightTransportTest {
 				.andExpect(jsonPath("$.value", is(testFreightTransport.getValue().doubleValue())))
 				.andExpect(jsonPath("$.finished", is(testFreightTransport.getFinished())));
 		
-		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(testFreightTransport.getLoadDate()));
+		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(format.format(testFreightTransport.getLoadDate())));
 	}	
 	
 	public static byte[] convertObjectToJsonBytes(Object object) throws IOException {

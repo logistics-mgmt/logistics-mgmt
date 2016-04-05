@@ -20,6 +20,7 @@ import com.jdbc.demo.domain.psql.Vehicle;
 import utils.TestModelsFactory;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -71,6 +72,9 @@ public class VehicleTest {
 	@Test
 	public void getVehicle() throws Exception {
 
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 		Vehicle testVehicle = vehicleList.get(1);
 		
 		mockMvc.perform(get("/api/vehicles/" + testVehicle.getId()))
@@ -83,12 +87,14 @@ public class VehicleTest {
 				.andExpect(jsonPath("$.model", is(testVehicle.getModel())))
 				.andExpect(jsonPath("$.brand", is(testVehicle.getBrand())))
 				.andExpect(jsonPath("$.vin", is(testVehicle.getVIN())))
-				.andExpect(jsonPath("$.productionDate", is(String.valueOf(testVehicle.getProductionDate()))))
+				.andExpect(jsonPath("$.productionDate", is(String.valueOf(format.format(testVehicle.getProductionDate())))))
 				.andExpect(jsonPath("$.available", is(testVehicle.getAvailable())));
 	}
 
 	@Test
 	public void postVehicle() throws Exception {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Vehicle testVehicle = TestModelsFactory.createTestVehicle3();
 		testVehicle.setId(vehicleList.get(1).getId() + 1);
@@ -108,7 +114,7 @@ public class VehicleTest {
 				.andExpect(jsonPath("$.vin", is(testVehicle.getVIN())))
 				.andExpect(jsonPath("$.available", is(testVehicle.getAvailable())));
 		
-		 Assert.assertEquals(String.valueOf(vehicleManager.get(testVehicle.getId()).getProductionDate()), String.valueOf(testVehicle.getProductionDate()));
+		 Assert.assertEquals(String.valueOf(vehicleManager.get(testVehicle.getId()).getProductionDate()), String.valueOf(format.format(testVehicle.getProductionDate())));
 	}
 
 	@Test
@@ -158,6 +164,8 @@ public class VehicleTest {
 	@Test
 	public void updateVehicle() throws Exception {
 		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 		Vehicle testVehicle= vehicleManager.add(TestModelsFactory.createTestVehicle3());
 		vehicleList.add(testVehicle);
 		
@@ -174,7 +182,7 @@ public class VehicleTest {
 				.andExpect(jsonPath("$.vin", is(testVehicle.getVIN())))
 				.andExpect(jsonPath("$.available", is(testVehicle.getAvailable())));
 		
-		 Assert.assertEquals(String.valueOf(vehicleManager.get(testVehicle.getId()).getProductionDate()), String.valueOf(testVehicle.getProductionDate()));
+		 Assert.assertEquals(String.valueOf(vehicleManager.get(testVehicle.getId()).getProductionDate()), String.valueOf(format.format(testVehicle.getProductionDate())));
 	}
 	
 	public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
