@@ -10,7 +10,6 @@
         <servlet-name>jsp</servlet-name>
         <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>jsp</servlet-name>
         <url-pattern>/webapp/*</url-pattern>
@@ -23,10 +22,9 @@
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
+  
 </web-app>
