@@ -26,5 +26,14 @@
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+     <jsp-config>
+                    <taglib>
+                        <taglib-uri>/tags/struts-bean</taglib-uri>
+                        <taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+                    </taglib>                                       
+ </jsp-config>
   
+  
+      
 </web-app>

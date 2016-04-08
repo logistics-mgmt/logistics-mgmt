@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.jdbc.demo.AbstractDAO;
 import com.jdbc.demo.UserDAO;
 import com.jdbc.demo.domain.psql.Client;
+import com.jdbc.demo.domain.psql.Driver;
 import com.jdbc.demo.domain.security.*;
  
 @Repository("userDAO")
@@ -44,8 +45,9 @@ public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
         return users;
     }
  
-    public void add(User user) {
+    public User add(User user) {
         persist(user);
+        return user;
     }
  
     public void deleteBySSO(String sso) {

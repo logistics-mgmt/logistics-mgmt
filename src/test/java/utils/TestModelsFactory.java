@@ -2,12 +2,15 @@ package utils;
 
 
 import com.jdbc.demo.domain.psql.*;
+import com.jdbc.demo.domain.security.User;
+import com.jdbc.demo.domain.security.UserProfile;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Mateusz on 04-Nov-15.
@@ -151,5 +154,26 @@ public abstract class TestModelsFactory {
 		transportPlan.setUnloadDate(unloadDate);
 		return transportPlan;
 	}
-
+	
+	public static User createTestUser1(Set<UserProfile> userProfile) {
+		User User1 = new User();
+		User1.setSsoId("admin1");
+		User1.setPassword("admin1");
+		User1.setFirstName("Jan");;
+		User1.setLastName("Kowalski");;
+		User1.setState("a");
+		User1.setUserProfiles(userProfile);
+		return User1;
+	}
+	
+	public static User createTestUser2(Set<UserProfile> userProfile) {
+		User User2 = new User();
+		User2.setSsoId("admin2");
+		User2.setPassword("admin2");
+		User2.setFirstName("Jan");;
+		User2.setLastName("Kowalski");;
+		User2.setState("a");
+		User2.setUserProfiles(userProfile);
+		return User2;
+	}
 }
