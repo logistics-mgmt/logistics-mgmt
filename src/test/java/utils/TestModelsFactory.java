@@ -33,7 +33,16 @@ public abstract class TestModelsFactory {
 		client2.setBankAccountNumber("145325312334632");
 		return client2;
 	}
-
+	
+	public static Client createTestClient3(Address address) {
+		Client client2 = new Client();
+		client2.setName("ZYX sp. z. o o.");
+		client2.setAddress(address);
+		client2.setNIP("1234567490");
+		client2.setBankAccountNumber("145325312334632");
+		return client2;
+	}
+	
 	public static Address createTestAddress1() {
 		Address testAddress1 = new Address();
 		testAddress1.setTown("Radom");
@@ -54,6 +63,16 @@ public abstract class TestModelsFactory {
 		return testAddress2;
 	}
 
+    public static Address createTestAddress3(){
+        Address testAddress3 = new Address();
+        testAddress3.setTown("Bialystok");
+        testAddress3.setCode("88-777");
+        testAddress3.setCountry("Polska");
+        testAddress3.setHouseNumber("21/5");
+        testAddress3.setStreet("Gorna");
+        return testAddress3;
+    }
+	
     public static Driver createTestDriver1(Address address){
         Driver driver1 = new Driver();
         driver1.setAddress(address);
@@ -114,6 +133,17 @@ public abstract class TestModelsFactory {
 		return vehicle2;
 	}
 
+    public static Vehicle createTestVehicle3(){
+        Vehicle vehicle3 = new Vehicle();
+        vehicle3.setBrand("Scania");
+        vehicle3.setEngine(16);
+        vehicle3.setHorsepower(300);
+        vehicle3.setModel("ZX-83");
+        vehicle3.setVIN("1M8GDM9A_KU042777");
+        vehicle3.setProductionDate(new Date(System.currentTimeMillis()));
+        return vehicle3;
+    }
+	
 	public static FreightTransport createTestFreightTransport1(Client client, List<Driver> drivers,
 			List<Vehicle> vehicles, Address loadAddress, Address unloadAddress) {
 		FreightTransport freightTransport1 = new FreightTransport();
@@ -123,6 +153,7 @@ public abstract class TestModelsFactory {
 		freightTransport1.setUnloadAddress(unloadAddress);
 		freightTransport1.setClient(client);
 		freightTransport1.setLoadAddress(unloadAddress);
+		freightTransport1.setLoadDate(new Date(System.currentTimeMillis()));
 		freightTransport1.setDrivers(drivers);
 		freightTransport1.setVehicles(vehicles);
 		return freightTransport1;
@@ -137,9 +168,25 @@ public abstract class TestModelsFactory {
 		freightTransport2.setUnloadAddress(unloadAddress);
 		freightTransport2.setClient(client);
 		freightTransport2.setLoadAddress(loadAddress);
+		freightTransport2.setLoadDate(new Date(System.currentTimeMillis()));
 		freightTransport2.setDrivers(drivers);
 		freightTransport2.setVehicles(vehicles);
 		return freightTransport2;
+	}
+
+	public static FreightTransport createTestFreightTransport3(Client client, List<Driver> drivers,
+			List<Vehicle> vehicles, Address loadAddress, Address unloadAddress) {
+		FreightTransport freightTransport3 = new FreightTransport();
+		freightTransport3.setFinished(false);
+		freightTransport3.setValue(new BigDecimal(32000).setScale(2, BigDecimal.ROUND_CEILING));
+		freightTransport3.setDistance(1234);
+		freightTransport3.setUnloadAddress(unloadAddress);
+		freightTransport3.setClient(client);
+		freightTransport3.setLoadAddress(loadAddress);
+		freightTransport3.setLoadDate(new Date(System.currentTimeMillis()));
+		freightTransport3.setDrivers(drivers);
+		freightTransport3.setVehicles(vehicles);
+		return freightTransport3;
 	}
 
 	public static FreightTransport createTransportPlan(Client client, Address loadAddress, Address unloadAddress,
@@ -153,5 +200,4 @@ public abstract class TestModelsFactory {
 		transportPlan.setUnloadDate(unloadDate);
 		return transportPlan;
 	}
-
 }

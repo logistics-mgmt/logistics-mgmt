@@ -78,6 +78,10 @@ public class DriverTest {
 		for (Driver driver : driverList) {
 			driverManager.delete(driver.getPESEL());
 		}
+		
+		for (Address address : addressList) {
+			addressManager.delete(address);
+		}
 	}
 
 	@Test
