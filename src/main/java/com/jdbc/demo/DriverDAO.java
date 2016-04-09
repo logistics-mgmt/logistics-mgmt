@@ -1,8 +1,8 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.psql.Driver;
-
 import java.util.List;
+
+import com.jdbc.demo.domain.psql.Driver;
 
 public interface DriverDAO {
 

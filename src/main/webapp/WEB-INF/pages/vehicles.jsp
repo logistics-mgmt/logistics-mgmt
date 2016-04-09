@@ -26,7 +26,6 @@ pageEncoding="UTF-8"
 
 <script>
 $(function() {
-
 $( ".delete-vehicle-button" ).button().on( "click", function() {
         var $this = $(this).closest('tr').children();
         var vehicleBrand = $this.eq(1).text();

@@ -32,7 +32,6 @@
 <script src="/js/transport.js"></script>
 <script type="text/javascript">
 	$(function() {
-
 		$(".delete-transport-button").button().on(
 				"click",
 				function() {
@@ -48,7 +47,6 @@
 								if (result == true)
 									deleteFreightTransport(transportId);
 							});
-
 				});
 	});
 </script>

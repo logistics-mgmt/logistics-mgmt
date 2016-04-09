@@ -11,17 +11,17 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
  
 @Entity
-@Table(name="USER_PROFILES")
-public class UserProfile {
+@Table(name="UserRoles")
+public class UserRole {
  
     @Id
-    @Column(name = "user_profiles_id")
-    @SequenceGenerator(sequenceName = "USER_PROFILES_ID_SEQ", name = "UserProfilesIdSequence")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserProfilesIdSequence")
+    @Column(name = "user_roles_id")
+    @SequenceGenerator(sequenceName = "USER_ROLES_ID_SEQ", name = "UserRolessIdSequence")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserRolessIdSequence")
     private Integer id; 
  
     @Column(name="type", length=15, unique=true, nullable=false)
-    private String type = UserProfileType.USER.getUserProfileType();
+    private String type = UserRoleType.USER.getUserRoleType();
      
     public Integer getId() {
         return id;
@@ -50,27 +50,27 @@ public class UserProfile {
     }
  
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object object) {
+        if (this == object)
             return true;
-        if (obj == null)
+        if (object == null)
             return false;
-        if (!(obj instanceof UserProfile))
+        if (!(object instanceof UserRole))
             return false;
-        UserProfile other = (UserProfile) obj;
-        if (id != other.id)
+        UserRole another = (UserRole) object;
+        if (id != another.id)
             return false;
         if (type == null) {
-            if (other.type != null)
+            if (another.type != null)
                 return false;
-        } else if (!type.equals(other.type))
+        } else if (!type.equals(another.type))
             return false;
         return true;
     }
  
     @Override
     public String toString() {
-        return "UserProfile [id=" + id + ",  type=" + type  + "]";
+        return "UserRole [id=" + id + ",  type=" + type  + "]";
     }
      
  

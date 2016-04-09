@@ -1,7 +1,8 @@
 package com.jdbc.demo.services.psql;
 
-import com.jdbc.demo.AddressDAO;
-import com.jdbc.demo.domain.psql.Address;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,10 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import utils.TestModelsFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.jdbc.demo.AddressDAO;
+import com.jdbc.demo.domain.psql.Address;
+
+import utils.TestModelsFactory;
 
 /**
  * Created by Mateusz on 03-Nov-15.

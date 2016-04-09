@@ -1,12 +1,12 @@
 package com.jdbc.demo.services.maps.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.Distance;
 import com.google.maps.model.Duration;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Mateusz on 23-Feb-16.

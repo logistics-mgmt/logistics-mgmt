@@ -5,10 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
- 
+
 import com.jdbc.demo.UserDAO;
-import com.jdbc.demo.UserService;
-import com.jdbc.demo.domain.security.*;
+import com.jdbc.demo.domain.security.User;
  
 @Service("userService")
 @Transactional
@@ -21,8 +20,8 @@ public class UserServiceImpl implements UserService{
 	        return dao.getById(id);
 	    }
 	 
-	    public User getBySSO(String sso) {
-	        User user = dao.getBySSO(sso);
+	    public User getByLogin(String login) {
+	        User user = dao.getByLogin(login);
 	        return user;
 	    }
 	 
@@ -34,25 +33,25 @@ public class UserServiceImpl implements UserService{
 	    public void updateUser(User user) {
 	        User entity = dao.getById(user.getId());
 	        if(entity!=null){
-	            entity.setSsoId(user.getSsoId());
+	            entity.setLogin(user.getLogin());
 	            entity.setPassword(user.getPassword());
 	            entity.setFirstName(user.getFirstName());
 	            entity.setLastName(user.getLastName());
-	            entity.setUserProfiles(user.getUserProfiles());
+	            entity.setUserRoles(user.getUserRoles());
 	        }
 	    }
 	 
 	     
-	    public void deleteUserBySSO(String sso) {
-	        dao.deleteBySSO(sso);
+	    public void deleteUserByLogin(String login) {
+	        dao.deleteByLogin(login);
 	    }
 	 
-	    public List<User> getAllUsers() {
-	        return dao.getAllUsers();
+	    public List<User> getAll() {
+	        return dao.getAll();
 	    }
 	 
-	    public boolean isUserSSOUnique(Integer id, String sso) {
-	        User user = getBySSO(sso);
+	    public boolean isUserLoginUnique(Integer id, String login) {
+	        User user = getByLogin(login);
 	        return ( user == null || ((id != null) && (user.getId() == id)));
 	    }
  

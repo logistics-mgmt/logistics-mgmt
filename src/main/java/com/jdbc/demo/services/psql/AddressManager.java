@@ -1,7 +1,7 @@
 package com.jdbc.demo.services.psql;
 
-import com.jdbc.demo.AddressDAO;
-import com.jdbc.demo.domain.psql.Address;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.jdbc.demo.AddressDAO;
+import com.jdbc.demo.domain.psql.Address;
 
 /**
  * Created by Mateusz on 31-Oct-15.

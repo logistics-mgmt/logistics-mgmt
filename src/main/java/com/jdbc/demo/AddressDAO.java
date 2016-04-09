@@ -1,8 +1,8 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.psql.Address;
-
 import java.util.List;
+
+import com.jdbc.demo.domain.psql.Address;
 
 /**
  * Created by Mateusz on 31-Oct-15.

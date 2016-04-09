@@ -1,22 +1,20 @@
 package com.jdbc.demo.services.planning.planners;
 
-import com.google.maps.model.Distance;
-import com.jdbc.demo.DriverDAO;
-import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.psql.Address;
-import com.jdbc.demo.domain.psql.FreightTransport;
-import com.jdbc.demo.domain.psql.Vehicle;
-import com.jdbc.demo.services.maps.DistanceService;
-import com.jdbc.demo.services.planning.DriverAnalyzer;
-import com.jdbc.demo.services.planning.Planner;
-import com.jdbc.demo.services.planning.VehicleAnalyzer;
-import com.jdbc.demo.services.planning.exceptions.PlanningException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
+import com.google.maps.model.Distance;
+import com.jdbc.demo.DriverDAO;
+import com.jdbc.demo.VehicleDAO;
+import com.jdbc.demo.domain.psql.Address;
+import com.jdbc.demo.domain.psql.FreightTransport;
+import com.jdbc.demo.services.maps.DistanceService;
+import com.jdbc.demo.services.planning.DriverAnalyzer;
+import com.jdbc.demo.services.planning.Planner;
+import com.jdbc.demo.services.planning.VehicleAnalyzer;
+import com.jdbc.demo.services.planning.exceptions.PlanningException;
 
 /**
  * Created by owen on 25/03/16.

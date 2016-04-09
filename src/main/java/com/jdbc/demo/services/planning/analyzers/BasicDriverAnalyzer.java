@@ -1,14 +1,15 @@
 package com.jdbc.demo.services.planning.analyzers;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.jdbc.demo.domain.psql.Driver;
 import com.jdbc.demo.domain.psql.FreightTransport;
 import com.jdbc.demo.services.planning.DriverAnalyzer;
 import com.jdbc.demo.services.planning.exceptions.PlanningException;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by owen on 25/03/16.

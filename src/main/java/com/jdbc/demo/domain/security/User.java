@@ -17,12 +17,11 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.jdbc.demo.domain.psql.Client;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "Users")
 @NamedNativeQueries({
-		@NamedNativeQuery(name = "user.all", query = "Select * from USERS", resultClass = User.class), })
+		@NamedNativeQuery(name = "user.all", query = "Select * from Users", resultClass = User.class), })
 public class User {
 
 	@Id
@@ -31,8 +30,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserIdSequence")
 	private Integer id;
 
-	@Column(name = "sso_id", unique = true, nullable = false)
-	private String ssoId;
+	@Column(name = "login", unique = true, nullable = false)
+	private String login;
 
 	@Column(name = "password", nullable = false)
 	private String password;
@@ -43,13 +42,11 @@ public class User {
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@Column(name = "state", nullable = true)
-	private String state = State.ACTIVE.getState();
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "USERS_USER_PROFILES", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "user_profiles_id") })
-	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "UsersRolesData", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_roles_id") })
+	private Set<UserRole> userRoles = new HashSet<UserRole>();
 
 	public Integer getId() {
 		return id;
@@ -59,12 +56,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getSsoId() {
-		return ssoId;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setSsoId(String ssoId) {
-		this.ssoId = ssoId;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getPassword() {
@@ -91,20 +88,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getState() {
-		return state;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Set<UserProfile> getUserProfiles() {
-		return userProfiles;
-	}
-
-	public void setUserProfiles(Set<UserProfile> userProfiles) {
-		this.userProfiles = userProfiles;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	@Override
@@ -112,33 +101,33 @@ public class User {
 		final int prime = 31;
 		int result = id;
 		result = prime * result + id;
-		result = prime * result + ((ssoId == null) ? 0 : ssoId.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object object) {
+		if (this == object)
 			return true;
-		if (obj == null)
+		if (object == null)
 			return false;
-		if (!(obj instanceof User))
+		if (!(object instanceof User))
 			return false;
-		User other = (User) obj;
-		if (id != other.id)
+		User another = (User) object;
+		if (id != another.id)
 			return false;
-		if (ssoId == null) {
-			if (other.ssoId != null)
+		if (login == null) {
+			if (another.login != null)
 				return false;
-		} else if (!ssoId.equals(other.ssoId))
+		} else if (!login.equals(another.login))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", ssoId=" + ssoId + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", state=" + state + ", userProfiles=" + userProfiles + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", userRoles=" + userRoles + "]";
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.jdbc.demo;
 
-import com.jdbc.demo.domain.psql.Vehicle;
-
 import java.util.List;
+
+import com.jdbc.demo.domain.psql.Vehicle;
 
 /**
  * Created by mciesielski on 2015-10-23.

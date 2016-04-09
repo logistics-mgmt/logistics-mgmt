@@ -1,11 +1,12 @@
 package com.jdbc.demo.services.maps;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsRoute;
 import com.jdbc.demo.services.maps.model.MappedRoute;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by Mateusz on 23-Feb-16.

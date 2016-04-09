@@ -1,7 +1,6 @@
 package com.jdbc.demo.web.mvc;
 
 import java.util.List;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -19,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.jdbc.demo.UserProfileService;
-import com.jdbc.demo.UserService;
 import com.jdbc.demo.domain.security.User;
-import com.jdbc.demo.domain.security.UserProfile;
+import com.jdbc.demo.domain.security.UserRole;
+import com.jdbc.demo.services.security.UserRoleService;
+import com.jdbc.demo.services.security.UserService;
 
 @Controller
 @RequestMapping("/users")
@@ -34,15 +33,15 @@ public class UserController {
 	UserService userService;
 
 	@Autowired
-	UserProfileService userProfileService;
+	UserRoleService userRoleService;
 
 	@Autowired
 	MessageSource messageSource;
 
-	@RequestMapping(value = { "/" , "users_list"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String listUsers(ModelMap model) {
 
-		List<User> users = userService.getAllUsers();
+		List<User> users = userService.getAll();
 		model.addAttribute("users", users);
 		return "users_list";
 	}
@@ -61,29 +60,28 @@ public class UserController {
 			return "add_user";
 		}
 
-		if (!userService.isUserSSOUnique(user.getId(), user.getSsoId())) {
-			FieldError ssoError = new FieldError("user", "ssoId", messageSource.getMessage("non.unique.ssoId", new
-			String[] { user.getSsoId() }, Locale.getDefault()));
-			result.addError(ssoError);
+		if (!userService.isUserLoginUnique(user.getId(), user.getLogin())) {
+			FieldError loginError = new FieldError("user", "login", "Login musi byc unikalny!");
+			result.addError(loginError);
 			return "add_user";
 		}
 
 		userService.addUser(user);
 
 
-		return "redirect:/users/users_list";
+		return "redirect:/users/";
 	}
 
-	@RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.GET)
-	public String editUser(@PathVariable String ssoId, ModelMap model) {
-		User user = userService.getBySSO(ssoId);
+	@RequestMapping(value = { "/edit/{login}" }, method = RequestMethod.GET)
+	public String editUser(@PathVariable String login, ModelMap model) {
+		User user = userService.getByLogin(login);
 		model.addAttribute("user", user);
 
 		return "edit_user";
 	}
 
-	@RequestMapping(value = { "/edit-user-{ssoId}" }, method = RequestMethod.POST)
-	public String updateUser(@Valid User user, BindingResult result, ModelMap model, @PathVariable String ssoId) {
+	@RequestMapping(value = { "/edit/{login}" }, method = RequestMethod.POST)
+	public String updateUser(@Valid User user, BindingResult result, ModelMap model, @PathVariable String login) {
 
 		if (result.hasErrors()) {
 			return "edit_user";
@@ -92,18 +90,18 @@ public class UserController {
 		userService.updateUser(user);
 
 	
-		return "redirect:/users/users_list";
+		return "redirect:/users/";
 	}
 
-	@RequestMapping(value = { "/delete-user-{ssoId}" }, method = RequestMethod.GET)
-	public String deleteUser(@PathVariable String ssoId) {
-		userService.deleteUserBySSO(ssoId);
-		return "redirect:/users/users_list";
+	@RequestMapping(value = { "/delete/{login}" }, method = RequestMethod.GET)
+	public String deleteUser(@PathVariable String login) {
+		userService.deleteUserByLogin(login);
+		return "redirect:/users/";
 	}
 
 	@ModelAttribute("roles")
-	public List<UserProfile> initializeProfiles() {
-		return userProfileService.getAll();
+	public List<UserRole> initializeRoles() {
+		return userRoleService.getAll();
 	}
 
 }

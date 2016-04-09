@@ -1,9 +1,10 @@
 package com.jdbc.demo.services.mongo;
 
-import com.jdbc.demo.domain.mongo.RouteWaypoint;
+import java.util.List;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
+import com.jdbc.demo.domain.mongo.RouteWaypoint;
 
 /**
  * Created by Mateusz on 28-Dec-15.

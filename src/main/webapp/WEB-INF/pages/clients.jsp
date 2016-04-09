@@ -29,12 +29,10 @@
 
 <script type="text/javascript">
 $(function() {
-
 	$(".delete-client-button").button().on(
 			"click",
 			function() {
 				var $this = $(this).closest('tr').children();
-
 				var clientName = $this.eq(3).text();
 				clientId = $this.eq(0).text();
 				console.log("deleting");

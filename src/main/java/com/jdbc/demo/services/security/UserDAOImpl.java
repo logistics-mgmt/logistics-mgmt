@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jdbc.demo.AbstractDAO;
 import com.jdbc.demo.UserDAO;
-import com.jdbc.demo.domain.psql.Client;
-import com.jdbc.demo.domain.security.*;
+import com.jdbc.demo.domain.security.User;
  
 @Repository("userDAO")
 public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
@@ -19,24 +18,24 @@ public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
     public User getById(int id) {
         User user = getByKey(id);
         if(user!=null){
-            Hibernate.initialize(user.getUserProfiles());
+            Hibernate.initialize(user.getUserRoles());
         }
         return user;
     }
  
-    public User getBySSO(String sso) {
-        System.out.println("SSO : "+sso);
+    public User getByLogin(String login) {
+        System.out.println("Login : "+login);
         Criteria crit = createEntityCriteria();
-        crit.add(Restrictions.eq("ssoId", sso));
+        crit.add(Restrictions.eq("login", login));
         User user = (User)crit.uniqueResult();
         if(user!=null){
-            Hibernate.initialize(user.getUserProfiles());
+            Hibernate.initialize(user.getUserRoles());
         }
         return user;
     }
  
     @SuppressWarnings("unchecked")
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         List<User> users = (List<User>) criteria.list();
@@ -48,9 +47,9 @@ public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
         persist(user);
     }
  
-    public void deleteBySSO(String sso) {
+    public void deleteByLogin(String login) {
         Criteria crit = createEntityCriteria();
-        crit.add(Restrictions.eq("ssoId", sso));
+        crit.add(Restrictions.eq("login", login));
         User user = (User)crit.uniqueResult();
         delete(user);
     }

@@ -1,8 +1,9 @@
 package com.jdbc.demo.services.maps;
 
-import com.google.maps.model.LatLng;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.google.maps.model.LatLng;
 
 /**
  * Created by Mateusz on 23-Feb-16.

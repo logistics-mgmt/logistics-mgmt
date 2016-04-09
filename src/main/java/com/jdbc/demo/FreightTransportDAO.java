@@ -1,10 +1,10 @@
 package com.jdbc.demo;
 
+import java.util.List;
+
 import com.jdbc.demo.domain.psql.Driver;
 import com.jdbc.demo.domain.psql.FreightTransport;
 import com.jdbc.demo.domain.psql.Vehicle;
-
-import java.util.List;
 
 /**
  * Created by Mateusz on 23-Oct-15.

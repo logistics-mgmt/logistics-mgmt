@@ -6,25 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jdbc.demo.UserProfileDAO;
-import com.jdbc.demo.UserProfileService;
-import com.jdbc.demo.domain.security.UserProfile;
+import com.jdbc.demo.UserRoleDAO;
+import com.jdbc.demo.domain.security.UserRole;
 
-@Service("userProfileService")
+@Service("userRoleService")
 @Transactional
-public class UserProfileServiceImp implements UserProfileService{
+public class UserRoleServiceImp implements UserRoleService{
 	 	@Autowired
-	    UserProfileDAO dao;
+	 	UserRoleDAO dao;
 	     
-	    public UserProfile getById(int id) {
+	    public UserRole getById(int id) {
 	        return dao.getById(id);
 	    }
 	 
-	    public UserProfile getByType(String type){
+	    public UserRole getByType(String type){
 	        return dao.getByType(type);
 	    }
 	 
-	    public List<UserProfile> getAll() {
+	    public List<UserRole> getAll() {
 	        return dao.getAll();
 	    }
 }
