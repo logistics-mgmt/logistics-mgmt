@@ -2,19 +2,18 @@ package com.jdbc.demo;
 
 import java.util.List;
 
-import com.jdbc.demo.domain.psql.Client;
-import com.jdbc.demo.domain.security.*;
+import com.jdbc.demo.domain.security.User;
 
 public interface UserDAO {
  
     User getById(int id);
      
-    User getBySSO(String sso);
+    User getByLogin(String login);
 
     void add(User user);
     
-    void deleteBySSO(String sso);
+    void deleteByLogin(String login);
      
-    List<User> getAllUsers();
+    List<User> getAll();
      
 }

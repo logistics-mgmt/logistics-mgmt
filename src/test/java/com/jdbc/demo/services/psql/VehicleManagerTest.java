@@ -1,7 +1,9 @@
 package com.jdbc.demo.services.psql;
 
-import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.psql.Vehicle;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,9 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import com.jdbc.demo.VehicleDAO;
+import com.jdbc.demo.domain.psql.Vehicle;
 
 /**
  * Created by mciesielski on 2015-10-23.

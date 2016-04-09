@@ -58,9 +58,10 @@
 	<table class="table table-hover">
 				<thead>
 					<tr>
+						<td>ID</td>
 						<td>Imię</td>
 						<td>Nazwisko</td>
-						<td>SSO ID(login)</td>
+						<td>Login</td>
 						<td>Edycja</td>
 						<td>Usuwanie</td>
 					</tr>
@@ -68,12 +69,13 @@
 				<tbody>
 					<c:forEach items="${users}" var="user">
 						<tr>
+							<td>${user.id}</td>
 							<td>${user.firstName}</td>
 							<td>${user.lastName}</td>
-							<td>${user.ssoId}</td>
-							<td><a href="<c:url value='/users/edit-user-${user.ssoId}' />"
+							<td>${user.login}</td>
+							<td><a href="<c:url value='/users/edit/${user.login}' />"
 								class="btn btn-primary">Edytuj</a></td>
-							<td><a href="<c:url value='/users/delete-user-${user.ssoId}' />"
+							<td><a href="<c:url value='/users/delete/${user.login}' />"
 								class="btn btn-danger">Usuń</a></td>
 						</tr>
 					</c:forEach>

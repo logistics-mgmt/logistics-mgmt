@@ -14,36 +14,36 @@ DROP TABLE Driver CASCADE;
 DROP TABLE Address CASCADE;
 
 DROP TABLE Vehicle CASCADE;
-DROP TABLE USERS_USER_PROFILES CASCADE;
-DROP TABLE USERS CASCADE;
-DROP TABLE USER_PROFILES CASCADE;
+
+DROP TABLE UsersRolesData CASCADE;
+DROP TABLE Users CASCADE;
+DROP TABLE UserRoles CASCADE;
 
 
 
-create table USERS (
+create table Users (
    user_id SERIAL PRIMARY KEY UNIQUE,
-   sso_id VARCHAR(30) NOT NULL,
+   login VARCHAR(30) NOT NULL,
    password VARCHAR(100) NOT NULL,
    first_name VARCHAR(30) NOT NULL,
-   last_name  VARCHAR(30) NOT NULL,
-   state VARCHAR(30),  
-   UNIQUE (sso_id)
+   last_name  VARCHAR(30) NOT NULL, 
+   UNIQUE (login)
 );
   
 
-create table USER_PROFILES(
-   user_profiles_id SERIAL PRIMARY KEY UNIQUE,
+create table UserRoles(
+   user_roles_id SERIAL PRIMARY KEY UNIQUE,
    type VARCHAR(30) NOT NULL,
    UNIQUE (type)
 );
   
 
-CREATE TABLE USERS_USER_PROFILES (
+CREATE TABLE UsersRolesData (
     user_id BIGINT NOT NULL,
-    user_profiles_id BIGINT NOT NULL,
-    PRIMARY KEY (user_id, user_profiles_id),
-    CONSTRAINT FK_USERS FOREIGN KEY (user_id) REFERENCES USERS (user_id),
-    CONSTRAINT FK_USER_PROFILES FOREIGN KEY (user_profiles_id) REFERENCES USER_PROFILES (user_profiles_id)
+    user_roles_id BIGINT NOT NULL,
+    PRIMARY KEY (user_id, user_roles_id),
+    CONSTRAINT FK_Users FOREIGN KEY (user_id) REFERENCES Users (user_id),
+    CONSTRAINT FK_UserRoles FOREIGN KEY (user_roles_id) REFERENCES UserRoles (user_roles_id)
 );
  
 
@@ -123,29 +123,29 @@ CREATE TABLE FreightTransportVehicles (
 );
 
 
-INSERT INTO USER_PROFILES(type)
+INSERT INTO UserRoles(type)
 VALUES ('USER');
  
-INSERT INTO USER_PROFILES(type)
+INSERT INTO UserRoles(type)
 VALUES ('ADMIN');
  
-INSERT INTO USER_PROFILES(type)
+INSERT INTO UserRoles(type)
 VALUES ('FORWARDER');
 
-INSERT INTO USERS(sso_id, password, first_name, last_name, state)
-VALUES ('admin','admin', 'ADMINISTRATOR','ADMINISTRATOROWY', 'Active');
+INSERT INTO Users(login, password, first_name, last_name)
+VALUES ('admin','admin', 'Administrator','Administratorowy');
 
-INSERT INTO USERS_USER_PROFILES (user_id, user_profiles_id)
-  SELECT users.user_id, profile.user_profiles_id FROM users users, user_profiles profile  
-  where users.sso_id='admin' and profile.type='ADMIN';
+INSERT INTO UsersRolesData (user_id, user_roles_id)
+  SELECT users.user_id, profile.user_roles_id FROM users users, UserRoles profile  
+  where users.login='admin' and profile.type='ADMIN';
 
-INSERT INTO USERS_USER_PROFILES (user_id, user_profiles_id)
-  SELECT users.user_id, profile.user_profiles_id FROM users users, user_profiles profile  
-  where users.sso_id='admin' and profile.type='FORWARDER';
+INSERT INTO UsersRolesData (user_id, user_roles_id)
+  SELECT users.user_id, profile.user_roles_id FROM users users, UserRoles profile  
+  where users.login='admin' and profile.type='FORWARDER';
 
-  INSERT INTO USERS_USER_PROFILES (user_id, user_profiles_id)
-  SELECT users.user_id, profile.user_profiles_id FROM users users, user_profiles profile  
-  where users.sso_id='admin' and profile.type='USER';
+  INSERT INTO UsersRolesData (user_id, user_roles_id)
+  SELECT users.user_id, profile.user_roles_id FROM users users, UserRoles profile  
+  where users.login='admin' and profile.type='USER';
 
 INSERT INTO Address(town, country, house_number, street, code) VALUES ('Warszawa','Polska', '14', 'Mazowiecka', '00-130');
 INSERT INTO Address(town, country, house_number, street, code) VALUES ('Warszawa','Polska', '6', 'Armii Krajowej', '00-145');

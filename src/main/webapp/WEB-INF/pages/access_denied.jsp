@@ -8,13 +8,13 @@
 <meta name="_csrf" content="${_csrf.token}" />
 
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>Transport</title>
+<title>Brak Uprawnień</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>AccessDenied page</title>
+    <title>Brak Uprawnień</title>
     
 </head>
 <body>
@@ -55,7 +55,7 @@
 		</div>
 		<!--/.container-fluid -->
 	</nav>
-    Drogi użytkowniku <strong>"${user}"</strong>, nie jesteś upoważniony/a do wyświetlenia zawartości tej strony.
+    UWAGA! Drogi użytkowniku <strong>"${user}"</strong>, nie jesteś upoważniony/a do wyświetlenia zawartości tej strony.
 
     
 </body>

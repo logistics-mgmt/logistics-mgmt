@@ -1,15 +1,11 @@
 package com.jdbc.demo.services.planning.analyzers;
 
-import com.google.maps.model.Distance;
-import com.jdbc.demo.domain.psql.Address;
-import com.jdbc.demo.domain.psql.FreightTransport;
-import com.jdbc.demo.services.maps.DistanceService;
-import com.jdbc.demo.web.rest.ClientRestController;
-import org.slf4j.LoggerFactory;
-
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.slf4j.LoggerFactory;
+
+import com.jdbc.demo.domain.psql.FreightTransport;
 
 /**
  * Created by owen on 25/03/16.

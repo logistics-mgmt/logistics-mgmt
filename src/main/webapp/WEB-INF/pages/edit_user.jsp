@@ -61,7 +61,7 @@
 		<div>
 			<label for="firstName">Imię</label>
 			<div>
-				<form:input type="text" path="firstName" id="firstName"
+				<form:input type="text" required="true" path="firstName" id="firstName"
 					class="form-control" />
 				<div class="has-error">
 					<form:errors path="firstName" class="help-inline" />
@@ -72,7 +72,7 @@
 		<div>
 			<label for="lastName">Nazwisko</label>
 			<div>
-				<form:input type="text" path="lastName" id="lastName"
+				<form:input type="text" required="true" path="lastName" id="lastName"
 					class="form-control" />
 				<div class="has-error">
 					<form:errors path="lastName" class="help-inline" />
@@ -81,18 +81,18 @@
 		</div>
 
 		<div>
-			<label for="ssoId">SSO ID(login)</label>
+			<label for="login">Login</label>
 			<div>
-				<form:input type="text" path="ssoId" id="ssoId" class="form-control"
+				<form:input type="text" required="true" path="login" id="login" class="form-control"
 					disabled="true" />
 				<div class="has-error">
-					<form:errors path="ssoId" class="help-inline" />
+					<form:errors path="login" class="help-inline" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="password">Hasło</label>
-				<form:input type="password" path="password" id="password"
+				<form:input type="password" required="true" path="password" id="password"
 					class="form-control" />
 				<div class="has-error">
 					<form:errors path="password" class="help-inline" />
@@ -102,10 +102,10 @@
 			<div class="form-group">
 				<label for="userProfiles">Role</label>
 				<div>
-					<form:select path="userProfiles" items="${roles}" multiple="true"
+					<form:select path="userRoles" items="${roles}" multiple="true"
 						itemValue="id" itemLabel="type" class="form-control" />
 					<div class="has-error">
-						<form:errors path="userProfiles" class="help-inline" />
+						<form:errors path="userRoles" class="help-inline" />
 					</div>
 				</div>
 			</div>

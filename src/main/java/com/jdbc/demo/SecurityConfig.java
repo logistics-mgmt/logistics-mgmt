@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.*;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -51,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.antMatchers("/**").access("hasAnyRole('USER','FORWARDER', 'ADMIN')")
 					.anyRequest().authenticated()
 					.and().formLogin().loginPage("/login").permitAll()
-		  			.usernameParameter("ssoId").passwordParameter("password")
+		  			.usernameParameter("login").passwordParameter("password")
 					.and().csrf() 
-			        .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+			        .and().exceptionHandling().accessDeniedPage("/access_denied");
 			
 	   }
 	

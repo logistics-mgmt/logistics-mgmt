@@ -33,7 +33,6 @@
 
 <script type="text/javascript">
 	$(function() {
-
 		$(".delete-driver-button").button().on(
 				"click",
 				function() {

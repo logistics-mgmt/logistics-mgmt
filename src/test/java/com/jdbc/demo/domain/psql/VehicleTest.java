@@ -1,15 +1,17 @@
 package com.jdbc.demo.domain.psql;
 
-import com.jdbc.demo.domain.schedule.FreightTransportEvent;
-import com.jdbc.demo.domain.schedule.ScheduleEvent;
-import org.junit.Assert;
-import org.junit.Test;
-import utils.TestModelsFactory;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.jdbc.demo.domain.schedule.FreightTransportEvent;
+import com.jdbc.demo.domain.schedule.ScheduleEvent;
+
+import utils.TestModelsFactory;
 
 /**
  * Created by Mateusz on 21-Feb-16.

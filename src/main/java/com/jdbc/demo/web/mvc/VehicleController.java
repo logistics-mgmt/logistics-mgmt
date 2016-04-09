@@ -1,11 +1,7 @@
 package com.jdbc.demo.web.mvc;
 
-import com.jdbc.demo.FreightTransportDAO;
-import com.jdbc.demo.MapsConfiguration;
-import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.mongo.RouteWaypoint;
-import com.jdbc.demo.domain.psql.Vehicle;
-import com.jdbc.demo.services.mongo.RouteWaypointRepository;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import com.jdbc.demo.FreightTransportDAO;
+import com.jdbc.demo.MapsConfiguration;
+import com.jdbc.demo.VehicleDAO;
+import com.jdbc.demo.domain.mongo.RouteWaypoint;
+import com.jdbc.demo.domain.psql.Vehicle;
+import com.jdbc.demo.services.mongo.RouteWaypointRepository;
 
 /**
  * Created by Mateusz on 06-Dec-15.

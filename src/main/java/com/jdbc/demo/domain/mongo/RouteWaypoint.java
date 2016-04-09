@@ -1,9 +1,9 @@
 package com.jdbc.demo.domain.mongo;
 
+import java.util.Date;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 /**
  * Created by Mateusz on 28-Dec-15.

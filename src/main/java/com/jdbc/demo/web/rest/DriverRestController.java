@@ -1,18 +1,26 @@
 package com.jdbc.demo.web.rest;
 
-import com.jdbc.demo.DriverDAO;
-import com.jdbc.demo.domain.psql.Driver;
-import com.jdbc.demo.domain.schedule.ScheduleEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import com.jdbc.demo.DriverDAO;
+import com.jdbc.demo.domain.psql.Driver;
+import com.jdbc.demo.domain.schedule.ScheduleEvent;
 
 /**
  * Created by Mateusz on 12-Dec-15.

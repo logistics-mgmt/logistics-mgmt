@@ -1,13 +1,8 @@
 package com.jdbc.demo.services.planning.planners;
 
-import com.jdbc.demo.Application;
-import com.jdbc.demo.DriverDAO;
-import com.jdbc.demo.VehicleDAO;
-import com.jdbc.demo.domain.psql.*;
-import com.jdbc.demo.services.planning.Planner;
-import com.jdbc.demo.services.planning.analyzers.BasicDriverAnalyzer;
-import com.jdbc.demo.services.planning.analyzers.BasicVehicleAnalyzer;
-import com.jdbc.demo.services.planning.exceptions.PlanningException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,14 +12,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.jdbc.demo.DriverDAO;
+import com.jdbc.demo.VehicleDAO;
+import com.jdbc.demo.domain.psql.Address;
+import com.jdbc.demo.domain.psql.Client;
+import com.jdbc.demo.domain.psql.Driver;
+import com.jdbc.demo.domain.psql.FreightTransport;
+import com.jdbc.demo.domain.psql.Vehicle;
+import com.jdbc.demo.services.planning.analyzers.BasicDriverAnalyzer;
+import com.jdbc.demo.services.planning.analyzers.BasicVehicleAnalyzer;
+
 import utils.DateConverter;
 import utils.TestModelsFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by owen on 25/03/16.

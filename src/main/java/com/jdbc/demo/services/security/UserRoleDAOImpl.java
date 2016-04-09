@@ -8,26 +8,26 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.jdbc.demo.AbstractDAO;
-import com.jdbc.demo.UserProfileDAO;
-import com.jdbc.demo.domain.security.UserProfile;
-@Repository("userProfileDAO")
-public class UserProfileDAOImpl extends AbstractDAO<Integer, UserProfile>implements UserProfileDAO{
+import com.jdbc.demo.UserRoleDAO;
+import com.jdbc.demo.domain.security.UserRole;
+@Repository("userRoleDAO")
+public class UserRoleDAOImpl extends AbstractDAO<Integer, UserRole>implements UserRoleDAO{
 	 
-    public UserProfile getById(int id) {
+    public UserRole getById(int id) {
         return getByKey(id);
     }
  
-    public UserProfile getByType(String type) {
+    public UserRole getByType(String type) {
         Criteria crit = createEntityCriteria();
         crit.add(Restrictions.eq("type", type));
-        return (UserProfile) crit.uniqueResult();
+        return (UserRole) crit.uniqueResult();
     }
      
     @SuppressWarnings("unchecked")
-    public List<UserProfile> getAll(){
+    public List<UserRole> getAll(){
         Criteria crit = createEntityCriteria();
         crit.addOrder(Order.asc("type"));
-        return (List<UserProfile>)crit.list();
+        return (List<UserRole>)crit.list();
     }
      
 }
