@@ -35,6 +35,15 @@ public abstract class TestModelsFactory {
 		return client2;
 	}
 
+	public static Client createTestClient3(Address address) {
+		Client client3 = new Client();
+		client3.setName("ZYX sp. z. o o.");
+		client3.setAddress(address);
+		client3.setNIP("1234567190");
+		client3.setBankAccountNumber("145325312334633");
+		return client3;
+	}
+	
 	public static Address createTestAddress1() {
 		Address testAddress1 = new Address();
 		testAddress1.setTown("Radom");
@@ -94,6 +103,7 @@ public abstract class TestModelsFactory {
 	public static Vehicle createTestVehicle1() {
 		Vehicle vehicle1 = new Vehicle();
 		vehicle1.setBrand("Scania");
+		vehicle1.setMaxPayload(1200);
 		vehicle1.setEngine(16);
 		vehicle1.setHorsepower(300);
 		vehicle1.setModel("ZX-83");
@@ -106,6 +116,7 @@ public abstract class TestModelsFactory {
 	public static Vehicle createTestVehicle2() {
 		Vehicle vehicle2 = new Vehicle();
 		vehicle2.setBrand("Scania");
+		vehicle2.setMaxPayload(1200);
 		vehicle2.setEngine(16);
 		vehicle2.setHorsepower(300);
 		vehicle2.setModel("ZX-83");
