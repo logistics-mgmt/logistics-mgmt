@@ -10,7 +10,7 @@ public interface UserDAO {
      
     User getByLogin(String login);
 
-    void add(User user);
+    User add(User user);
     
     void deleteByLogin(String login);
      
