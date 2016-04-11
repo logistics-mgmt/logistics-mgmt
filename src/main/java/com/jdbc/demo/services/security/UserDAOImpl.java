@@ -43,8 +43,9 @@ public class UserDAOImpl extends AbstractDAO<Integer, User> implements UserDAO {
         return users;
     }
  
-    public void add(User user) {
+    public User add(User user) {
         persist(user);
+        return user;
     }
  
     public void deleteByLogin(String login) {
