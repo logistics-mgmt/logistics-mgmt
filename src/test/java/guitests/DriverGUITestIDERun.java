@@ -20,7 +20,10 @@ import com.jdbc.demo.domain.psql.Address;
 import com.jdbc.demo.domain.psql.Driver;
 import utils.TestModelsFactory;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -31,7 +34,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest
 public class DriverGUITestIDERun {
-
+	
 	@Autowired
 	private DriverDAO driverManager;
 
@@ -40,11 +43,11 @@ public class DriverGUITestIDERun {
 
 	private ArrayList<Driver> driverList = new ArrayList<Driver>();
 	private ArrayList<Address> addressList = new ArrayList<Address>();
-
-	static WebElement element;
-	static FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"));
-	static FirefoxProfile profile = new FirefoxProfile();
-	static WebDriver driver;
+	
+	WebElement element;
+	FirefoxBinary binary = new FirefoxBinary(new File(firefoxPath()));
+	FirefoxProfile profile = new FirefoxProfile();
+	WebDriver driver;
 
 	@Before
 	public void setup() throws Exception {
@@ -210,6 +213,23 @@ public class DriverGUITestIDERun {
 		String URL = driver.getCurrentUrl();
 		Thread.sleep(1000);
 		Assert.assertEquals(URL, "http://localhost:8080/drivers/"+ driverList.get(1).getId() );
+	}
+	
+	public String firefoxPath() {
+		Properties prop = new Properties();
+		InputStream input = null;
+		String path;
+		
+			try {
+				input = getClass().getClassLoader().getResourceAsStream("firefox.properties");
+				prop.load(input);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		path = prop.getProperty("firefox.path");
+		return path;
 	}
 	
 }
