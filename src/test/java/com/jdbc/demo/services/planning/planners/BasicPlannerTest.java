@@ -28,6 +28,7 @@ import com.jdbc.demo.services.planning.analyzers.BasicVehicleAnalyzer;
 import utils.DateConverter;
 import utils.TestModelsFactory;
 
+
 /**
  * Created by owen on 25/03/16.
  */

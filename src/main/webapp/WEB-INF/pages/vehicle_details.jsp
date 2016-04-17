@@ -70,6 +70,7 @@ $(document).ready(function() {
 					<li class="active"><a href="/vehicles">Pojazdy</a></li>
 					<li class="inactive"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
+					<li class="inactive"><a href="/addresses">Baza adresów</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

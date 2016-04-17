@@ -36,7 +36,6 @@ pageEncoding="UTF-8"
 $(document).ready(function() {
     $('#calendar').fullCalendar({
         events: '/api/drivers/${driver.id}/schedule'
-
     });
     var initialLocation = new google.maps.LatLng(52, 21);
     var map = initializeMap(initialLocation);
@@ -44,7 +43,6 @@ $(document).ready(function() {
     setInterval(function(){
     pollForLocation('driver', ${driver.id}, map, marker);
     }, 5000);
-
 });
 </script>
 </head>
@@ -70,6 +68,7 @@ $(document).ready(function() {
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
 					<li class="inactive"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
+					<li class="inactive"><a href="/addresses">Baza adresów</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
