@@ -26,6 +26,8 @@ import com.jdbc.demo.domain.psql.Client;
 import com.jdbc.demo.domain.psql.Driver;
 import com.jdbc.demo.domain.psql.FreightTransport;
 import com.jdbc.demo.domain.psql.Vehicle;
+
+import utils.FirefoxPath;
 import utils.TestModelsFactory;
 import java.io.File;
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class FreightTransportGUITestIDERun {
 	
 	@Autowired
 	private FreightTransportDAO FreightTransportManager;
+	
+	private static FirefoxPath getPath;
 
 	private ArrayList<Address> addressList = new ArrayList<Address>();
 	private ArrayList<Driver> driverList = new ArrayList<Driver>();
@@ -62,7 +66,7 @@ public class FreightTransportGUITestIDERun {
 	private ArrayList<FreightTransport> FreightTransportList = new ArrayList<FreightTransport>();
 
 	static WebElement element;
-	static FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"));
+	static FirefoxBinary binary = new FirefoxBinary(new File(getPath.firefoxPath()));
 	static FirefoxProfile profile = new FirefoxProfile();
 	static WebDriver driver;
 

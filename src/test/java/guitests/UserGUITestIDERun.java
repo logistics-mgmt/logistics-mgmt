@@ -29,6 +29,7 @@ import com.jdbc.demo.UserRoleDAO;
 import com.jdbc.demo.domain.security.User;
 import com.jdbc.demo.domain.security.UserRole;
 
+import utils.FirefoxPath;
 import utils.TestModelsFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,9 +43,11 @@ public class UserGUITestIDERun {
 	private UserRoleDAO userRoleManager;
 
 	private ArrayList<User> testUsers = new ArrayList<User>();
+	
+	private static FirefoxPath getPath;
 
 	static WebElement element;
-	static FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"));
+	static FirefoxBinary binary = new FirefoxBinary(new File(getPath.firefoxPath()));
 	static FirefoxProfile profile = new FirefoxProfile();
 	static WebDriver driver;
 
