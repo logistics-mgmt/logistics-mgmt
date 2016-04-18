@@ -3,9 +3,15 @@
 <h2>How to run locally:</h2>
 
 <h3>Prerequisites:</h3>
-  1. PostgreSQL
-  2. MongoDB
-  3. Google Maps API keys
+  1. Java 1.8
+  2. PostgreSQL 9.4.x
+  3. Maven 3.3.3
+  4. Google Maps API keys (https://developers.google.com/maps/documentation/javascript/get-api-key) with access to following services:
+     * Directions
+     * Distance Matrix
+     * Geocoding
+     * Javascript API
+  5. MongoDB 3.2
   
 
 <h3>Local setup:</h3>
@@ -28,3 +34,6 @@
   
 <h4>Running transport emulator:</h4>
   Enter `py-transport-emulator` directory and execute `python transport-emulator.py --api "http://localhost:8080/api" --username admin --password admin`.
+  
+  <h4>Heroku deployment:</h4>
+Instructions about deploying app on Heroku can be found on heroku-support feature branch.
