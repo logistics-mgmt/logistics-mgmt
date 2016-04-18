@@ -13,7 +13,7 @@
 <meta name="_csrf" content="${_csrf.token}" />
 
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<title>Dodawanie Klienta</title>
+<title>Edycja Klienta</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -21,10 +21,8 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 <script src="/js/utils.js"></script>
 <script src="/js/address.js"></script>
-<script src="/js/client.js"></script>
 <script src="/js/token.js"></script>
 
 </head>
@@ -47,9 +45,9 @@
 				<ul class="nav navbar-nav">
 					<li class="inactive"><a href="/drivers">Kierowcy</a></li>
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
-					<li class="active"><a href="/clients">Klienci</a></li>
+					<li class="inactive"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
-					<li class="inactive"><a href="/addresses">Baza adresów</a></li>
+					<li class="active"><a href="/addresses">Baza adresów</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -69,41 +67,41 @@
 		<!--/.container-fluid -->
 	</nav>
 
-	<form name="add_client_form" id="add_client_form"
-		modelAttribute="addClientForm" data-toggle="validator"
-		onsubmit="return addClient();">
-		<div class="form-group">
-			<label for="name">Nazwa:</label> <input type="text"
-				class="form-control" name="name" minlength="2" path="name" id="name"
-				required="true" />
-		</div>
-		<div class="form-group">
-			<label for="nip">NIP:</label> <input type="text" class="form-control"
-				id="nip" path="nip" data-error="NIP ma mieć 10 znaków." maxlength = "10"
-				placeholder="Tylko dla polskich firm" name="nip" value/>
-		</div>
+	<form name="edit_address_form" id="edit_address_form"
+		modelAttribute="editAddressForm" data-toggle="validator"
+		onsubmit="return editAddress();">
+		
+			<input type="hidden" value="${address.id}" path="id" id="id" name="id" />
+		
+			<div class="form-group">
+				<label for="town">Miasto:</label> <input type="text"
+					class="form-control" id="town" value="${address.town}" path="town" name="town"
+					required="true" />
+			</div>
+			<div class="form-group">
+				<label for="street">Ulica:</label> <input type="text"
+					class="form-control" id="street" value="${address.street}" path="street" name="street"
+					required="true" />
+			</div>
+			<div class="form-group">
+				<label for="code">Kod pocztowy:</label> <input type="text"
+					class="form-control" id="code" value="${address.code}" path="code" name="code"
+					required="true" />
+			</div>
+			<div class="form-group">
+				<label for="houseNumber">Numer budynku:</label> <input type="text"
+					class="form-control" id="houseNumber" value="${address.houseNumber}" path="houseNumber" name="houseNumber"
+					required="true" />
+			</div>
+			<div class="form-group">
+				<label for="country">Państwo:</label> <input type="text"
+					class="form-control" id="country" value="${address.country}" path="country" name="country"
+					required="true" />
+			</div>
 
-		<div class="form-group">
-			<label for="bankAccountNumber">Numer konta bankowego:</label> <input
-				type="text" class="form-control" id="bankAccountNumber"
-				path="bankAccountNumber" minlength="26"
-				data-error="Numer konta bankowego ma mieć 26 znaków." maxlength="26"
-				name="bankAccountNumber" required="true" />
-		</div>
 
-		<div class="form-group">
-			<label for="addressId">Adres:</label> <select name="addressId"
-				id="addressId" path="addressId" class="form-control">
-				<c:forEach var="address" items="${addresses}">
-					<option value=${address.id}>${address.street}
-						${address.houseNumber}, ${address.town}, ${address.country}</option>
-				</c:forEach>
-			</select>
-		</div>
-
-
-		<button type="submit" class="btn btn-success">Dodaj</button>
-		<a class="btn btn-warning" href="/clients">Anuluj</a>
+		<button type="submit" class="btn btn-primary">Edytuj</button>
+		<a class="btn btn-warning" href="/addresses">Anuluj</a>
 	</form>
 </body>
 </html>

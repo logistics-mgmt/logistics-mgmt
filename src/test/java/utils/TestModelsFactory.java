@@ -1,15 +1,18 @@
 package utils;
 
 
-import com.jdbc.demo.domain.psql.*;
-import com.jdbc.demo.domain.security.User;
-import com.jdbc.demo.domain.security.UserRole;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
+
+import com.jdbc.demo.domain.psql.Address;
+import com.jdbc.demo.domain.psql.Client;
+import com.jdbc.demo.domain.psql.Driver;
+import com.jdbc.demo.domain.psql.FreightTransport;
+import com.jdbc.demo.domain.psql.Vehicle;
+import com.jdbc.demo.domain.security.User;
+import com.jdbc.demo.domain.security.UserRole;
 
 /**
  * Created by Mateusz on 04-Nov-15.
