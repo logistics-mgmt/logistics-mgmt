@@ -28,6 +28,7 @@ import com.jdbc.demo.DriverDAO;
 import com.jdbc.demo.domain.psql.Address;
 import com.jdbc.demo.domain.psql.Driver;
 
+import utils.FirefoxPath;
 import utils.TestModelsFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,11 +42,13 @@ public class DriverGUITestIDERun {
 	@Autowired
 	private AddressDAO addressManager;
 
+	private static FirefoxPath getPath;
+	
 	private ArrayList<Driver> driverList = new ArrayList<Driver>();
 	private ArrayList<Address> addressList = new ArrayList<Address>();
 
 	static WebElement element;
-	static FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"));
+	static FirefoxBinary binary = new FirefoxBinary(new File(getPath.firefoxPath()));
 	static FirefoxProfile profile = new FirefoxProfile();
 	static WebDriver driver;
 

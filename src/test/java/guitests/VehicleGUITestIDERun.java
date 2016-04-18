@@ -27,6 +27,7 @@ import com.jdbc.demo.Application;
 import com.jdbc.demo.VehicleDAO;
 import com.jdbc.demo.domain.psql.Vehicle;
 
+import utils.FirefoxPath;
 import utils.TestModelsFactory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,11 +38,12 @@ public class VehicleGUITestIDERun {
 	@Autowired
 	private VehicleDAO vehicleManager;
 
-
 	private ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
+	private static FirefoxPath getPath;
+	
 	static WebElement element;
-	static FirefoxBinary binary = new FirefoxBinary(new File("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"));
+	static FirefoxBinary binary = new FirefoxBinary(new File(getPath.firefoxPath()));
 	static FirefoxProfile profile = new FirefoxProfile();
 	static WebDriver driver;
 
