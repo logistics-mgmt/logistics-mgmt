@@ -3,7 +3,7 @@
 # Script for setting up essential environmental variables both locally
 # and remotely on Heroku.
 # Usage examples:
-# 1. source configure_environment_variables.sh -d "postgres://postgres:postgres@localhost:5432/" -b <your_google_maps_browser_key> -s <your_google_maps_server_key>
+# 1. source configure_environment_variables.sh -d "postgres://postgres:postgres@localhost:5432/logistics" -b <your_google_maps_browser_key> -s <your_google_maps_server_key>
 # 2. source configure_environment_variables.sh # (interactive prompt)
 
 

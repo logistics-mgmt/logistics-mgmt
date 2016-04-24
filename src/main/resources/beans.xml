@@ -35,13 +35,16 @@
         <property name="minIdle" value="2"/>
         <property name="initialSize" value="5"/>
         <property name="removeAbandoned" value="true"/>
-        <property name="connectionProperties" value="ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory;"/>
-    </bean>
-
-    <!--
-        enable the configuration of transactional behavior based on
-        annotations
+    <!-- Uncomment when deploying on Heroku
+    <property name="connectionProperties" value="ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory;"/>
     -->
+
+</bean>
+
+<!--
+    enable the configuration of transactional behavior based on
+    annotations
+-->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="hibernateSessionFactory"
