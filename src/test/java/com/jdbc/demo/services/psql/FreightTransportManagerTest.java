@@ -121,6 +121,10 @@ public class FreightTransportManagerTest {
 
         Assert.assertFalse(freightTransportManager.getAll().contains(freightTransport1));
         Assert.assertTrue(freightTransportManager.getAll().contains(freightTransport2));
+
+        // Check if transport's vehicles and drivers have not been deleted
+        Assert.assertTrue(driverManager.getAll().containsAll(freightTransport1.getDrivers()));
+        Assert.assertTrue(vehicleManager.getAll().containsAll(freightTransport1.getVehicles()));
     }
 
     @Test

@@ -109,14 +109,17 @@ public class FreightTransportTest {
 
 	@After
 	public void cleanup() throws Exception {			
-		
-		if(FreightTransportList.size()!=0){
-			
-			FreightTransportList.remove(1);
-			
-			for (FreightTransport freightTransport : FreightTransportList) {
-				FreightTransportManager.delete(freightTransport.getId());
-			}		
+
+		for (FreightTransport freightTransport : FreightTransportList) {
+			FreightTransportManager.delete(freightTransport);
+		}
+
+		for (Driver driver: driverList) {
+			driverManager.delete(driver);
+		}
+
+		for (Vehicle vehicle: vehicleList) {
+			vehicleManager.delete(vehicle);
 		}
 		
 		for (Client client : clientList) {
@@ -177,7 +180,10 @@ public class FreightTransportTest {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transports/" + testFreightTransport.getId())
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
-		FreightTransportList.clear();
+
+		// Mark testTransport for deletion if API call failed
+		if(FreightTransportManager.getAll().contains(testFreightTransport))
+			FreightTransportList.add(testFreightTransport);
 
 		Assert.assertFalse(FreightTransportManager.getAll().contains(testFreightTransport));
 	}
@@ -213,7 +219,6 @@ public class FreightTransportTest {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
 		FreightTransport testFreightTransport = FreightTransportList.get(1);
-		FreightTransportList.add(testFreightTransport);
 		
 		mockMvc.perform(post("/api/transports/" + testFreightTransport.getId()).contentType(contentType)
 				.content(convertObjectToJsonBytes(testFreightTransport))

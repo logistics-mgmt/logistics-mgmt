@@ -101,9 +101,9 @@ CREATE TABLE FreightTransport (
   value DECIMAL(8,2) NOT NULL CHECK(value>=0),
   payload_weight INTEGER NULL DEFAULT 0,
   name VARCHAR(100) NULL,
-  load_date timestamp NULL,
-  unload_date timestamp NULL,
-  payment_date timestamp NULL,
+  load_date date NULL,
+  unload_date date NULL,
+  payment_date date NULL,
   finished boolean DEFAULT '0',
   notes VARCHAR(200) NULL
 );

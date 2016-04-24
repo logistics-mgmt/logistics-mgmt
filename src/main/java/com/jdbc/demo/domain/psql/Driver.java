@@ -36,7 +36,8 @@ import com.jdbc.demo.domain.schedule.ScheduleEvent;
 @JsonInclude(content = JsonInclude.Include.NON_NULL)
 @NamedNativeQueries({
 		@NamedNativeQuery(name = "driver.all", query = "Select * from Driver", resultClass = Driver.class), })
-@NamedQueries({ @NamedQuery(name = "deleteByPesel", query = "DELETE FROM Driver WHERE PESEL = :PESEL"), })
+@NamedQueries({ @NamedQuery(name = "deleteByPesel", query = "DELETE FROM Driver WHERE PESEL = :PESEL"),
+		@NamedQuery(name = "getByPesel", query = "From Driver d WHERE d.PESEL = :PESEL")})
 public class Driver {
 
 	@Id
@@ -70,7 +71,7 @@ public class Driver {
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Double longitude;
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "drivers")
+	@ManyToMany(mappedBy = "drivers")
 	private List<FreightTransport> transports = new ArrayList<>();
 
 	public Driver() {
@@ -78,7 +79,7 @@ public class Driver {
 	}
 
 	public Driver(long id, Address address, String firstName, String lastName, String PESEL, BigDecimal salary,
-			BigDecimal salaryBonus, Boolean available, Boolean deleted) {
+				  BigDecimal salaryBonus, Boolean available, Boolean deleted) {
 		super();
 		this.id = id;
 		this.address = address;

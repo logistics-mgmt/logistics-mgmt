@@ -64,7 +64,7 @@ public class DriverTest {
 	public void setup() throws Exception {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-		this.addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
+		addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
 		Driver driver1 = driverManager.add(TestModelsFactory.createTestDriver1(addressList.get(0)));
 		driverList.add(driver1);
 		Driver driver2 = driverManager.add(TestModelsFactory.createTestDriver2(addressList.get(0)));
@@ -76,7 +76,7 @@ public class DriverTest {
 	public void cleanup() throws Exception {
 
 		for (Driver driver : driverList) {
-			driverManager.delete(driver.getPESEL());
+			driverManager.delete(driver);
 		}
 		
 		for (Address address : addressList) {
@@ -105,31 +105,35 @@ public class DriverTest {
 	public void postDriver() throws Exception {
 		
 		Driver testDriver = TestModelsFactory.createTestDriver3(addressList.get(0));
-		driverList.add(testDriver);
 		
 		mockMvc.perform(post("/api/drivers/")
 				.contentType(contentType).content(convertObjectToJsonBytes(testDriver)))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$.id", is((int) driverList.get(1).getId() + 1)))
 				.andExpect(jsonPath("$.firstName", is(testDriver.getFirstName())))
 				.andExpect(jsonPath("$.lastName", is(testDriver.getLastName())))
 				.andExpect(jsonPath("$.salary", is(testDriver.getSalary().doubleValue())))
 				.andExpect(jsonPath("$.pesel", is(testDriver.getPESEL())))
 				.andExpect(jsonPath("$.available", is(testDriver.isAvailable())))
 				.andExpect(jsonPath("$.deleted", is(testDriver.isDeleted())));
+
+		driverList.add(driverManager.get(testDriver.getPESEL()));
 	}
 
 	@Test
 	public void deleteDriver() throws Exception {
 
 		Driver testDriver = driverManager.add(TestModelsFactory.createTestDriver3(addressList.get(0)));
-		driverList.add(testDriver);
+
 		
 		mockMvc.perform(
 				MockMvcRequestBuilders.delete("/api/drivers/" + testDriver.getId())
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
+
+		// Mark testDriver for deletion if API call failed
+		if(driverManager.getAll().contains(testDriver))
+			driverList.add(testDriver);
 
 		Assert.assertFalse(driverManager.getAll().contains(testDriver));
 	}
