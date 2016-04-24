@@ -52,9 +52,10 @@ public class FreightTransportManager implements FreightTransportDAO {
 
     @Override
     public FreightTransport update(FreightTransport freightTransport) {
-        sessionFactory.getCurrentSession().update(freightTransport);
+        FreightTransport mergedTransport = (FreightTransport) sessionFactory.getCurrentSession().merge(freightTransport);
+        sessionFactory.getCurrentSession().update(mergedTransport);
         return (FreightTransport) sessionFactory.getCurrentSession().get(FreightTransport.class,
-                freightTransport.getId());
+                mergedTransport.getId());
     }
 
     @Override

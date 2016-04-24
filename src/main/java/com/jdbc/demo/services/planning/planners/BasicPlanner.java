@@ -47,6 +47,11 @@ public class BasicPlanner implements Planner {
 					transport, transport.getVehicles().size()));
 			transport.setDistance((int) calculateRouteDistance(transport.getLoadAddress(),
 					transport.getUnloadAddress()));
+
+			if(transport.getVehicles().size() == 0)
+				throw new PlanningException("Not enough available vehicles.");
+			if(transport.getDrivers().size() == 0)
+				throw new PlanningException("Not enough available vehicles.");
 			return transport;
 		} catch (PlanningException e) {
 			LOGGER.error(String.format("Not enough resources for transport: %s.", transport), e);

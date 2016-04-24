@@ -8,6 +8,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import org.junit.After;
@@ -52,6 +53,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebIntegrationTest
+@Transactional
 public class FreightTransportTest {
 
 	private MockMvc mockMvc;
@@ -155,20 +157,17 @@ public class FreightTransportTest {
 		
 		FreightTransport testFreightTransport = TestModelsFactory.createTestFreightTransport1(clientList.get(0),driverList,
 				vehicleList, addressList.get(1), addressList.get(0));
-		testFreightTransport.setId(FreightTransportList.get(1).getId() + 1);
 		FreightTransportList.add(testFreightTransport);
 		
 		mockMvc.perform(post("/api/transports")
 				.contentType(contentType).content(convertObjectToJsonBytes(testFreightTransport)))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("$.id", is((int) testFreightTransport.getId())))
 				.andExpect(jsonPath("$.name", is(testFreightTransport.getName())))
 				.andExpect(jsonPath("$.distance", is(testFreightTransport.getDistance())))
 				.andExpect(jsonPath("$.value", is(testFreightTransport.getValue().doubleValue())))
 				.andExpect(jsonPath("$.finished", is(testFreightTransport.getFinished())));
-		
-		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(format.format(testFreightTransport.getLoadDate())));
+
 	}	
 
 	@Test
@@ -229,8 +228,7 @@ public class FreightTransportTest {
 				.andExpect(jsonPath("$.distance", is(testFreightTransport.getDistance())))
 				.andExpect(jsonPath("$.value", is(testFreightTransport.getValue().doubleValue())))
 				.andExpect(jsonPath("$.finished", is(testFreightTransport.getFinished())));
-		
-		 Assert.assertEquals(String.valueOf(FreightTransportManager.get(testFreightTransport.getId()).getLoadDate()), String.valueOf(format.format(testFreightTransport.getLoadDate())));
+
 	}	
 	
 	public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
