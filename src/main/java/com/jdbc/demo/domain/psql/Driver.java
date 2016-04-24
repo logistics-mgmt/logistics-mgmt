@@ -36,7 +36,8 @@ import com.jdbc.demo.domain.schedule.ScheduleEvent;
 @JsonInclude(content = JsonInclude.Include.NON_NULL)
 @NamedNativeQueries({
 		@NamedNativeQuery(name = "driver.all", query = "Select * from Driver", resultClass = Driver.class), })
-@NamedQueries({ @NamedQuery(name = "deleteByPesel", query = "DELETE FROM Driver WHERE PESEL = :PESEL"), })
+@NamedQueries({ @NamedQuery(name = "deleteByPesel", query = "DELETE FROM Driver WHERE PESEL = :PESEL"),
+		@NamedQuery(name = "getByPesel", query = "From Driver d WHERE d.PESEL = :PESEL")})
 public class Driver {
 
 	@Id

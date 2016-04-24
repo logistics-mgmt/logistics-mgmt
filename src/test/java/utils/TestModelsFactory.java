@@ -106,7 +106,7 @@ public abstract class TestModelsFactory {
         driver3.setFirstName("Jan");
         driver3.setLastName("Czapla");
         driver3.setSalary(new BigDecimal(3200).setScale(2, BigDecimal.ROUND_CEILING));
-        driver3.setPESEL("12345687911");
+        driver3.setPESEL("12345687912");
         driver3.setAvailable(true);
         driver3.setDeleted(false);
         return driver3;

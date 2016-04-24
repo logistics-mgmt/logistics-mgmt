@@ -53,6 +53,11 @@ public class DriverManager implements DriverDAO {
 	}
 
 	@Override
+	public Driver get(String PESEL) {
+		return (Driver) sessionFactory.getCurrentSession().getNamedQuery("getByPesel").setString("PESEL", PESEL).uniqueResult();
+	}
+
+	@Override
 	public Driver add(Driver driver) {
 		Session session = sessionFactory.getCurrentSession();
 		Long id = (Long) session.save(driver);

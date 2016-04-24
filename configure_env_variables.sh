@@ -25,7 +25,7 @@ done
 
 echo "$database_url"
 if [ -z "$database_url" ]; then
-  echo "Please enter DATABASE_URL parameter (e.g. \"postgres://postgres:postgres@localhost:5432/\" for localhost): "
+  echo "Please enter DATABASE_URL parameter (e.g. \"postgres://postgres:postgres@localhost:5432/logistics\" for logistics database on localhost): "
   read database_url_input
   database_url="$database_url_input"
 fi

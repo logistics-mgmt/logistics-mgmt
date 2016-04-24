@@ -64,7 +64,7 @@ public class ClientTest {
 	public void setup() throws Exception {
 
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-		this.addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
+		addressList.add(addressManager.add(TestModelsFactory.createTestAddress1()));
 		Client client1 = clientManager.add(TestModelsFactory.createTestClient1(addressList.get(0)));
 		clientList.add(client1);
 		Client client2 = clientManager.add(TestModelsFactory.createTestClient2(addressList.get(0)));
