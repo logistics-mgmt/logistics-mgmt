@@ -60,15 +60,15 @@ public class FreightTransport {
     @Column(name="payload_weight")
     private Integer payloadWeight;
 
-    @Column(nullable = false, name="load_date")
+    @Column(name="load_date")
     @Temporal(TemporalType.DATE)
     private Date loadDate;
 
-    @Column(nullable = false, name="unload_date")
+    @Column(name="unload_date")
     @Temporal(TemporalType.DATE)
     private Date unloadDate;
 
-    @Column(nullable = false, name="payment_date")
+    @Column(name="payment_date")
     @Temporal(TemporalType.DATE)
     private Date paymentDate;
 
@@ -81,7 +81,7 @@ public class FreightTransport {
 
     @ManyToMany(cascade =
     {
-        CascadeType.DETACH,
+                CascadeType.DETACH,
                 CascadeType.MERGE,
                 CascadeType.REFRESH,
                 CascadeType.PERSIST
