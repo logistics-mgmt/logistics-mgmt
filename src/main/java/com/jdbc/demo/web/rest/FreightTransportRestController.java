@@ -82,6 +82,9 @@ public class FreightTransportRestController {
 	@RequestMapping(value= "/plan", method = RequestMethod.POST,
 	consumes = {"application/json; charset=UTF-8"}, produces = {"application/json; charset=UTF-8"})
 	public @ResponseBody FreightTransport planTransport(@RequestBody FreightTransport tranportPlan){
-		return transportPlanner.planTransport(tranportPlan);
+		LOGGER.info(String.format("Transport plan %s.", tranportPlan));
+		FreightTransport plannedTransport =  transportPlanner.planTransport(tranportPlan);
+		LOGGER.info(String.format("Planned transport %s.", plannedTransport));
+		return plannedTransport;
 	}
 }
