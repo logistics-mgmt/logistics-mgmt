@@ -68,38 +68,51 @@
 		<!--/.container-fluid -->
 	</nav>
 
-	<form name="add_address_form" id="add_address_form"
+	<form name="add_address_form" id="add_address_form" class="form-horizontal"
 		modelAttribute="addAddressForm" data-toggle="validator"
 		onsubmit="return addAddress();">
 		<div class="form-group">
-				<label for="town">Miasto:</label> <input type="text"
+				<label for="town" class="col-sm-2 control-label">Miasto:</label>
+	       		<div class="col-sm-8"> <input type="text"
 					class="form-control" id="town" path="town" name="town"
 					required="true" />
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="street">Ulica:</label> <input type="text"
+				<label for="street" class="col-sm-2 control-label">Ulica:</label>
+	       		<div class="col-sm-8"> <input type="text"
 					class="form-control" id="street" path="street" name="street"
 					required="true" />
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="code">Kod pocztowy:</label> <input type="text"
+				<label for="code" class="col-sm-2 control-label">Kod pocztowy:</label>
+	       		<div class="col-sm-8"> <input type="text"
 					class="form-control" id="code" path="code" name="code"
 					required="true" />
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="houseNumber">Numer budynku:</label> <input type="text"
+				<label for="houseNumber" class="col-sm-2 control-label">Numer budynku:</label>
+	       		<div class="col-sm-8"> <input type="text"
 					class="form-control" id="houseNumber" path="houseNumber" name="houseNumber"
 					required="true" />
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="country">Państwo:</label> <input type="text"
+				<label for="country" class="col-sm-2 control-label">Państwo:</label>
+	       		<div class="col-sm-8"> <input type="text"
 					class="form-control" id="country" path="country" name="country"
 					required="true" />
 			</div>
+			</div>
 
-
+		<div class="form-group">
+       <div class="col-sm-offset-2 col-sm-10">
 		<button type="submit" class="btn btn-success">Dodaj</button>
 		<a class="btn btn-warning" href="/addresses">Anuluj</a>
+		</div>
+       </div>
 	</form>
 </body>
 </html>

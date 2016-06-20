@@ -1,0 +1,3 @@
+# Deprecated - use GOOGLE_MAPS_SERVER_KEY and GOOGLE_MAPS_BROWSER_KEY environment variables instead
+googlemaps.serverKey=YOUR_GOOGLE_MAPS_API_SERVER_KEY
+googlemaps.browserKey=YOUR_GOOGLE_MAPS_API_BROWSER_KEY

@@ -56,12 +56,12 @@
 		<!--/.container-fluid -->
 	</nav>
 
-	<form:form method="POST" modelAttribute="user">
+	<form:form method="POST" modelAttribute="user" class="form-horizontal">
 
-		<div>
-			<label for="firstName">Imię</label>
-			<div>
-				<form:input type="text" required="true" path="firstName" id="firstName"
+		<div> <label for="firstName" class="col-sm-2 control-label">Imię:</label>
+		
+			<div class="col-sm-8">
+				<form:input type="text" required="true" path="firstName" id="firstName"  style=""
 					class="form-control" />
 				<div class="has-error">
 					<form:errors path="firstName" class="help-inline" />
