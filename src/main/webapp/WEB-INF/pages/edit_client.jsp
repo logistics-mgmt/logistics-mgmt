@@ -73,29 +73,38 @@
 			onsubmit="return editClient();">
 			<input type="hidden" value="${client.id}" path="id" id="id" name="id" style="" />
 			<div class="form-group">
-				<label for="name">Nazwa:</label> <input type="text"
+			<label for="name" class="col-sm-2 control-label">Name:</label>
+			<div class="col-sm-8">
+			 <input type="text"
 					class="form-control" name="name" minlength="2" path="name"
 					id="name" value="${client.name }" required="true" />
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="nip">NIP:</label> <input type="text"
+			<label for="nip" class="col-sm-2 control-label">NIP:</label>
+			<div class="col-sm-8"> 
+				<input type="text"
 					class="form-control" id="nip" path="nip"
 					data-error="NIP ma mieć 10 znaków." maxlenght="10"
 					placeholder="Tylko dla polskich firm" name="nip"
 					value="${client.NIP}" />
 			</div>
+			</div>
 
 			<div class="form-group">
-				<label for="bankAccountNumber">Numer konta bankowego:</label> <input
+				<label for="bankAccountNumber" class="col-sm-2 control-label">Numer konta bankowego:</label>
+				<div class="col-sm-8"> <input
 					type="text" class="form-control" id="bankAccountNumber"
 					path="bankAccountNumber" minlength="26"
 					data-error="Numer konta bankowego ma mieć 26 znaków."
 					maxlength="26" name="bankAccountNumber" required="true"
 					value="${client.bankAccountNumber }" />
 			</div>
+			</div>
 
 			<div class="form-group">
-				<label for="addressId">Adres:</label> <select name="addressId"
+				<label for="addressId" class="col-sm-2 control-label">Adres:</label>
+				<div class="col-sm-8">  <select name="addressId"
 					id="addressId" path="addressId" class="form-control"}">
 					<option value="${client.address.id}" selected="selected">${client.address.street}
 							${client.address.houseNumber}, ${client.address.town}, ${client.address.country}</option>
@@ -105,9 +114,13 @@
 					</c:forEach>
 				</select>
 			</div>
-
+			</div>
+				      <div class="form-group">
+			        <div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-primary">Edytuj</button>
 			<a class="btn btn-warning" href="/clients">Anuluj</a>
+			        </div>
+       </div>
 		</form>
 </body>
 </html>

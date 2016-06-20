@@ -69,42 +69,55 @@
 		<!--/.container-fluid -->
 	</nav>
 
-	<form name="add_driver_form" id="add_driver_form"
+	<form name="add_driver_form" id="add_driver_form" class="form-horizontal"
 		modelAttribute="addDriverForm" data-toggle="validator"
 		onsubmit="return addDriver();">
 		<div class="form-group">
-			<label for="firstName">Imie:</label> <input type="text"
+			<label for="firstName" class="col-sm-2 control-label">Imie:</label>
+        <div class="col-sm-8"><input type="text"
 				class="form-control" name="firstName" minlength="2" path="firstName"
 				id="firstName" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-			<label for="lastName">Nazwisko:</label> <input type="text"
+			<label for="lastName" class="col-sm-2 control-label">Nazwisko:</label>
+        	<div class="col-sm-8"> <input type="text"
 				class="form-control" id="lastName" minlength="2" path="lastName"
 				name="lastName" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-			<label for="pesel">Pesel:</label> <input type="text"
+		<label for="pesel" class="col-sm-2 control-label">Pesel:</label>
+        	<div class="col-sm-8"> <input type="text"
 				class="form-control" id="pesel" path="pesel" minlength="11"
 				data-error="pesel musi miec dokładnie 11 znaków." maxlength="11"
 				name="pesel" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-			<label for="salary">Pensja:</label>
+			<label for="salary" class="col-sm-2 control-label">Pensja:</label>
+<div class="col-sm-8">
 			<div class="input-group">
+			
 				<span class="input-group-addon">zł</span> <input type="number"
 					class="form-control" id="salary" name="salary" path="salary"
 					required="true" />
-			</div>
+				</div>
+				</div>
+				</div>
 			<div class="form-group">
-				<label for="salaryBonus">Premia:</label>
+				<label for="salaryBonus" class="col-sm-2 control-label">Premia:</label>
+				<div class="col-sm-8">
 				<div class="input-group">
 					<span class="input-group-addon">zł</span> <input type="number"
 						class="form-control" id="salaryBonus" name="salaryBonus"
 						path="salaryBonus" />
 				</div>
 			</div>
+			</div>
 			<div class="form-group">
-				<label for="addressId">Adres:</label> <select name="addressId"
+				<label for="addressId" class="col-sm-2 control-label">Adres:</label>
+				<div class="col-sm-8"> <select name="addressId"
 					id="addressId" path="addressId" class="form-control">
 					<c:forEach var="address" items="${addresses}">
 						<option value=${address.id}>${address.street}
@@ -112,13 +125,22 @@
 					</c:forEach>
 				</select>
 			</div>
+			</div>
+			
+			<div class="col-sm-offset-2 col-sm-10">
 			<div class="checkbox">
 				<label><input type="checkbox" checked="checked"
 					path="available" id="available" name="available" />Dostepny</label>
 			</div>
+			</div>
 
+			<div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-success">Dodaj</button>
 			<a class="btn btn-warning" href="/drivers">Anuluj</a>
+			</div>
+       </div>
+			
 	</form>
 </body>
 </html>

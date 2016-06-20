@@ -64,45 +64,56 @@
 		</div>
 		<!--/.container-fluid -->
 	</nav>
-	<form name="edit_driver_form" id="edit_driver_form"
+	<form name="edit_driver_form" id="edit_driver_form" class="form-horizontal" 
 		modelAttribute="editDriverForm" data-toggle="validator"
 		onsubmit="return editDriver();">
-		<input type="hidden" value="${driver.id}" path="id" id="id" name="id" />
+		<input type="hidden" value="${driver.id}" path="id" id="id" name="id"  style=""/>
 		<div class="form-group">
-			<label for="firstName">Imie:</label> <input type="text"
+		<label for="firstName" class="col-sm-2 control-label">Imie:</label>
+       	<div class="col-sm-8"> <input type="text"
 				value="${driver.firstName}" class="form-control" name="firstName"
 				path="firstName" id="firstName" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-			<label for="lastName">Nazwisko:</label> <input type="text"
+		<label for="lastName" class="col-sm-2 control-label">Nazwisko:</label>
+       	<div class="col-sm-8">  <input type="text"
 				value="${driver.lastName}" class="form-control" id="lastName"
 				path="lastName" name="lastName" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-			<label for="pesel">Pesel:</label> <input type="text"
+				<label for="pesel" class="col-sm-2 control-label">Pesel:</label>
+       	<div class="col-sm-8"> <input type="text"
 				value="${driver.PESEL}" class="form-control" id="pesel" path="pesel"
-				minlength="11"
+				data-minlength="11"
 				data-error="pesel musi miec dokładnie 11 znaków."
 				maxlength="11" name="pesel" required="true" />
 		</div>
+		</div>
 		<div class="form-group">
-                <label for="salary">Pensja:</label>
+		<label for="salary" class="col-sm-2 control-label">Pensja:</label>
+       	<div class="col-sm-8"> 
                 <div class="input-group">
                     <span class="input-group-addon">zł</span>
                     <input type="number" class="form-control" id="salary"
                      value="${driver.salary}" name="salary"  path="salary" />
                 </div>
         </div>
+        </div>
         <div class="form-group">
-                <label for="salaryBonus">Premia:</label>
+        	<label for="salaryBonus" class="col-sm-2 control-label">Premia:</label>
+       		<div class="col-sm-8">
                 <div class="input-group">
                     <span class="input-group-addon">zł</span>
                     <input type="number" class="form-control" id="salaryBonus" name="salaryBonus"
                       value="${driver.salaryBonus}" path="salaryBonus" />
                 </div>
         </div>
+        </div>
 		<div class="form-group">
-			<label for="addressId">Adres:</label> <select name="addressId"
+			<label for="ddressId" class="col-sm-2 control-label">Adres:</label>
+       		<div class="col-sm-8"> <select name="addressId"
 				id="addressId" path="addressId" class="form-control">
 				<option value="${driver.address.id}" selected="selected">${driver.address.street}
 							${driver.address.houseNumber}, ${driver.address.town}, ${driver.address.country}</option>
@@ -112,13 +123,20 @@
 				</c:forEach>
 			</select>
 		</div>
+		</div>
+		<div class="col-sm-offset-2 col-sm-10">
 		<div class="checkbox">
 			<label><input type="checkbox" checked="checked"
 				path="available" id="available" name="available" />Dostepny</label>
 		</div>
+		</div>
 
+		<div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
 		<button type="submit" class="btn btn-primary">Edytuj</button>
 		<a class="btn btn-warning" href="/drivers">Anuluj</a>
+		</div>
+       </div>
 	</form>
 </body>
 </html>
