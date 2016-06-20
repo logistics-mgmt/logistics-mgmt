@@ -10,6 +10,13 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<style>
+body {
+    background-image: url(/images/logistics-background-sm.png);
+    background-repeat: no-repeat;
+    background-size: 100%;}
+</style>
+
 </head>
 <body>
 	<!-- Static navbar -->
@@ -31,7 +38,7 @@
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
 					<li class="inactive"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
-					<li class="inactive"><a href="/addresses">Baza adresów</a></li>
+					<li class="inactive"><a href="/addresses">Baza adresÃ³w</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
