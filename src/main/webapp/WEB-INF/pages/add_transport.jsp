@@ -90,16 +90,17 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4">
-			<button class="btn btn-primary" onclick="planTransport();">Zaplanuj</button>
-				<form name="add_transport_form" id="add_transport_form"
-				modelAttribute="addTransportForm" data-toggle="validator"
-				onsubmit="return addFreightTransport();">
+			 <div class="col-md-offset-1 col-md-4">
+				<button class="btn btn-primary" onclick="planTransport();">Zaplanuj</button>
+				<form name="add_transport_form" id="add_transport_form" class="form-horizontal"
+					modelAttribute="addTransportForm" data-toggle="validator"
+					onsubmit="return addFreightTransport();">
 
 
 					<div class="form-group">
+					
 						<label for="loadAddressId">Adres załadunku:</label> <select
-							name="loadAddressId" id="loadAddressId" path="loadAddressId"
+							name="loadAddressId" id="loadAddressId" path="loadAddressId" 
 							class="form-control">
 							<c:forEach var="loadAddress" items="${load_address}">
 								<option value=${loadAddress.id}>${loadAddress.street}
@@ -111,8 +112,8 @@
 
 					<div class="form-group">
 						<label for="unloadAddressId">Adres rozładunku:</label> <select
-							name="unloadAddressId" id="unloadAddressId" path="unloadAddressId"
-							class="form-control">
+							name="unloadAddressId" id="unloadAddressId"
+							path="unloadAddressId" class="form-control">
 							<c:forEach var="unloadAddress" items="${unload_address}">
 								<option value=${unloadAddress.id}>${unloadAddress.street}
 									${unloadAddress.houseNumber}, ${unloadAddress.town},
@@ -145,8 +146,8 @@
 						<label for="value">Ładunek:</label>
 						<div class="input-group">
 							<span class="input-group-addon">kg</span><input type="number"
-								step="any" class="form-control" id="payloadWeight" name="payloadWeight"
-								path="payloadWeight" />
+								step="any" class="form-control" id="payloadWeight"
+								name="payloadWeight" path="payloadWeight" />
 						</div>
 					</div>
 
@@ -172,27 +173,27 @@
 					<button type="submit" class="btn btn-success">Dodaj</button>
 					<a class="btn btn-warning" href="/transports">Anuluj</a>
 				</form>
-				
+
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="row list-group" id="vehicles_list">
-       				<div class="list-group-item">
-	          			<h4 class="list-group-item-heading">Pojazdy:</h4>
-	        		</div>
-	   			</div>
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">Pojazdy:</h4>
+					</div>
+				</div>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="row list-group" id="drivers_list">
-       				<div class="list-group-item">
-	          			<h4 class="list-group-item-heading">Kierowcy:</h4>
-	        		</div>
-	   			</div>
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">Kierowcy:</h4>
+					</div>
+				</div>
 			</div>
 
 		</div>
 	</div>
 
-	
+
 </body>
 </html>

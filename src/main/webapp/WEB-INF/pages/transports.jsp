@@ -104,7 +104,7 @@
 				<td>Klient</td>
 				<td>Wartość</td>
 				<td>Szczegóły</td>
-				<td>Edycja</td>
+		
 				<td>Usuwanie</td>
 			</tr>
 		</thead>
@@ -117,8 +117,7 @@
 				<td>${transport.client}</td>
 				<td>${transport.value}</td>
 				<td><a class="btn btn-default details-transport-button" href="/transports/${transport.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></td>
-				<td><a class="btn btn-primary edit-transport-button"
-					href="/transports/edit/${transport.id}">Edytuj</a></td>
+				
 				<td><button class="btn btn-danger delete-transport-button"
 						id="delete-button-${transport.id}">Usuń</button></td>
 			</tr>
