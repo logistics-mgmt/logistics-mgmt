@@ -244,7 +244,7 @@ class Vehicle:
         """
         steps = self.route.route_dict['steps']
         next_step_index = steps.index(self.route_step) + 1
-        if next_step_index >= len(steps):
+        if next_step_index > len(steps):
             raise IndexError("Vehicle {vehicle} cannot move to the next step. Attempted to move to "
                              "step #{step_id} on route with {route_len} steps.".format(vehicle=self,
                                                                                        step_id=next_step_index,
@@ -269,6 +269,8 @@ class Vehicle:
             return
 
         if self.route_step == self.route.get_end_location():
+            self.location = self.route_step['endLocation']
+            self.update_location()
             logger.info("Driver: {driver} in vehicle: {vehicle} finished his route!".format(
                 driver=self.driver_dict['id'], vehicle=self.vehicle_dict['id']))
             self.finished = True
