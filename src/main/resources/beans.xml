@@ -15,7 +15,7 @@
 
     <bean class="java.net.URI" id="dbUrl">
      
-<constructor-arg value="postgres://postgres:baza11@localhost:5432/postgres"/>
+<constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
     </bean>
 
     <!--
