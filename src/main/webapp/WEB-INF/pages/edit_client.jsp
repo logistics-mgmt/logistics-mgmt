@@ -68,10 +68,10 @@
 		</div>
 		<!--/.container-fluid -->
 	</nav>
-		<form name="edit_client_form" id="edit_client_form"
+		<form name="edit_client_form" id="edit_client_form" class="form-horizontal"
 			modelAttribute="editClientForm" data-toggle="validator"
 			onsubmit="return editClient();">
-			<input type="hidden" value="${client.id}" path="id" id="id" name="id" />
+			<input type="hidden" value="${client.id}" path="id" id="id" name="id" style="" />
 			<div class="form-group">
 				<label for="name">Nazwa:</label> <input type="text"
 					class="form-control" name="name" minlength="2" path="name"
