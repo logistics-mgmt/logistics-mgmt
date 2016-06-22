@@ -43,7 +43,7 @@ public class AddressGUITestIDERun {
 	static FirefoxBinary binary = new FirefoxBinary(new File(getPath.firefoxPath()));
 	static FirefoxProfile profile = new FirefoxProfile();
 	static WebDriver driver;
-
+										
 	@Before
 	public void setup() throws Exception {
 
@@ -53,6 +53,8 @@ public class AddressGUITestIDERun {
 		driver = new FirefoxDriver(binary, profile);
 		driver.manage().window().maximize();
 		driver.get("http://localhost:8080/addresses"); 
+		
+		
 		
 		element = (new WebDriverWait(driver, 10)).until(
 				ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"username\"]")));
