@@ -28,12 +28,18 @@ public class AuthorizationController {
 		return "redirect:/#";
 	}
 
-	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/index", "/#" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 
 		return "index";
 	}
 
+	@RequestMapping(value = { "/images/logistics-background-sm.png" }, method = RequestMethod.GET)
+	public String homePage2(ModelMap model) {
+
+		return "index";
+	}
+	
 	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());

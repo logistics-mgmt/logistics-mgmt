@@ -38,7 +38,7 @@ body {
 					<li class="inactive"><a href="/vehicles">Pojazdy</a></li>
 					<li class="inactive"><a href="/clients">Klienci</a></li>
 					<li class="inactive"><a href="/transports">Transporty</a></li>
-					<li class="inactive"><a href="/addresses">Baza adresÃ³w</a></li>
+					<li class="inactive"><a href="/addresses">Baza adresów</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
